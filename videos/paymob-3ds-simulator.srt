@@ -1,0 +1,23 @@
+1
+00:00:01,276 --> 00:00:14,788
+This simulator tests external 3DS on Paymob. The merchant authenticates the card with its own 3DS provider, then sends the result along with the authorisation. API keys are never shown.
+
+2
+00:00:17,583 --> 00:00:27,615
+The How it works tab explains both flows side by side, the five values that matter, and a five-minute test script, so a provider engineer can follow along without a call.
+
+3
+00:00:30,354 --> 00:00:40,410
+The simulator builds one authorisation request and sends it two ways: to a reference mock that shows what correct looks like, and live to the provider's sandbox.
+
+4
+00:00:45,048 --> 00:00:54,456
+This is the international path: a Visa card authenticated through Netcetera. The mock lane approves it, and shows the exact request and response.
+
+5
+00:01:00,048 --> 00:01:11,064
+The second path is Mada, Saudi Arabia's domestic card network, where the rules differ. Running both paths side by side showed exactly where the provider's behaviour diverged.
+
+6
+00:01:15,566 --> 00:01:24,902
+Comparing native and external 3DS gave us an evidence-based bug report instead of a debate, and it unblocked certification with the provider.

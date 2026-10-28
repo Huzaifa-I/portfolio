@@ -1,0 +1,23 @@
+1
+00:00:01,585 --> 00:00:10,681
+This walkthrough follows a single API request through BIN Intelligence: the key, the scope, the rate limit, the lookup, and the log.
+
+2
+00:00:13,394 --> 00:00:24,458
+Every paid key carries permission scopes and a limit of twenty-five requests a second. The same payment is shown four ways, so you can see exactly what each kind of caller gets back.
+
+3
+00:00:26,577 --> 00:00:34,425
+At volume, the pattern holds. Lookups are counted, never capped, so a merchant's checkout is never blocked by a quota.
+
+4
+00:00:36,525 --> 00:00:48,021
+On the wire, the response follows the buyer's PCI level. Merchants that never store card numbers receive eight digits. Level One merchants can receive eleven, encrypted.
+
+5
+00:00:50,125 --> 00:00:58,261
+When the catalogue changes, subscribers are told. A range that is retiring, or one that touches a rule, raises an event.
+
+6
+00:01:00,354 --> 00:01:10,290
+And every request lands in a thirty-day log, one row per call. For an API product, that log is where support, billing and trust all begin.

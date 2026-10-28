@@ -1,0 +1,19 @@
+1
+00:00:01,244 --> 00:00:12,092
+This simulator proves that Moyasar accepts externally authenticated 3DS, and that a stored card can be charged later. Keys stay on the server and are hidden on screen.
+
+2
+00:00:13,697 --> 00:00:27,665
+On the left is the external MPI payload, fully editable: the ECI, the authentication value, the directory server transaction ID, and the protocol version. It is passed to the provider exactly as written.
+
+3
+00:00:32,698 --> 00:00:43,882
+Step one is the customer-initiated payment. The sandbox returns paid, confirms it did not run its own 3DS challenge, and returns a token for the saved card.
+
+4
+00:00:48,897 --> 00:00:56,649
+Step two is the merchant-initiated charge on that token, with no shopper present, just as a subscription renewal would work.
+
+5
+00:01:03,165 --> 00:01:13,965
+The full chain runs both in one click. That sandbox evidence turned an open question into a confirmed capability, and fed straight into the integration PRD.

@@ -1,0 +1,1149 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Keys, Limits, Logs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-xl:12px;--radius-full:999px;
+  --ground:#F4F6FA; --surface:#FFFFFF; --sunk:#EDF0F6;
+  --ink:#1B1E27; --body:#3C4150; --quiet:#6E7486; --line:#DDE2EC;
+  --accent:#3E4FE0; --accent-soft:#EDEFFD;
+  --good:#0E7C66; --good-soft:#E4F3EF;
+  --bad:#C0341D; --bad-soft:#FBE9E5;
+  --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --ui:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0F1117; --surface:#181B23; --sunk:#13161D;
+  --ink:#E9ECF3; --body:#BFC5D2; --quiet:#8A91A3; --line:#2A2F3B;
+  --accent:#8591F5; --accent-soft:#1D2140;
+  --good:#5FC9AE; --good-soft:#102A25;
+  --bad:#F08A72; --bad-soft:#2E1714;
+}}
+:root[data-theme="dark"]{
+  --ground:#0F1117; --surface:#181B23; --sunk:#13161D;
+  --ink:#E9ECF3; --body:#BFC5D2; --quiet:#8A91A3; --line:#2A2F3B;
+  --accent:#8591F5; --accent-soft:#1D2140;
+  --good:#5FC9AE; --good-soft:#102A25;
+  --bad:#F08A72; --bad-soft:#2E1714;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--body);font-family:var(--ui);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1560px;margin:0 auto;padding:0 16px;padding-block:24px 40px}
+h1{font-size:24px;font-weight:600;color:var(--ink);margin:0 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--quiet);margin:0 0 20px;max-width:72ch;font-size:14px}
+h2{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--quiet);margin:0 0 12px}
+.cols{display:grid;grid-template-columns:minmax(0,390px) minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.pair{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media (max-width:1399px){
+  .cols{grid-template-columns:minmax(0,340px) minmax(0,1fr)}
+  .pair{grid-column:1 / -1;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr))}
+}
+@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}.pair{grid-column:auto}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:16px}
+label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 8px}
+select,input{width:100%;font-family:var(--ui);font-size:14px;color:var(--ink);background:var(--sunk);
+  border:1px solid var(--line);border-radius:var(--radius-lg);padding:8px 12px}
+input.digits{font-family:var(--mono);font-size:20px;letter-spacing:.06em;font-weight:500}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.field+.field{margin-top:16px}
+.hint{font-size:12px;color:var(--quiet);margin:8px 0 0}
+.scopes{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.scope{font-size:12px;font-family:var(--mono);background:var(--sunk);border:1px solid var(--line);
+  border-radius:var(--radius-full);padding:4px 8px;color:var(--body)}
+.scope.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+button{font-family:var(--ui);font-weight:600;font-size:14px;border-radius:var(--radius-lg);cursor:pointer;border:1px solid transparent}
+.send{width:100%;margin-top:20px;background:var(--accent);color:#fff;padding:12px}
+.send:disabled{opacity:.5;cursor:not-allowed}
+.ghost{background:var(--surface);border-color:var(--line);color:var(--body);padding:8px 12px;font-size:14px}
+.ghost:disabled{opacity:.45;cursor:not-allowed}
+.quota{margin-top:16px;border-top:1px solid var(--line);padding-top:16px}
+.qfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:8px;flex-wrap:wrap}
+.qfoot .ghost{flex:none}
+.qrow{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+.qnum{font-family:var(--mono);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.bar{height:7px;background:var(--sunk);border-radius:var(--radius-sm);margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:var(--radius-sm);transition:width .3s}
+.bar i.full{background:var(--bad)}
+.stage{display:flex;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.stage:first-of-type{border-top:0;padding-top:0}
+.dot{flex:none;width:26px;height:26px;border-radius:50%;background:var(--sunk);border:1px solid var(--line);
+  display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--quiet);font-family:var(--mono)}
+.stage.pass .dot{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.stage.fail .dot{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.stage.warn .dot{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.stage.idle{opacity:.45}
+.sname{font-weight:600;color:var(--ink);font-size:14px}
+.sbody{font-size:14px;color:var(--quiet);margin-top:4px}
+.stage.fail .sbody,.stage.warn .sbody{color:var(--body)}
+.out{margin-top:16px;border-radius:var(--radius-xl);padding:12px 16px;font-size:14px;border:1px solid var(--line);background:var(--sunk)}
+.out.ok{background:var(--good-soft);border-color:var(--good)}
+.out.err{background:var(--bad-soft);border-color:var(--bad)}
+.out.amb{background:var(--accent-soft);border-color:var(--line)}
+.out b{color:var(--ink)}
+.code{font-family:var(--mono);font-size:12px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px}
+.scroll{overflow-x:auto}
+th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--quiet);
+  font-weight:600;padding:0 12px 8px 0;white-space:nowrap}
+td{padding:8px 12px 8px 0;border-top:1px solid var(--line);color:var(--body);white-space:nowrap}
+td.m{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:600;padding:0 8px;border-radius:var(--radius-md)}
+.p200{background:var(--good-soft);color:var(--good)}
+.p401,.p403,.p429{background:var(--bad-soft);color:var(--bad)}
+.p409{background:var(--accent-soft);color:var(--accent)}
+.strike{color:var(--quiet);text-decoration:line-through;opacity:.75}
+.note{font-size:14px;color:var(--quiet);margin:16px 0 0}
+.modes{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:8px}
+.modes.row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.mode{background:var(--sunk);border:1px solid var(--line);border-radius:var(--radius-lg);cursor:pointer;
+  padding:8px 12px;font-size:14px;font-weight:600;color:var(--body);display:flex;
+  justify-content:space-between;align-items:baseline;gap:12px}
+.modes.row .mode{justify-content:center}
+.mode .tag{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--quiet)}
+.mode.on .tag{color:var(--accent)}
+.mode.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;table-layout:fixed}
+.cmp th,.cmp td{padding:8px 4px;text-align:center;border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums;white-space:normal;overflow-wrap:anywhere}
+.cmp thead th{font-size:12px;letter-spacing:.03em;line-height:1.3;text-transform:uppercase;color:var(--quiet);
+  font-weight:600;border-bottom:1px solid var(--quiet);vertical-align:bottom}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--body);white-space:normal;
+  width:28%;font-weight:500;padding-left:0}
+.cmp tbody tr:last-child td{border-bottom:0}
+.cmp .big{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--ink);overflow-wrap:normal}
+.cmp .on{background:var(--accent-soft)}
+.cmp thead th.on{color:var(--accent);border-bottom-color:var(--accent)}
+.cmp td.on.big{color:var(--accent)}
+.minibar{display:block;height:5px;border-radius:var(--radius-sm);background:var(--line);overflow:hidden;margin:0 auto 4px;max-width:84px}
+.minibar i{display:block;height:100%;background:var(--accent);border-radius:var(--radius-sm);transition:width .25s}
+.cmp .yes{color:var(--ink);font-weight:600}
+.cmp .no{color:var(--ink);font-weight:600}
+.cmp .maybe{color:var(--ink);font-weight:600}
+.stale{margin-top:12px;padding:8px 12px;border-radius:var(--radius-lg);background:var(--accent-soft);
+  border:1px solid var(--line);font-size:14px}
+.chrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.chrow .ghost{width:100%}
+.cmp .sub{display:block;font-size:12px;font-weight:500;color:var(--quiet);margin-top:0}
+.attrs{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.ahead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--quiet);font-weight:600;margin-bottom:8px}
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:8px 20px}
+.acell{min-width:0;border-top:1px solid var(--line);padding-top:4px}
+.an{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  font-family:var(--mono);font-size:12px;color:var(--quiet);line-height:1.3}
+.av{display:block;font-size:12px;font-weight:600;color:var(--ink);line-height:1.35;overflow-wrap:anywhere}
+.af{flex:none;color:var(--quiet);font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.fbar{display:inline-block;width:26px;height:3px;border-radius:var(--radius-sm);background:var(--line);
+  overflow:hidden;margin-right:4px;vertical-align:middle}
+.fbar i{display:block;height:100%;background:var(--quiet);border-radius:var(--radius-sm)}
+.amiss{font-size:12px;color:var(--quiet);margin:8px 0 0;line-height:1.6}
+.amiss .dim{font-family:var(--mono);font-size:12px;opacity:.75}
+.beh{margin-top:8px;padding:8px 12px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--good)}
+.beh .dim{display:block;margin-top:4px;font-size:12px;color:var(--quiet)}
+.rbar{position:relative;height:16px;margin:8px 0 4px;background:var(--sunk);border:1px solid var(--line);border-radius:var(--radius-sm)}
+.rbar i{position:absolute;top:0;bottom:0}
+.rbar .mid{background:color-mix(in srgb,var(--accent) 22%,transparent)}
+.rbar .med{background:color-mix(in srgb,var(--accent) 55%,transparent);top:4px;bottom:4px}
+.rbar .you{width:3px;top:-4px;bottom:-4px;background:var(--ink);border-radius:var(--radius-sm)}
+.rleg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--body)}
+.rleg b{font-family:var(--mono);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;
+  margin:16px 0 20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.facts div{font-size:12px;color:var(--quiet)}
+.facts b{display:block;font-family:var(--mono);font-size:20px;font-weight:600;color:var(--ink);
+  font-variant-numeric:tabular-nums;margin-bottom:4px}
+.src{font-size:12px;color:var(--quiet);margin-top:16px;line-height:1.55}
+.src code{font-family:var(--mono);font-size:12px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:24px 0 12px;flex-wrap:wrap}
+.head h2{margin:0}
+.ex{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ex button{background:var(--sunk);border-color:var(--line);color:var(--body);font-family:var(--mono);
+  font-size:12px;font-weight:500;padding:4px 8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.viewbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:-4px 0 20px}
+.viewbar .vl{font-size:14px;color:var(--quiet)}
+.viewbar .modes{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.viewbar .mode{padding:8px 12px}
+.viewbar .sp{flex:1}
+.keyempty{margin-top:8px;font-size:14px;color:var(--quiet)}
+.keyempty .ghost{margin-top:8px}
+.more{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--quiet)}
+/* guided tour: same surface, line and accent as the cards */
+.tour{position:fixed;z-index:60;width:320px;max-width:calc(100vw - 24px);background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius-xl);box-shadow:0 20px 25px -5px rgba(0,0,0,.12),0 8px 10px -6px rgba(0,0,0,.1);padding:16px;animation:tourIn .18s ease-out}
+@keyframes tourIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.tour .tk{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--quiet)}
+.tour .tk button{background:none;border:0;color:var(--quiet);font-size:16px;padding:4px 8px}
+.tour h3{margin:8px 0;font-size:16px;font-weight:600;color:var(--ink)}
+.tour p{margin:0;font-size:14px;color:var(--body)}
+.tour .tr2{display:flex;gap:8px;align-items:center;margin-top:16px}.tour .tr2 .sp{flex:1}
+.tour .skip{background:none;border:0;color:var(--accent);padding:0;font-size:14px}
+.tour .nx{background:var(--accent);color:#fff;padding:8px 16px;font-size:14px}
+.tour-on{outline:2px solid var(--accent)!important;outline-offset:3px;border-radius:var(--radius-lg)}
+@media (prefers-reduced-motion:reduce){.tour{animation:none}}
+/* Events sheet: the tracking plan for this screen, opened from "Events" in the view bar. */
+.pp{display:inline-block;border:1px solid var(--line);border-radius:var(--radius-full);padding:0 8px;font-size:12px;font-weight:500;color:var(--quiet);vertical-align:middle;letter-spacing:0;text-transform:none}
+.evlink{background:none;border:0;padding:0 4px;color:var(--quiet);font-size:14px;font-weight:500}.evlink:hover{color:var(--accent)}
+.evscrim{position:fixed;inset:0;background:rgba(15,17,23,.35);z-index:70}
+.evsheet{position:fixed;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--surface);border-left:1px solid var(--line);z-index:71;display:flex;flex-direction:column;box-shadow:-12px 0 24px -12px rgba(0,0,0,.18)}
+.evsheet .eh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.evsheet .eh h3{margin:0;font-size:16px;font-weight:600;color:var(--ink)}
+.evsheet .eh button{background:none;border:0;color:var(--quiet);font-size:20px;padding:4px 8px}
+.evsheet .eb{padding:16px 20px;overflow:auto;font-size:14px}
+.evsheet h4{margin:16px 0 8px;font-size:14px;font-weight:600;color:var(--ink)}
+.evsheet table{width:100%;border-collapse:collapse;table-layout:fixed}
+.evsheet th{text-align:left;font-size:12px;font-weight:500;color:var(--quiet);padding:8px 8px 8px 0;border-bottom:1px solid var(--line)}
+.evsheet td{padding:8px 8px 8px 0;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.evsheet td.m{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.evsheet .q{color:var(--quiet)}
+.evsheet th,.evsheet td{white-space:normal!important;text-transform:none;letter-spacing:0;font-variant-numeric:normal}
+.evsheet .none{padding:12px 12px;border:1px dashed var(--line);border-radius:var(--radius-lg);color:var(--body)}
+.vault{margin-top:12px;background:var(--sunk);border:1px solid var(--line);border-radius:var(--radius-lg);padding:12px 12px}
+.vrow{display:flex;gap:8px;align-items:baseline;font-size:12px;padding:4px 0}
+.vrow span:first-child{flex:none;width:92px;color:var(--quiet)}
+.vval{font-family:var(--mono);font-size:12px;color:var(--ink);word-break:break-all}
+.vval.dim{color:var(--quiet)}
+/* the wire sits in the narrow first column, so it stacks; it only goes side by side
+   at phone-to-tablet widths, where that column is the full page */
+.wire{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:stretch}
+.wire>div{display:flex;flex-direction:column;min-width:0}
+.wire pre{flex:1;min-height:0}
+@media (max-width:820px) and (min-width:620px){.wire{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+pre{margin:0;font-family:var(--mono);font-size:12px;line-height:1.55;background:var(--sunk);
+  border:1px solid var(--line);border-radius:var(--radius-lg);padding:12px;overflow:auto;color:var(--body);
+  white-space:pre;max-height:300px}
+/* the request wraps instead of scrolling sideways at 1280 */
+#req{white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:hidden}
+pre b{color:var(--ink);font-weight:600}
+.k{color:var(--accent)}.s{color:var(--good)}.n{color:var(--ink)}
+.st{font-family:var(--mono);font-size:12px;font-weight:600;margin:0 0 8px;color:var(--quiet)}
+</style>
+
+<div class="wrap">
+  <h1>Keys, Limits, Logs</h1>
+  <p class="sub">One lookup, end to end. Pick a key, send some digits, and watch the two checks and the log row
+    that every request produces. The card ranges below are real rows from our own catalogue.</p>
+  <div class="viewbar" id="viewbar">
+    <span class="vl">View as</span>
+    <div class="modes" id="views" role="group" aria-label="View as">
+      <div class="mode on" data-v="sample" role="button" tabindex="0" aria-pressed="true">This demo</div>
+      <div class="mode" data-v="new" role="button" tabindex="0" aria-pressed="false">New account, no keys</div>
+      <div class="mode" data-v="many" role="button" tabindex="0" aria-pressed="false">Busy key, many requests</div>
+    </div>
+    <span class="sp"></span>
+    <button class="evlink" id="evBtn" type="button" aria-label="Events on this screen">Events</button>
+    <button class="ghost" id="tourBtn" type="button" data-event="tutorial.started">Take the tour</button>
+  </div>
+
+  <div class="cols">
+    <div>
+    <div class="card panel">
+      <h2>The request</h2>
+
+      <div class="field">
+        <label for="key">API key</label>
+        <select id="key"></select>
+        <div class="keyempty" id="keyEmpty" hidden>No API keys yet. Create one to send your first request; the full key is shown once.
+          <br><button class="ghost" id="newKey" type="button">Create a test key</button></div>
+        <div class="scopes" id="scopes"></div>
+        <div class="vault">
+          <div class="vrow"><span>Shown once</span><span class="vval" id="vSecret"></span></div>
+          <div class="vrow"><span>We store</span><span class="vval" id="vHash">computing</span></div>
+          <div class="vrow"><span>And a hint</span><span class="vval dim" id="vHint"></span></div>
+          <p class="hint" style="margin-top:8px">Shown once, then never again. We keep only the SHA-256 and a
+            hint, and hash what arrives to compare. That hash is computed live in your browser.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="digits">Digits to look up</label>
+        <input class="digits" id="digits" value="44787510" inputmode="numeric" autocomplete="off" spellcheck="false">
+        <p class="hint" id="dhint">8 digits</p>
+        <div class="ex">
+          <button type="button" data-d="44787510">44787510</button>
+          <button type="button" data-d="44787510600">44787510600</button>
+          <button type="button" data-d="47295800">47295800</button>
+          <button type="button" data-d="52524400">52524400</button>
+          <button type="button" data-d="41727501">41727501</button>
+          <button type="button" data-d="51360410">51360410</button>
+          <button type="button" data-d="4111">4111</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>How they integrated</label>
+        <div class="modes" id="modes">
+          <div class="mode" data-m="file">Local file<span class="tag" id="gFile">0 calls</span></div>
+          <div class="mode" data-m="seeded">Seeded cache<span class="tag" id="gSeed">0 calls</span></div>
+          <div class="mode" data-m="cache">Cache on miss<span class="tag" id="gCache">0 calls</span></div>
+          <div class="mode on" data-m="inline">Call every time<span class="tag" id="gInline">0 calls</span></div>
+        </div>
+        <p class="hint" id="mhint">Every payment reaches us.</p>
+      </div>
+
+      <button class="send" id="send">Send request</button>
+
+    </div>
+
+    <div class="card" style="margin-top:20px" id="wirecard">
+      <h2>On the wire</h2>
+      <div class="wire">
+        <div><p class="st">Request</p><pre id="req"></pre></div>
+        <div><p class="st" id="resSt">Response</p><pre id="res">Send a request to see it.</pre></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h2>When the catalogue changes</h2>
+      <p class="hint" id="chState" style="margin:0 0 12px">Catalogue version <b id="chVer">1</b>. Their copy agrees.
+        Send <span class="code">47295800</span> on <b>Cache on miss</b> or <b>Seeded cache</b> first, then publish
+        a change and send it again.</p>
+      <button class="ghost" id="chPub" style="width:100%">Publish a change to 47295800</button>
+      <div id="chFix" hidden>
+        <p class="hint" style="margin:12px 0 8px">Two ways for them to find out. Neither happens on a hit.</p>
+        <div class="chrow">
+          <button class="ghost" id="chTtl">Let a TTL expire it</button>
+          <button class="ghost" id="chFeed">Apply a changes feed</button>
+        </div>
+        <p class="hint" id="chFixNote" style="margin-top:8px"></p>
+      </div>
+      <p class="src" id="chWhy">Changes feed: <span class="pp">Proposed</span></p>
+    </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>What happens to it</h2>
+        <div id="pipe"></div>
+
+        <div class="quota">
+          <div class="qrow"><span>Rate limit used this window, step 3</span><span class="qnum"><span id="used">0</span> / 8</span></div>
+          <div class="bar"><i id="qbar" style="width:0%"></i></div>
+          <div class="qfoot">
+            <p class="hint" style="margin:0">Eight here, so you can hit it in a minute. A real key gets 25 requests a second, per key, and there is no daily or monthly quota. A Free key gets 1 a second.</p>
+            <button class="ghost" id="reset">Reset the window</button>
+          </div>
+        </div>
+        <div class="out" id="out">Press <b>Send request</b> to run one lookup.</div>
+        <p class="src">Step 4 answers <b>200</b> when the digits land on one range, or on several that agree
+          on brand, type, segment, product, country and issuer, in which case we merge them. It answers
+          <b>409</b> only when the candidates genuinely disagree, and <b>404</b> when nothing covers them.
+          Across the whole catalogue, <b>about 40%</b> of the eight-digit prefixes cover more than one
+          range, but half of those agree and merge. <b>about 20%</b> disagree on brand, product or country.
+          Those are the ones that need up to eleven digits, and the reason eight alone is not enough.
+          Only main-network rows are compared. A co-badged card, such as <span class="code">51360410</span>
+          (Mastercard with Cartes Bancaires), has one extra row per local network that often names another
+          issuer or funding; it is listed as a network, never counted as a rival answer.</p>
+      </div>
+
+
+    </div>
+    <div class="pair">
+      <div class="card">
+        <h2>The same payments, all four ways</h2>
+        <p class="note" style="margin:0 0 16px">You have taken <b id="tReq">0</b> payments. Every send is scored
+          against all four patterns at once, so you can see them diverge. The one you picked is highlighted.</p>
+        <div class="scroll">
+          <table class="cmp">
+            <thead><tr><th></th>
+              <th data-c="file">Local file</th><th data-c="seeded">Seeded cache</th>
+              <th data-c="cache">Cache on miss</th><th data-c="inline">Call every time</th></tr></thead>
+            <tbody>
+              <tr><td>Calls that reached us</td>
+                <td data-c="file" class="big" id="cFile">0</td>
+                <td data-c="seeded" class="big" id="cSeed">0</td>
+                <td data-c="cache" class="big" id="cCache">0</td>
+                <td data-c="inline" class="big" id="cInline">0</td></tr>
+              <tr><td>Share of payments</td>
+                <td data-c="file"><span class="minibar"><i id="bFile" style="width:0%"></i></span><span id="pFile">0%</span></td>
+                <td data-c="seeded"><span class="minibar"><i id="bSeed" style="width:0%"></i></span><span id="pSeed">0%</span></td>
+                <td data-c="cache"><span class="minibar"><i id="bCache" style="width:0%"></i></span><span id="pCache">0%</span></td>
+                <td data-c="inline"><span class="minibar"><i id="bInline" style="width:0%"></i></span><span id="pInline">0%</span></td></tr>
+              <tr><td>Answered with no call</td>
+                <td data-c="file" id="nFile">0</td><td data-c="seeded" id="nSeed">0</td><td data-c="cache" id="nCache">0</td><td data-c="inline" id="nInline">0</td></tr>
+              <tr><td>Refused on rate limit</td>
+                <td data-c="file" id="qxFile">0</td><td data-c="seeded" id="qxSeed">0</td><td data-c="cache" id="qxCache">0</td><td data-c="inline" id="qxInline">0</td></tr>
+              <tr><td>Log rows written</td>
+                <td data-c="file" id="lFile">0</td><td data-c="seeded" id="lSeed">0</td><td data-c="cache" id="lCache">0</td><td data-c="inline" id="lInline">0</td></tr>
+              <tr><td>In the checkout path</td>
+                <td data-c="file"><span class="no">no</span></td><td data-c="seeded"><span class="no">no</span></td><td data-c="cache"><span class="maybe">on a miss only</span></td><td data-c="inline"><span class="yes">every payment</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" id="modeNote">Send the same digits twice and watch <b>Cache on miss</b> stop counting while <b>Call every
+          time</b> keeps going. <b>Seeded cache</b> only ever moves for <span class="code">4111</span>,
+          the one prefix the catalogue does not hold.</p>
+      </div>
+
+      <div class="card">
+        <h2>The same four ways, at volume <span class="pp">Sample data</span></h2>
+        <p class="note" style="margin:0 0 12px">Two example API keys over 30 days. Illustrative figures for one key at a time,
+          not a real account.</p>
+        <div class="modes row" id="accts">
+          <div class="mode on" data-a="0">Busy key</div>
+          <div class="mode" data-a="1">Quiet key</div>
+        </div>
+        <div class="facts" id="afacts" style="margin-top:16px"></div>
+        <div class="scroll">
+          <table class="cmp">
+            <thead><tr><th></th>
+              <th data-c="file">Local file</th><th data-c="seeded">Seeded cache</th>
+              <th data-c="cache">Cache on miss</th><th data-c="inline">Call every time</th></tr></thead>
+            <tbody>
+              <tr><td>Calls to us, a day, cache warm</td>
+                <td data-c="file" class="big" id="rcFile">0</td>
+                <td data-c="seeded" class="big" id="rcSeed">0</td>
+                <td data-c="cache" class="big" id="rcCache">0</td>
+                <td data-c="inline" class="big" id="rcInline">0</td></tr>
+              <tr><td>First day, cache empty</td>
+                <td data-c="file" id="rkFile">0</td><td data-c="seeded" id="rkSeed">0</td><td data-c="cache" id="rkCache">0</td><td data-c="inline" id="rkInline">0</td></tr>
+              <tr><td>Share of payments</td>
+                <td data-c="file"><span class="minibar"><i id="rbFile" style="width:0%"></i></span><span id="rpFile">0%</span></td>
+                <td data-c="seeded"><span class="minibar"><i id="rbSeed" style="width:0%"></i></span><span id="rpSeed">0%</span></td>
+                <td data-c="cache"><span class="minibar"><i id="rbCache" style="width:0%"></i></span><span id="rpCache">0%</span></td>
+                <td data-c="inline"><span class="minibar"><i id="rbInline" style="width:0%"></i></span><span id="rpInline">0%</span></td></tr>
+              <tr><td>Log rows, a day</td>
+                <td data-c="file" id="rlFile">0</td><td data-c="seeded" id="rlSeed">0</td><td data-c="cache" id="rlCache">0</td><td data-c="inline" id="rlInline">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" id="acctNote"></p>
+        <p class="src">The catalogue they would hold is <b>about 1 million ranges</b>, <b>around 35 MB</b> gzipped,
+          and <b>about 1%</b> of its rows change in a week. There is no daily quota: nobody who holds the file
+          or keeps the answers would get near one.</p>
+      </div>
+    </div>
+  </div>
+  <div class="head">
+    <h2>The log, one row per request</h2>
+    <button class="ghost" id="toggle">Show what a Level 1 merchant receives</button>
+  </div>
+  <div class="card scroll">
+    <table>
+      <thead><tr><th>Time</th><th>Key</th><th>Endpoint</th><th>Status</th><th>ms</th><th>Request id</th><th>BIN logged</th><th id="binHead">Response gave, eight digits</th></tr></thead>
+      <tbody id="log"><tr><td colspan="8" style="color:var(--quiet);border-top:0">No requests yet.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="more" id="logMore" hidden><span id="logMoreTxt"></span><button class="ghost" id="logAll" type="button">Show all</button></div>
+  <p class="note" id="logNote">The log keeps eight digits for every merchant, and never the request or response body. Eight digits is also what a merchant on SAQ-A receives. Storage was never the constraint: Acme Pay is assessed at PCI DSS Level 1 and holds whatever the lookup reads. What is gated is the answer, and it is gated on the customer&rsquo;s own PCI standing, not on ours.</p>
+</div>
+
+<script>
+const KEYS = [
+  {id:'yk_live_2VJS', name:'Lookup key, live',  env:'Live', scopes:['Lookup','Batch','Changes'], revoked:false,
+   secret:'yk_live_s7Qm4Xp2Rw9Dk3Vn6Bz8Lf5Hc1Tg0Yj2VJS'},
+  {id:'yk_live_7KQR', name:'Rules key, live',   env:'Live', scopes:['Rules'],                    revoked:false,
+   secret:'yk_live_a3Nd8Kw1Zx6Pq4Mv7Rt2Jb9Fy5Gh0Sc7KQR'},
+  {id:'yk_test_9AAX', name:'Lookup key, test',  env:'Test', scopes:['Lookup','Batch'],           revoked:false,
+   secret:'yk_test_e5Rb2Lm9Tn4Wq7Yd1Kp6Jv3Xz8Hf0Mg9AAX'},
+  {id:'yk_live_1OLD', name:'Old key, revoked',  env:'Live', scopes:['Lookup'],                   revoked:true,
+   secret:'yk_live_c9Fw3Pj6Nx2Qd8Rv5Zm1Tk7Bh4Ls0Ya1OLD'}
+];
+const ALL_SCOPES = ['Lookup','Batch','Changes','Rules','Reports'];
+
+// Sample catalogue rows, invented for this prototype, with every attribute column a range can carry.
+const RANGES = [
+  // Co-badged: one Mastercard (main) row and one Cartes Bancaires (additional) row over the same span.
+  {min:'5136040'.padEnd(19,'0'), max:'5136041'.padEnd(19,'9'), a:{"brand": "MASTERCARD", "type": "Credit", "segment": "Commercial", "product": "BUSINESSCARD", "product_code": "MCB", "country_code": "FR", "country": "FRANCE", "country_numeric": "250", "currency": "EUR", "issuer": "SAMPLE BUSINESS BANK", "issuer_raw": "SAMPLE BUSINESS BANK (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulation": "EU MIF", "gambling_blocked": "no", "domestic_only": "no", "tokenizable": "yes", "card_length": "16", "bin_length": "8", "supplier_bin_length": "7", "auth_mandate": "EU PSD2 - SCA", "pan_or_token": "pan", "billpay": "no", "ecommerce": "no", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'5136040'.padEnd(19,'0'), max:'5136041'.padEnd(19,'9'), a:{"brand": "CARTES BANCAIRES", "type": "Debit", "country_code": "FR", "country": "FRANCE", "country_numeric": "250", "issuer": "SAMPLE REGIONAL BANK", "issuer_raw": "SAMPLE REGIONAL BANK (RAW)", "card_length": "16", "bin_length": "6", "supplier_bin_length": "7", "pan_or_token": "pan", "ecommerce": "yes", "additional_brand": "yes", "shared_bin": "no"}},
+  {min:'4172750100000000000', max:'4172750110009999999', a:{"brand": "VISA", "type": "Debit", "segment": "Consumer", "product": "Visa Gold", "product_code": "P", "country_code": "LY", "country": "LIBYA", "country_numeric": "434", "issuer": "SAMPLE COMMERCIAL BANK", "issuer_raw": "SAMPLE COMMERCIAL BANK (RAW)", "funding": "DEBIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "12", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4172750110010000000', max:'4172750110029999999', a:{"brand": "VISA", "type": "Debit", "segment": "Consumer", "product": "Visa Gold", "product_code": "P", "country_code": "LY", "country": "LIBYA", "country_numeric": "434", "currency": "USD", "issuer": "SAMPLE COMMERCIAL BANK", "issuer_raw": "SAMPLE COMMERCIAL BANK (RAW)", "funding": "DEBIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "12", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4172750110030000000', max:'4172750110039999999', a:{"brand": "VISA", "type": "Debit", "segment": "Consumer", "product": "Visa Gold", "product_code": "P", "country_code": "LY", "country": "LIBYA", "country_numeric": "434", "issuer": "SAMPLE COMMERCIAL BANK", "issuer_raw": "SAMPLE COMMERCIAL BANK (RAW)", "funding": "DEBIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "12", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4172750110040000000', max:'4172750110089999999', a:{"brand": "VISA", "type": "Debit", "segment": "Consumer", "product": "Visa Gold", "product_code": "P", "country_code": "LY", "country": "LIBYA", "country_numeric": "434", "currency": "USD", "issuer": "SAMPLE COMMERCIAL BANK", "issuer_raw": "SAMPLE COMMERCIAL BANK (RAW)", "funding": "DEBIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "12", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4478751000000000000', max:'4478751009999999999', a:{"brand": "VISA", "type": "Credit", "segment": "Consumer", "product": "Visa Traditional Rewards", "product_code": "B", "country_code": "US", "country": "UNITED STATES OF AMERICA", "country_numeric": "840", "currency": "USD", "issuer": "SAMPLE CREDIT UNION", "issuer_raw": "SAMPLE CREDIT UNION (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "no", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "9", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4478751010000000000', max:'4478751049999999999', a:{"brand": "VISA", "type": "Credit", "segment": "Consumer", "product": "Visa Traditional Rewards", "product_code": "B", "country_code": "US", "country": "UNITED STATES OF AMERICA", "country_numeric": "840", "issuer": "SAMPLE CREDIT UNION", "issuer_raw": "SAMPLE CREDIT UNION (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "9", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4478751050000000000', max:'4478751059999999999', a:{"brand": "VISA", "type": "Credit", "segment": "Consumer", "product": "Visa Traditional Rewards", "product_code": "B", "country_code": "US", "country": "UNITED STATES OF AMERICA", "country_numeric": "840", "currency": "USD", "issuer": "SAMPLE CREDIT UNION", "issuer_raw": "SAMPLE CREDIT UNION (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "no", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "9", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4478751060000000000', max:'4478751099999999999', a:{"brand": "VISA", "type": "Credit", "segment": "Consumer", "product": "Visa Traditional", "product_code": "A", "country_code": "US", "country": "UNITED STATES OF AMERICA", "country_numeric": "840", "issuer": "SAMPLE CREDIT UNION", "issuer_raw": "SAMPLE CREDIT UNION (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "9", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}},
+  {min:'4729580000000000000', max:'4729580099999999999', a:{"brand": "VISA", "type": "Credit", "segment": "Consumer", "product": "Visa Infinite", "product_code": "I", "country_code": "BR", "country": "BRAZIL", "country_numeric": "076", "currency": "USD", "issuer": "SAMPLE BANK BRAZIL", "issuer_raw": "SAMPLE BANK BRAZIL (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "regulated": "no", "regulation": "GOVERNMENT EXEMPT INTERCHANGE FEE", "account_updater": "no", "alm": "no", "gambling_blocked": "yes", "domestic_only": "no", "level2": "no", "level3": "no", "card_length": "16", "bin_length": "8", "supplier_bin_length": "8", "pan_or_token": "pan", "billpay": "no", "multi_account": "N", "additional_brand": "no", "shared_bin": "no"}, b:{v:'2.2.0', chal:100, auth:120, appr:4000, pays:4500, band:[80,90], mid:[75,90]}},
+  {min:'5252440000000000000', max:'5252449989999999999', a:{"brand": "MASTERCARD", "type": "Credit", "segment": "Consumer", "product": "MASTERCARD WORLD BLACK EDITION", "product_code": "WBE", "country_code": "KZ", "country": "KAZAKHSTAN", "country_numeric": "398", "currency": "USD", "issuer": "SAMPLE CREDIT BANK", "issuer_raw": "SAMPLE CREDIT BANK (RAW)", "funding": "CREDIT", "prepaid": "no", "reloadable": "no", "gambling_blocked": "no", "domestic_only": "no", "tokenizable": "yes", "card_length": "16", "bin_length": "8", "supplier_bin_length": "9", "pan_or_token": "pan", "billpay": "no", "ecommerce": "no", "additional_brand": "no", "shared_bin": "no"}}
+];
+// Sample fill rates: the share of catalogue rows that carry each field (invented for the prototype).
+const FILL = {"brand": 100.0, "type": 100.0, "segment": 60.0, "product": 75.0, "product_code": 75.0, "country_code": 100.0, "country": 100.0, "country_numeric": 100.0, "currency": 50.0, "issuer": 65.0, "issuer_raw": 65.0, "funding": 60.0, "prepaid": 65.0, "reloadable": 65.0, "virtual": 1.0, "regulated": 50.0, "regulation": 55.0, "account_updater": 50.0, "alm": 50.0, "gambling_blocked": 60.0, "domestic_only": 60.0, "level2": 50.0, "level3": 50.0, "tokenizable": 2.0, "combo": 2.0, "card_length": 100.0, "bin_length": 100.0, "supplier_bin_length": 100.0, "auth_mandate": 10.0, "interchange_cap": 1.0, "pan_or_token": 100.0, "billpay": 95.0, "ecommerce": 50.0, "multi_account": 50.0, "additional_brand": 100.0, "shared_bin": 100.0, "issuer_url": 0.0, "issuer_phone": 0.0};
+const ORDER = ["brand", "type", "segment", "product", "product_code", "country_code", "country", "country_numeric", "currency", "issuer", "issuer_raw", "funding", "prepaid", "reloadable", "virtual", "regulated", "regulation", "account_updater", "alm", "gambling_blocked", "domestic_only", "level2", "level3", "tokenizable", "combo", "card_length", "bin_length", "supplier_bin_length", "auth_mandate", "interchange_cap", "pan_or_token", "billpay", "ecommerce", "multi_account", "additional_brand", "shared_bin", "issuer_url", "issuer_phone"];
+// the fields a merchant prices on. Two different non-null values here is a real clash;
+// a value against a blank is a gap, not a disagreement.
+const PRICED = ['brand','type','segment','product','country','issuer'];
+function vals(c, k){ return [...new Set(c.map(r => r.a[k]).filter(Boolean))]; }
+function conflicts(c){ return PRICED.filter(k => vals(c,k).length > 1); }
+function mergeAttrs(c){
+  const out = {};
+  for(const k of ORDER){ const v = vals(c,k); if(v.length === 1) out[k] = v[0]; }
+  return out;
+}
+
+const STAGES = [
+  {k:'key',   n:'Is the key real?',        i:'1'},
+  {k:'scope', n:'Does its scope allow it?', i:'2'},
+  {k:'quota', n:'Is it under the rate limit?', i:'3'},
+  {k:'look',  n:'Resolve the card range',   i:'4'},
+  {k:'log',   n:'Write one log row',        i:'5'}
+];
+
+let used = 0, mode = 'inline', showEleven = false, rows = [], logAll = false;
+let seen = new Set(), taken = 0, hits = 0, calls = 0;
+// A catalogue change the client has not taken yet. This is the whole staleness problem in two
+// variables: the catalogue moved, and nothing in a cache hit can tell the client that.
+const CHANGE = {d:'47295800', from:'Visa Infinite', to:'Visa Signature'};
+let changePublished = false, clientFresh = true;
+function staleFor(d){ return changePublished && !clientFresh && d.startsWith(CHANGE.d.slice(0, d.length)) && CHANGE.d.startsWith(d); }
+function staleBanner(){
+  return '<div class="stale"><b>They are serving a stale answer.</b> Their copy says <b>' + CHANGE.from +
+    '</b>. The catalogue changed to <b>' + CHANGE.to + '</b> and they have not taken it. ' +
+    'Nothing in a cache hit can tell them: a hit is, by definition, not asking us.</div>';
+}
+// every send is scored against all three patterns, not only the one selected
+const sim = {
+  everSeen: new Set(),
+  file:   {calls:0, none:0, refused:0, used:0},
+  seeded: {calls:0, none:0, refused:0, used:0},
+  cache:  {calls:0, none:0, refused:0, used:0},
+  inline: {calls:0, none:0, refused:0, used:0}
+};
+function score(d){
+  // local file: never calls
+  sim.file.none++;
+  const fresh = !sim.everSeen.has(d);          // cache: first time THIS client sees it
+  const known = candidates(d).length > 0;      // seeded: is it in the catalogue they loaded?
+  for(const m of ['seeded','cache','inline']){
+    const wants = m === 'inline' ? true : m === 'cache' ? fresh : (fresh && !known);
+    const s = sim[m];
+    if(!wants){ s.none++; continue; }
+    if(s.used >= 8){ s.refused++; s.calls++; continue; }   // refused still reaches us and still logs
+    s.used++; s.calls++;
+  }
+  sim.everSeen.add(d);
+}
+
+// SAMPLE figures for two example API keys (owner rule: no real account-level figures on screen).
+// seeded = ranges the key touched that the catalogue does not hold; day1 = distinct ranges on the
+// first day (what an empty cache must fetch); steady = calls a day once the cache is warm.
+const ACCTS = [
+  {name:'Busy key',  payments:1500000, days:30, ranges:60000, day1:9000, steady:1000, seeded:3500},
+  {name:'Quiet key', payments:150000,  days:30, ranges:400,   day1:170,  steady:7,    seeded:50}
+];
+let acct = 0;
+
+const $ = id => document.getElementById(id);
+const keySel = $('key'), digitsIn = $('digits');
+
+KEYS.forEach((k,i) => keySel.add(new Option(k.name + (k.revoked ? ' (revoked)' : ''), String(i))));
+
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+// Plain SHA-256, used when crypto.subtle is missing (it needs a secure context).
+// Checked against Node's crypto for 'abc', the empty string and a 200-character string.
+function sha256sync(text){
+  const K = [], H = []; let n = 2, c = 0;
+  const frac = (x,r) => Math.floor((Math.pow(x,r) % 1) * 4294967296) | 0;
+  while(c < 64){
+    let prime = true;
+    for(let d = 2; d*d <= n; d++) if(n % d === 0){ prime = false; break; }
+    if(prime){ if(c < 8) H[c] = frac(n, 1/2); K[c] = frac(n, 1/3); c++; }
+    n++;
+  }
+  const bytes = [];
+  for(const ch of unescape(encodeURIComponent(text))) bytes.push(ch.charCodeAt(0));
+  const bitLen = bytes.length * 8;
+  bytes.push(0x80);
+  while(bytes.length % 64 !== 56) bytes.push(0);
+  for(let i = 7; i >= 0; i--) bytes.push((bitLen / Math.pow(2, i*8)) & 0xff);
+  const h = H.slice(), w = new Array(64);
+  const rr = (v,a) => (v >>> a) | (v << (32-a));
+  for(let i = 0; i < bytes.length; i += 64){
+    for(let t = 0; t < 16; t++)
+      w[t] = (bytes[i+t*4] << 24) | (bytes[i+t*4+1] << 16) | (bytes[i+t*4+2] << 8) | bytes[i+t*4+3];
+    for(let t = 16; t < 64; t++){
+      const s0 = rr(w[t-15],7) ^ rr(w[t-15],18) ^ (w[t-15] >>> 3);
+      const s1 = rr(w[t-2],17) ^ rr(w[t-2],19) ^ (w[t-2] >>> 10);
+      w[t] = (w[t-16] + s0 + w[t-7] + s1) | 0;
+    }
+    let [a,b,cc,d,e,f,g,hh] = h;
+    for(let t = 0; t < 64; t++){
+      const S1 = rr(e,6) ^ rr(e,11) ^ rr(e,25), ch = (e & f) ^ (~e & g);
+      const t1 = (hh + S1 + ch + K[t] + w[t]) | 0;
+      const S0 = rr(a,2) ^ rr(a,13) ^ rr(a,22), maj = (a & b) ^ (a & cc) ^ (b & cc);
+      const t2 = (S0 + maj) | 0;
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = cc; cc = b; b = a; a = (t1 + t2) | 0;
+    }
+    [a,b,cc,d,e,f,g,hh].forEach((v,j) => h[j] = (h[j] + v) | 0);
+  }
+  return h.map(v => (v >>> 0).toString(16).padStart(8,'0')).join('');
+}
+
+async function sha256(text){
+  try{
+    if(window.crypto && crypto.subtle){
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+  }catch(e){ /* fall through to the plain implementation */ }
+  return sha256sync(text);
+}
+function mask(secret){ return secret.slice(0,8) + '•'.repeat(10) + secret.slice(-4); }
+
+function tint(obj){
+  return esc(JSON.stringify(obj, null, 2))
+    .replace(/&quot;([^&]+?)&quot;(\s*:)/g, '<span class="k">&quot;$1&quot;</span>$2')
+    .replace(/:\s&quot;([^&]*?)&quot;/g, ': <span class="s">&quot;$1&quot;</span>')
+    .replace(/:\s(-?\d+(?:\.\d+)?)/g, ': <span class="n">$1</span>');
+}
+function paintReq(){
+  const k = KEYS[+keySel.value];
+  if(!k){ $('req').textContent = 'No API key yet.\nCreate one to send a request.'; return; }
+  const d = digitsIn.value.replace(/\D/g,'').slice(0,11) || '{bin}';
+  $('req').innerHTML =
+    '<b>GET</b> /v1/bins/' + esc(d) + ' <b>HTTP/1.1</b>\n' +
+    'Host: acmepay.example\n' +
+    'Authorization: Bearer ' + esc(mask(k.secret)) + '\n' +
+    'Accept: application/json';
+}
+function noWire(why){
+  $('req').textContent = 'Nothing was sent.\n' + why;
+  $('resSt').textContent = 'Response';
+  $('res').textContent = 'No response, because there was no request.';
+}
+function paintRes(status, headers, body){
+  const label = {200:'200 OK',401:'401 Unauthorized',403:'403 Forbidden',404:'404 Not Found',
+                 409:'409 Conflict',429:'429 Too Many Requests'}[status];
+  $('resSt').textContent = 'Response · ' + label;
+  const head = Object.entries(headers).map(([h,v]) => esc(h) + ': ' + esc(v)).join('\n');
+  $('res').innerHTML = '<b>HTTP/1.1 ' + esc(label) + '</b>\n' + head + '\n\n' + tint(body);
+}
+
+async function paintScopes(){
+  const k = KEYS[+keySel.value];
+  const none = !k;
+  $('keyEmpty').hidden = !none; keySel.disabled = none; $('send').disabled = none;
+  if(none){ $('scopes').innerHTML = ''; $('vSecret').textContent = '—'; $('vHash').textContent = '—'; $('vHint').textContent = '—'; paintReq(); return; }
+  $('scopes').innerHTML = ALL_SCOPES
+    .map(s => `<span class="scope${k.scopes.includes(s) ? ' on' : ''}">${s}</span>`).join('');
+  $('vSecret').textContent = mask(k.secret);
+  $('vHint').textContent = k.secret.slice(0,8) + '…' + k.secret.slice(-4);
+  $('vHash').textContent = 'computing';
+  const h = await sha256(k.secret);
+  $('vHash').textContent = h;
+  paintReq();
+}
+function paintPipe(state){
+  $('pipe').innerHTML = STAGES.map(s => {
+    const st = state && state[s.k];
+    const cls = st ? st.cls : 'idle';
+    const mark = st && st.cls === 'pass' ? '&check;' : st && st.cls !== 'idle' ? '!' : s.i;
+    return `<div class="stage ${cls}"><div class="dot">${mark}</div><div>
+      <div class="sname">${s.n}</div><div class="sbody">${st ? st.msg : 'waiting'}</div></div></div>`;
+  }).join('');
+}
+function paintQuota(){
+  $('used').textContent = used;
+  const bar = $('qbar');
+  bar.style.width = Math.min(100, used / 8 * 100) + '%';
+  bar.classList.toggle('full', used >= 8);
+  $('reset').disabled = used === 0;   // nothing to reset at 0
+}
+function paintTally(){
+  $('tReq').textContent = taken;
+  const caps = {file:'File', seeded:'Seed', cache:'Cache', inline:'Inline'};
+  for(const m of ['file','seeded','cache','inline']){
+    const s = sim[m], C = caps[m];
+    $('c'+C).textContent = s.calls;
+    $('n'+C).textContent = s.none;
+    $('qx'+C).textContent = s.refused;
+    $('l'+C).textContent = s.calls;                      // every request that reaches us is logged
+    const pct = taken ? Math.round(s.calls / taken * 100) : 0;
+    $('b'+C).style.width = pct + '%';
+    $('p'+C).textContent = pct + '%';
+    $('g'+C).textContent = s.calls === 1 ? '1 call' : s.calls + ' calls';
+  }
+  document.querySelectorAll('.cmp [data-c]').forEach(el =>
+    el.classList.toggle('on', el.dataset.c === mode));
+}
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+function where(v, r){ return v < r[0] ? 'below' : v > r[1] ? 'above' : 'inside'; }
+function paintReal(){
+  const a = ACCTS[acct];
+  const perDay = a.payments / a.days;          // payments a day
+  const serves = a.payments / a.ranges;        // payments served by one cached answer
+  $('afacts').innerHTML =
+    '<div><b>' + fmt(a.payments) + '</b>payments through this key in 30 days</div>' +
+    '<div><b>' + fmt(perDay) + '</b>a day</div>' +
+    '<div><b>' + fmt(a.ranges) + '</b>distinct card ranges</div>' +
+    '<div><b>' + fmt(serves) + '</b>payments per cached answer</div>';
+
+  const seededDay = a.seeded / a.days;   // ranges this account touched that the catalogue lacks (sample)
+  const calls = {file:0, seeded:seededDay, cache:a.steady, inline:perDay};
+  const cold  = {file:0, seeded:seededDay, cache:a.day1,   inline:perDay};
+  const caps = {file:'File', seeded:'Seed', cache:'Cache', inline:'Inline'};
+  for(const m of ['file','seeded','cache','inline']){
+    const C = caps[m], c = calls[m], pct = c / perDay * 100;
+    $('rc'+C).textContent = fmt(c);
+    $('rl'+C).textContent = fmt(c);
+    $('rb'+C).style.width = Math.min(100, pct) + '%';
+    $('rp'+C).textContent = pct === 0 ? '0%' : pct < 1 ? pct.toFixed(2) + '%' : pct.toFixed(1) + '%';
+    const k = cold[m];
+    $('rk'+C).textContent = fmt(k);
+  }
+  const saved = (1 - a.steady / perDay) * 100;
+  $('acctNote').innerHTML = 'Once the cache is warm, holding the answers removes <b>' +
+    saved.toFixed(saved > 99.9 ? 2 : 1) + '%</b> of the calls here. The load is front-loaded, not flat: ' +
+    'day one costs <b>' + fmt(a.day1) + '</b> calls and it settles to <b>' + fmt(a.steady) +
+    '</b> within a month. The monthly average of ' + fmt(a.ranges / a.days) +
+    ' a day describes neither, which is why seeding matters more than any limit. ' +
+    'Seeding removes the first day as well: of the ' + fmt(a.ranges) + ' ranges this key touched, only <b>' +
+    fmt(a.seeded) + '</b> are missing from the catalogue, so a seeded client makes <b>' + fmt(a.seeded / a.days) +
+    '</b> calls a day and every one of them comes back a 404.';
+  document.querySelectorAll('.cmp [data-c]').forEach(el =>
+    el.classList.toggle('on', el.dataset.c === mode));
+}
+function paintLog(){
+  if(!rows.length){ $('log').innerHTML = '<tr><td colspan="8" style="color:var(--quiet);border-top:0">No requests yet. Every request, refused ones included, writes one row here.</td></tr>'; $('logMore').hidden = true; return; }
+  const list = logAll ? rows : rows.slice(0, 12);
+  $('logMore').hidden = rows.length <= 12;
+  $('logMoreTxt').textContent = 'Showing ' + list.length + ' of ' + rows.length + ' requests, newest first.';
+  $('logAll').textContent = logAll ? 'Show the latest 12' : 'Show all ' + rows.length;
+  $('log').innerHTML = list.map(r => {
+    // the log row never holds more than eight digits, whatever the merchant's PCI level
+    const logged = `<span class="m">${r.full.slice(0,8)}</span>${r.full.length > 8 ? ` <span class="strike">${r.full.slice(8,11)}</span>` : ''}`;
+    const gave = r.status !== 200 ? '<span class="m" style="color:var(--quiet)">none</span>'
+      : `<span class="m">${r.full.slice(0, showEleven ? 11 : 8)}</span>`;
+    return `<tr><td class="m">${r.t}</td><td class="m">${r.key}</td><td class="m">${r.path}</td>
+      <td><span class="pill p${r.status}">${r.status}</span></td><td class="m">${r.ms}</td><td class="m">${r.rid}</td><td>${logged}</td><td>${gave}</td></tr>`;
+  }).join('');
+  $('binHead').textContent = showEleven ? 'Response gave, up to eleven digits' : 'Response gave, eight digits';
+}
+function candidates(d){
+  // the digits stand for every account number that starts with them
+  const lo = d.padEnd(19,'0'), hi = d.padEnd(19,'9');
+  return RANGES.filter(r => r.min <= hi && lo <= r.max);
+}
+function pct(n){ return n >= 99.95 ? '100%' : n.toFixed(1) + '%'; }
+function attrTable(at){
+  const have = ORDER.filter(k => at[k] !== undefined);
+  const miss = ORDER.filter(k => at[k] === undefined);
+  const cells = have.map(k => `<div class="acell"><span class="an">${k}` +
+    `<span class="af"><span class="fbar"><i style="width:${FILL[k]}%"></i></span>${pct(FILL[k])}</span></span>` +
+    `<span class="av">${esc(at[k])}</span></div>`).join('');
+  return `<div class="attrs"><div class="ahead">${have.length} of ${ORDER.length} attributes carried for this range` +
+    `<span>fill across the catalogue</span></div><div class="agrid">${cells}</div>` +
+    (miss.length ? `<p class="amiss"><b>Not carried here:</b> ${miss.map(k =>
+        `${k} <span class="dim">${pct(FILL[k])}</span>`).join(', ')}. A blank is the catalogue having no value, ` +
+        `not a zero.</p>` : '') + '</div>';
+}
+function now(){
+  const n = new Date();
+  return [n.getHours(),n.getMinutes(),n.getSeconds()].map(x => String(x).padStart(2,'0')).join(':');
+}
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const quick = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+async function run(){
+  const k = KEYS[+keySel.value];
+  if(!k) return;
+  const btn = $('send'); btn.disabled = true;
+  const d = digitsIn.value.replace(/\D/g,'').slice(0,11);
+  const state = {}; paintPipe(state);
+  const step = async (key, cls, msg) => { state[key] = {cls,msg}; paintPipe(state); await wait(quick ? 0 : 320); };
+  const rid = 'req_' + Math.random().toString(36).slice(2,16);
+  const finish = (status, cls, html, body, extra) => {
+    rows.unshift({t:now(), key:k.id, path:'/v1/bins/' + d, status, ms:status===200?2:1, full:d, rid});
+    state.log = {cls:'pass', msg:'Row written: time, key, endpoint, status, latency, request id and eight digits. No request or response body.'};
+    paintPipe(state); paintLog();
+    $('out').className = 'out ' + cls; $('out').innerHTML = html;
+    paintRes(status, Object.assign({
+      'Content-Type':'application/json',
+      'X-Request-Id': rid,
+      'X-RateLimit-Limit':'8',
+      'X-RateLimit-Remaining': String(Math.max(0, 8 - used))
+    }, extra || {}), body);
+    btn.disabled = false;
+  };
+
+  taken++; score(d); paintTally();
+
+  // mode: does this payment even reach us?
+  if(mode === 'file'){
+    hits++; paintTally();
+    await step('key','pass','Not asked. They hold the catalogue themselves.');
+    await step('scope','pass','Not asked.');
+    await step('quota','pass','Not asked. Nothing reached us.');
+    const c = candidates(d);
+    await step('look','pass', c.length === 1 ? 'Resolved in their own copy, under a millisecond.' : 'Resolved in their own copy.');
+    state.log = {cls:'pass', msg:'Nothing to log. We never saw this payment.'};
+    paintPipe(state);
+    $('out').className = 'out ok';
+    $('out').innerHTML = '<b>Answered locally.</b> They hold the whole catalogue, so this payment never touched us and nothing was logged. This is the pattern we want.';
+    noWire('Resolved against their own copy of the catalogue.');
+    btn.disabled = false; return;
+  }
+  if(mode === 'seeded' && candidates(d).length){
+    hits++; paintTally();
+    await step('key','pass','Not asked. The range is in the copy they loaded.');
+    await step('scope','pass','Not asked.');
+    await step('quota','pass','Not asked. Nothing reached us.');
+    await step('look','pass','Resolved in their seeded copy, under a millisecond.');
+    state.log = {cls:'pass', msg:'Nothing to log. We never saw this payment.'};
+    paintPipe(state);
+    const st = staleFor(d);
+    $('out').className = 'out ' + (st ? 'amb' : 'ok');
+    $('out').innerHTML = '<b>Answered from the seed.</b> They loaded the catalogue before going live, so this ' +
+      'range was already there on their first payment. They only call us for ranges the catalogue does not have.' +
+      (st ? staleBanner() : '');
+    noWire('Resolved against the catalogue they loaded before go-live.');
+    btn.disabled = false; return;
+  }
+  if(mode === 'cache' && seen.has(d)){
+    hits++; paintTally();
+    await step('key','pass','Not asked. Already in their cache.');
+    await step('scope','pass','Not asked.');
+    await step('quota','pass','Not asked. Nothing reached us.');
+    await step('look','pass','Served from their cache.');
+    state.log = {cls:'pass', msg:'Nothing to log. We never saw this one.'};
+    paintPipe(state);
+    const st = staleFor(d);
+    $('out').className = 'out ' + (st ? 'amb' : 'ok');
+    $('out').innerHTML = '<b>Served from their cache.</b> They asked us about this range once before and kept the ' +
+      'answer. No call, no rate limit, no log row.' + (st ? staleBanner() : '');
+    noWire('Served from the answer they already had.');
+    btn.disabled = false; return;
+  }
+
+  calls++; paintTally();
+
+  // 1. key real?
+  if(k.revoked){
+    await step('key','fail','The hash matches a stored key, but that row is marked revoked.');
+    ['scope','quota','look'].forEach(s => state[s] = {cls:'idle', msg:'not reached'});
+    // 401, not 403: the credential itself is no longer valid. 403 is reserved for a valid
+    // credential that is not permitted, which is what a scope failure is.
+    return finish(401,'err','<b>401.</b> The key was revoked, so the credential itself is no longer valid. ' +
+      'Notice the log row still appears: a refused request is logged too, which is how you spot a leaked key being used.',
+      {error:{type:'key_revoked', message:'This API key has been revoked.', request_id:rid}},
+      {'WWW-Authenticate':'Bearer error="invalid_token"'});
+  }
+  await step('key','pass','Hashed what arrived, matched a stored hash, ' + k.env.toLowerCase() + ' environment.');
+
+  // 2. scope
+  if(!k.scopes.includes('Lookup')){
+    await step('scope','fail','This key carries ' + k.scopes.join(' and ') + ', not Lookup.');
+    ['quota','look'].forEach(s => state[s] = {cls:'idle', msg:'not reached'});
+    return finish(403,'err','<b>403, not 401.</b> The key is valid and we know who it is, it just cannot do ' +
+      'lookups. That is the whole point of scopes: if this key leaked, it could not read card data.',
+      {error:{type:'scope_missing', message:'This key does not carry the Lookup scope.',
+              scopes:k.scopes, required:'Lookup', request_id:rid}});
+  }
+  await step('scope','pass','Lookup is in scope.');
+
+  // 3. rate limit
+  if(used >= 8){
+    await step('quota','fail','Eight of eight used in this window.');
+    state.look = {cls:'idle', msg:'not reached'};
+    return finish(429,'err','<b>429, with a Retry-After.</b> The rate limit is abuse protection, not a tax. A client that cached would never have reached it. Reset the window, or switch the mode on the left.',
+      {error:{type:'rate_limited', message:'Rate limit reached for this key. Retry after 1 second.',
+              limit:8, remaining:0, retry_after:1, request_id:rid}}, {'Retry-After':'1'});
+  }
+  used++; paintQuota();
+  await step('quota','pass','Used ' + used + ' of 8 in this window.');
+
+  // 4. lookup
+  if(mode === 'cache' || mode === 'seeded') seen.add(d);
+  const c = candidates(d);
+  if(c.length === 0){
+    await step('look','warn','No range in the catalogue contains these digits.');
+    return finish(404,'err','<b>404.</b> Nothing in the catalogue covers <span class="code">' + d + '</span>. Try one of the examples on the left.',
+      {error:{type:'range_not_found', message:'No card range contains these digits.', bin:d, request_id:rid}});
+  }
+  // Only main-network rows compete. An additional-network row (CB on a Mastercard, Dankort on a
+  // Visa) is that network's own view of the same card, so it is listed, never weighed as a rival.
+  const mains = c.filter(x => x.a.additional_brand !== 'yes');
+  const pool = mains.length ? mains : c;
+  const extras = c.filter(x => !pool.includes(x));
+  const clash = pool.length > 1 ? conflicts(pool) : [];
+  if(clash.length){
+    const names = clash;
+    await step('look','warn', pool.length + ' ranges start with these ' + d.length +
+      ' digits and they disagree on ' + names.join(' and ') + '.');
+    const list = pool.map(r => `<div style="margin-top:8px"><span class="code">${r.min} to ${r.max}</span> &middot; ${
+      clash.map(k => r.a[k] || 'not stated').join(' &middot; ')}</div>`).join('');
+    return finish(409,'amb','<b>Ambiguous at ' + d.length + ' digits.</b> ' + pool.length +
+      ' ranges share this prefix and they do not agree on ' + names.join(' and ') +
+      ', so the tier and the interchange differ.' + list +
+      '<div style="margin-top:8px">Send <span class="code">' + pool[pool.length-1].min.slice(0,11) +
+      '</span> and it resolves to exactly one. This is why the lookup takes up to eleven digits.</div>',
+      {error:{type:'ambiguous_prefix',
+              message:'These ' + d.length + ' digits match ' + pool.length +
+                      ' ranges that disagree on ' + names.join(' and ') + '. Send up to eleven.',
+              bin:d, candidates:pool.length, conflicting_fields:names,
+              spans:pool.map(r => Object.assign({min:r.min, max:r.max},
+                Object.fromEntries(names.map(k => [k, r.a[k] || null])))),
+              request_id:rid}});
+  }
+
+  const r = pool[0];
+  const merged = pool.length > 1;
+  const at = mergeAttrs(pool);
+  const nHave = ORDER.filter(k => at[k] !== undefined).length;
+  await step('look','pass', (merged
+    ? pool.length + ' ranges cover these digits and agree on every priced field, so there is one answer. '
+    : 'One range: ' + r.min + ' to ' + r.max + '. ') + nHave + ' of ' + ORDER.length + ' attributes carried.' +
+    (extras.length ? ' Co-badged with ' + extras.map(x => x.a.brand).join(' and ') + ', listed as a network, not a rival.' : ''));
+
+  const bh = c.map(x => x.b).find(Boolean);
+  const beh = bh
+    ? `<div class="beh"><b>What the bank actually does here, as a merchant sees it.</b> 3DS ${bh.v} &middot; challenge:
+       yours is <b>${where(bh.chal/bh.auth*100, bh.mid)}</b> the market&rsquo;s middle half
+       <div class="rbar" role="img" aria-label="Challenge: market middle half ${bh.mid[0]} to ${bh.mid[1]}%, median band ${bh.band[0]} to ${bh.band[1]}%, yours ${(bh.chal/bh.auth*100).toFixed(1)}%">
+         <i class="mid" style="left:${bh.mid[0]}%;width:${bh.mid[1]-bh.mid[0]}%"></i>
+         <i class="med" style="left:${bh.band[0]}%;width:${bh.band[1]-bh.band[0]}%"></i>
+         <i class="you" style="left:calc(${(bh.chal/bh.auth*100).toFixed(1)}% - 1px)"></i></div>
+       <div class="rleg"><span>You <b>${(bh.chal/bh.auth*100).toFixed(1)}%</b>, ${fmt(bh.chal)} of ${fmt(bh.auth)}</span>
+         <span>middle half <b>${bh.mid[0]}&ndash;${bh.mid[1]}%</b></span><span>median <b>${bh.band[0]}&ndash;${bh.band[1]}%</b></span>
+         <span>your approval <b>${(bh.appr/bh.pays*100).toFixed(1)}%</b>, ${fmt(bh.appr)} of ${fmt(bh.pays)}</span></div>
+       <span class="dim">On ${fmt(bh.auth)} authentications &middot; sample values &middot; live: from 10+ merchants, last 90 days, updated daily.
+       This page holds one figure for this range, a sample figure, so it stands in for your own rate as a sample; live, your own rate covers the same last 90 days as the bar; the
+       median band and middle half are sample values derived from it. Live, a range needs at least 1,000 authentications
+       from 10 or more merchants with none above 25%, retries excluded; at 113 this range would read &ldquo;not enough
+       data&rdquo;. Approval and merchant-initiated approval get the same bar. No exact market rate is shown, and the
+       3DS version stays exact. An acquirer sees the relative view instead, with its own figures from the results it uploads: your own results, optionally split by your own shop IDs. That split stays inside its own account, is not a portfolio view, and needs a data-processing clause in its contract. A merchant that sends a sub-merchant on its payments (the split-payment recipient) sees its own exact figures per sub-merchant, inside its own account only. It uploads nothing. The market band is the same for every sub-merchant. It is not a portfolio view. Not in the catalogue, and not a field any
+       competitor returns.</span></div>`
+    : '';
+  const span = merged
+    ? '<div style="margin-top:8px">These digits cover <b>' + pool.length + ' ranges</b>, split for the issuer&rsquo;s own ' +
+      'reasons. They agree on every priced field, so we merge them and answer. Only a real disagreement returns a 409.</div>'
+    : '';
+  const cob = extras.length
+    ? '<div style="margin-top:8px"><b>Co-badged.</b> ' + extras.map(x => esc(x.a.brand) + '&rsquo;s own row says ' +
+        esc(x.a.type || 'type not stated') + (x.a.issuer ? ' &middot; ' + esc(x.a.issuer) : '')).join('; ') +
+      '. That is the local network&rsquo;s view of the same card, so it is listed as a network and this stays a 200. ' +
+      'The card facts come from the ' + esc(at.brand) + ' row, which the processors confirm on 145 payments.</div>'
+    : '';
+  const body = {object:'bin', bin:d,
+    range: merged ? {spans:pool.length, min:pool[0].min, max:pool[pool.length-1].max} : {min:r.min, max:r.max},
+    attributes: at,
+    attributes_carried: nHave, attributes_possible: ORDER.length,
+    request_id:rid};
+  if(extras.length) body.networks = [{brand:at.brand, primary:true}].concat(extras.map(x =>
+    ({brand:x.a.brand, primary:false, type:x.a.type || null, issuer:x.a.issuer || null})));
+  if(bh) body.behaviour = {three_ds_version:bh.v, sample:true,
+    market:{challenge:{median_band:bh.band.join('-') + '%', middle_half:bh.mid.join('-') + '%', authentications:bh.auth},
+      window:'last 90 days, updated daily', retries:'excluded'},
+    own:{challenged:bh.chal, authentications:bh.auth, challenge_rate:+(bh.chal/bh.auth*100).toFixed(1),
+         approved:bh.appr, payments:bh.pays, approval_rate:+(bh.appr/bh.pays*100).toFixed(1),
+         window:'sample figure; live, last 90 days'},
+    own_vs_middle_half:where(bh.chal/bh.auth*100, bh.mid)};
+  const head = '<b>' + esc(at.brand) + (at.type ? ' &middot; ' + esc(at.type) : '') +
+    (at.segment ? ' &middot; ' + esc(at.segment) : '') + '</b><div style="margin-top:4px">' +
+    esc(at.product || 'product not stated') + ' &middot; ' + esc(at.country || 'country not stated') +
+    (at.issuer ? ' &middot; ' + esc(at.issuer) : '') + '</div>';
+  return finish(200,'ok', head + span + cob + beh + attrTable(at), body);
+}
+
+keySel.onchange = paintScopes;
+digitsIn.oninput = () => {
+  digitsIn.value = digitsIn.value.replace(/\D/g,'').slice(0,11);
+  const n = digitsIn.value.length;
+  $('dhint').textContent = n + (n === 1 ? ' digit' : ' digits') +
+    (n < 6 ? ', the lookup needs at least six' : n > 8 ? ', finer than eight' : '');
+  paintReq();
+};
+document.querySelectorAll('.ex button').forEach(b => b.onclick = () => {
+  digitsIn.value = b.dataset.d; digitsIn.dispatchEvent(new Event('input'));
+});
+$('modes').onclick = e => {
+  const el = e.target.closest('.mode'); if(!el) return;
+  mode = el.dataset.m;
+  document.querySelectorAll('#modes .mode').forEach(m => m.classList.toggle('on', m === el));
+  paintTally(); paintReal();
+  $('mhint').textContent = mode === 'file' ? 'They hold the whole catalogue. Nothing reaches us.'
+    : mode === 'seeded' ? 'They loaded the catalogue first, then cache. Only ranges we do not have reach us.'
+    : mode === 'cache' ? 'They keep each answer. Only cards they have never seen reach us.'
+    : 'Every payment reaches us.';
+  $('modeNote').innerHTML = mode === 'seeded'
+    ? 'On <b>Seeded cache</b>, try <span class="code">4111</span>: the catalogue has no such range, so that is the ' +
+      'one case that reaches us, and it comes back a 404. Everything else was already loaded.'
+    : mode === 'file'
+    ? 'On <b>Local file</b> nothing reaches us at all, so there is no rate limit and no log. Thirty-five megabytes gzipped, card facts refreshed weekly. On Premium, 3DS readiness and behaviour come in a separate daily delta.'
+    : mode === 'cache'
+    ? 'On <b>Cache on miss</b>, send the same digits twice. The second one never reaches us. On the busy sample key below, this removes about 98 calls in every 100.'
+    : 'On <b>Call every time</b>, every payment is a call to us, and we sit inside their checkout. Switch the mode above and send a few more.';
+};
+$('send').onclick = run;
+function paintChange(){
+  $('chVer').textContent = changePublished ? '2' : '1';
+  $('chFix').hidden = !changePublished;
+  $('chPub').disabled = changePublished;
+  $('chState').innerHTML = !changePublished
+    ? 'Catalogue version <b id="chVer">1</b>. Their copy agrees. Send <span class="code">47295800</span> on ' +
+      '<b>Cache on miss</b> or <b>Seeded cache</b> first, then publish a change and send it again.'
+    : clientFresh
+    ? 'Catalogue version <b id="chVer">2</b>. <b>47295800</b> is now <b>' + CHANGE.to + '</b>, and they have taken it.'
+    : 'Catalogue version <b id="chVer">2</b>. <b>47295800</b> changed from <b>' + CHANGE.from + '</b> to <b>' +
+      CHANGE.to + '</b>. Their copy still says the old one. Send it again and watch them serve it.';
+}
+$('chPub').onclick = () => {
+  const r = RANGES.find(x => x.min.startsWith(CHANGE.d));
+  r.a.product = CHANGE.to;
+  changePublished = true; clientFresh = false;
+  $('chFixNote').textContent = '';
+  paintChange();
+};
+$('chTtl').onclick = () => {
+  const n = seen.size;
+  seen.clear(); clientFresh = true; paintChange();
+  $('chFixNote').innerHTML = '<b>Everything expired, not just what moved.</b> ' + n + ' cached ' +
+    (n === 1 ? 'row' : 'rows') + ' here; on the busy sample key that is 60,000 rows re-fetched to discover ' +
+    'that about 1% of them changed.';
+};
+$('chFeed').onclick = () => {
+  seen.delete(CHANGE.d); clientFresh = true; paintChange();
+  $('chFixNote').innerHTML = '<b>One row invalidated.</b> The feed named <span class="code">47295800</span>, so ' +
+    'that is the only thing re-fetched. This is the version that scales. Changes feed: <span class="pp">Proposed</span>';
+};
+
+$('reset').onclick = () => {
+  used = 0;
+  for(const m of ['file','seeded','cache','inline']) sim[m].used = 0;   // a new window for all three
+  paintQuota(); paintTally();
+};
+$('toggle').onclick = () => {
+  showEleven = !showEleven;
+  $('toggle').textContent = showEleven ? 'Show what an SAQ-A merchant receives' : 'Show what a Level 1 merchant receives';
+  $('logNote').innerHTML = showEleven
+    ? 'This is what a merchant assessed at PCI Level 1 in its own right receives: all eleven digits, and then only in a PCI-safe form — PGP-encrypted in the API response, with PGP over SFTP for the batch file, the same channel as token import and export. The extra digits ride in their own object beside the eight-digit base, so an eight-digit caller is unaffected. The log row does not change: still eight digits, and never a request or response body.'
+    : 'The log keeps eight digits for every merchant, and never the request or response body. Eight digits is also what a merchant on SAQ-A receives. Storage was never the constraint: Acme Pay is assessed at PCI DSS Level 1 and holds whatever the lookup reads. What is gated is the answer, and it is gated on the customer’s own PCI standing, not on ours.';
+  paintLog();
+};
+
+$('accts').onclick = e => {
+  const el = e.target.closest('.mode'); if(!el) return;
+  acct = +el.dataset.a;
+  document.querySelectorAll('#accts .mode').forEach(m => m.classList.toggle('on', m === el));
+  paintReal();
+};
+
+paintScopes(); paintPipe(null); paintQuota(); paintTally(); paintReal(); paintLog(); paintChange();
+
+// ---- View as: this demo, a new account with no keys, a busy key with many requests ----
+// A demo switch, not a product feature: it shows the empty, new-user and many-items states.
+const KEYS0 = KEYS.map(k => Object.assign({}, k, {scopes:k.scopes.slice()}));
+let view = 'sample';
+function fillKeys(){
+  keySel.innerHTML = '';
+  KEYS.forEach((k,i) => keySel.add(new Option(k.name + (k.revoked ? ' (revoked)' : ''), String(i))));
+  if(!KEYS.length) keySel.add(new Option('No keys yet', ''));
+}
+function resetRun(){
+  used = 0; rows = []; logAll = false; seen = new Set(); taken = 0; hits = 0; calls = 0;
+  sim.everSeen = new Set();
+  for(const m of ['file','seeded','cache','inline']) sim[m] = {calls:0, none:0, refused:0, used:0};
+  $('out').className = 'out'; $('out').innerHTML = 'Press <b>Send request</b> to run one lookup.';
+  $('resSt').textContent = 'Response'; $('res').textContent = 'Send a request to see it.';
+}
+function setView(v){
+  view = v; resetRun();
+  KEYS.length = 0;
+  if(v !== 'new') KEYS0.forEach(k => KEYS.push(Object.assign({}, k, {scopes:k.scopes.slice()})));
+  if(v === 'many'){
+    // a busy live key at the end of a window: 60 rows, the rate limit used up
+    const st = [200,200,200,404,200,200,409,200,200,429];
+    const bins = ['44787510','47295800','52524400','41727501','51360410','4111','44787510600'];
+    const n = new Date();
+    for(let i = 0; i < 60; i++){
+      const s = st[i % st.length], d = s === 404 ? '4111' : bins[i % bins.length];
+      const t = new Date(n - i * 1700);
+      rows.push({t:[t.getHours(),t.getMinutes(),t.getSeconds()].map(x => String(x).padStart(2,'0')).join(':'),
+        key: i % 4 === 3 ? KEYS[2].id : KEYS[0].id, path:'/v1/bins/' + d, status:s, ms:s === 200 ? 2 : 1, full:d,
+        rid:'req_' + (1e9 + i * 7919).toString(36)});
+    }
+    used = 8;
+  }
+  fillKeys();
+  document.querySelectorAll('#views .mode').forEach(m => { const on = m.dataset.v === v; m.classList.toggle('on', on); m.setAttribute('aria-pressed', on); });
+  paintScopes(); paintPipe(null); paintQuota(); paintTally(); paintLog();
+}
+$('views').onclick = e => { const el = e.target.closest('.mode'); if(el) setView(el.dataset.v); };
+$('views').onkeydown = e => { if(e.key === 'Enter' || e.key === ' '){ const el = e.target.closest('.mode'); if(el){ e.preventDefault(); setView(el.dataset.v); } } };
+$('newKey').onclick = () => {
+  const r = () => Math.random().toString(36).slice(2);
+  const secret = 'yk_test_' + (r() + r() + r()).slice(0, 32);
+  KEYS.push({id:'yk_test_' + secret.slice(-4).toUpperCase(), name:'Your first key, test', env:'Test', scopes:['Lookup','Batch'], revoked:false, secret});
+  fillKeys(); keySel.value = String(KEYS.length - 1); paintScopes();
+};
+$('logAll').onclick = () => { logAll = !logAll; paintLog(); };
+
+// ---- Guided tour: first visit only, dismissible, re-opened from "Take the tour" ----
+// Automated browser sessions skip the automatic start so test runs are not covered by it.
+const TOUR = {i:-1, steps:[
+  {sel:'#key', t:'Pick a key', d:'Each key carries scopes. We keep only its hash and a hint, never the key itself.'},
+  {sel:'#digits', t:'Send some digits', d:'Six to eleven digits of a card. Try the examples underneath: one of them is ambiguous at eight.'},
+  {sel:'#modes', t:'Choose how they integrated', d:'A local file or a cache answers most payments without calling us. Watch the counts change.'},
+  {sel:'#pipe', t:'Watch the checks', d:'Every request passes the key, its scope and the rate limit before the card range is resolved.'},
+  {sel:'#log', t:'One log row per request', d:'Refused requests are logged too. The row keeps eight digits, never a request or response body.'},
+  {sel:'#viewbar', t:'See other states', d:'View a new account with no keys, or a busy key with many requests. Take this tour again from here.'}]};
+const TOUR_KEY = 'kll.tour';
+function tourPos(){
+  const s = TOUR.steps[TOUR.i], t = $('tour'); if(!s || !t) return;
+  const el = document.querySelector(s.sel); if(!el) return;
+  const r = el.getBoundingClientRect(), W = t.offsetWidth, H = t.offsetHeight;
+  let top = r.bottom + 10; if(top + H > innerHeight - 8) top = Math.max(8, r.top - H - 10);
+  t.style.top = top + 'px'; t.style.left = Math.max(12, Math.min(r.left, innerWidth - W - 12)) + 'px';
+}
+function tourEnd(){
+  TOUR.i = -1; document.querySelectorAll('.tour-on').forEach(x => x.classList.remove('tour-on'));
+  const t = $('tour'); if(t) t.remove();
+  try{ localStorage.setItem(TOUR_KEY, '1'); }catch(e){}
+}
+function tourShow(){
+  const s = TOUR.steps[TOUR.i]; const el = s && document.querySelector(s.sel); if(!el) return tourEnd();
+  document.querySelectorAll('.tour-on').forEach(x => x.classList.remove('tour-on'));
+  el.classList.add('tour-on'); el.scrollIntoView({block:'center', behavior: quick ? 'auto' : 'smooth'});
+  let t = $('tour');
+  if(!t){ t = document.createElement('div'); t.id = 'tour'; t.className = 'tour'; t.setAttribute('role','dialog'); document.body.appendChild(t); }
+  const last = TOUR.i === TOUR.steps.length - 1;
+  t.setAttribute('aria-label', 'Tour, step ' + (TOUR.i + 1) + ' of ' + TOUR.steps.length);
+  t.innerHTML = `<div class="tk"><span>Step ${TOUR.i + 1} of ${TOUR.steps.length}</span><button type="button" id="tourX" aria-label="Close the tour">&times;</button></div>
+    <h3>${esc(s.t)}</h3><p>${esc(s.d)}</p>
+    <div class="tr2"><button type="button" class="skip" id="tourSkip">Skip tour</button><span class="sp"></span>${TOUR.i ? '<button type="button" class="ghost" id="tourBack">Back</button>' : ''}<button type="button" class="nx" id="tourNext"${last ? ' data-event="tutorial.completed"' : ''}>${last ? 'Done' : 'Next'}</button></div>`;
+  $('tourX').onclick = tourEnd; $('tourSkip').onclick = tourEnd;
+  $('tourNext').onclick = () => { if(last) tourEnd(); else { TOUR.i++; tourShow(); } };
+  const bk = $('tourBack'); if(bk) bk.onclick = () => { TOUR.i--; tourShow(); };
+  tourPos(); setTimeout(tourPos, quick ? 0 : 400);
+  $('tourNext').focus({preventScroll:true});
+}
+// ---------- Events (annotation only; MEASUREMENT.md sections d and e) ----------
+// This page is a walk-through: most controls ILLUSTRATE a system event the BIN API service writes,
+// and fire nothing in the console. The controls that stand for an event carry data-event; the sheet
+// says which kind each is. NOTHING IS SENT: no analytics is loaded and no network call is made.
+const EV_PARTS = [
+  ['Keys', 'part 1', [
+    ['api_key.created', 'Create a test key (new account), the "shown once" panel', 'key_id, env, scopes', 'Illustrated: the secret is shown once; we store the SHA-256 and a hint', '#newKey'],
+    ['bin_api.request_served', 'Send request', 'endpoint, status 200/404/409/403/401, error_code, latency_ms, digits_sent, range_code', 'Illustrated: written by the API service for every request', '#send'],
+    ['bin_api.request_served', 'Digits chips (8 / 11 / 4111)', 'digits_sent, the 404 path', 'Illustrated: sets what the next request sends; the chip itself fires nothing', '']]],
+  ['Limits', 'part 2', [], 'Demo controls only: "How they integrated", "Reset the window", "Publish a change", "Let a TTL expire it" and "Apply a changes feed" show what bin_api.request_served (status 429, rate_limited), catalogue.loaded and catalogue_file.downloaded record. None of them is an event.'],
+  ['Logs', 'part 3', [], 'Each log row is one bin_api.request_served (time, key, endpoint, status, latency, request id, 8 digits; no bodies). "Show what a Level 1 merchant receives" is a demo control for settings.saved (pci_level) and digits_sent 11. In the console this table is Developers › Request logs, where opening a row fires request_log.viewed.']];
+const EV_SHARED = [['tutorial.started', 'Take the tour', 'section, tutorial, step', 'Console event', '#tourBtn'], ['tutorial.completed', 'Tour › Done on the last step', 'section, tutorial, step', 'Console event', '#tour [data-event="tutorial.completed"]']];
+function evAnnotate(){ EV_PARTS.forEach(([, , rows]) => (rows || []).forEach(([ev, , , , sel]) => sel && document.querySelectorAll(sel).forEach(el => el.setAttribute('data-event', ev)))); }
+evAnnotate();
+function evClose(){ const a = $('evScrim'), b = $('evSheet'); if(a) a.remove(); if(b) b.remove(); removeEventListener('keydown', evKey); $('evBtn').focus(); }
+function evKey(e){ if(e.key === 'Escape') evClose(); }
+function evOpen(){
+  const tbl = rows => `<table><thead><tr><th style="width:34%">Event</th><th>Trigger</th><th style="width:30%">Properties</th></tr></thead><tbody>${rows.map(([ev, tr, pr, kind]) => `<tr><td class="m">${esc(ev)}</td><td>${esc(tr)}<div class="q">${esc(kind)}</div></td><td class="q">${esc(pr)}</td></tr>`).join('')}</tbody></table>`;
+  const n = document.querySelectorAll('.wrap [data-event]').length;
+  const sc = document.createElement('div'); sc.id = 'evScrim'; sc.className = 'evscrim'; sc.onclick = evClose;
+  const sh = document.createElement('aside'); sh.id = 'evSheet'; sh.className = 'evsheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-modal', 'true'); sh.setAttribute('aria-label', 'Events on this screen');
+  sh.innerHTML = `<div class="eh"><h3>Events on this screen</h3><button type="button" id="evX" aria-label="Close">&times;</button></div><div class="eb">
+    <p class="q" style="margin:0">Keys, Limits, Logs · from the measurement plan. Controls that stand for an event carry <span class="m">data-event</span> (${n} on this screen). Nothing is sent: this page loads no analytics and makes no network calls.</p>
+    ${EV_PARTS.map(([name, part, rows, note]) => `<h4>${esc(name)} <span class="q" style="font-weight:400">· ${part}</span></h4>${rows.length ? tbl(rows) : `<div class="none"><b>No new events on this screen.</b></div>`}${note ? `<p class="q" style="margin:8px 0 0">${esc(note)}</p>` : ''}`).join('')}
+    <h4>The tour</h4>${tbl(EV_SHARED)}</div>`;
+  document.body.append(sc, sh); $('evX').onclick = evClose; addEventListener('keydown', evKey); $('evX').focus();
+}
+$('evBtn').onclick = evOpen;
+function tourStart(){ TOUR.i = 0; tourShow(); }
+$('tourBtn').onclick = tourStart;
+addEventListener('scroll', () => { if(TOUR.i >= 0) tourPos(); }, {passive:true});
+addEventListener('resize', () => { if(TOUR.i >= 0) tourPos(); });
+addEventListener('keydown', e => { if(e.key === 'Escape' && TOUR.i >= 0) tourEnd(); });
+setTimeout(() => { let s = false; try{ s = !!localStorage.getItem(TOUR_KEY); }catch(e){} if(!s && !navigator.webdriver && TOUR.i < 0) tourStart(); }, 700);
+</script>
+
+
+</body></html>

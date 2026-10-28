@@ -1,0 +1,27 @@
+1
+00:00:01,711 --> 00:00:17,455
+BIN Intelligence is a card-data product concept I defined as a product manager in payments. It tells merchants and acquirers what a card is, and how its bank behaves, before they charge it. This is the merchant console prototype, running on sample data.
+
+2
+00:00:20,398 --> 00:00:29,590
+The overview shows the value delivered on the account: lookups served, issues the catalogue caught, and an inbox of items that need a decision.
+
+3
+00:00:31,914 --> 00:00:49,410
+Card insights compares each card range against its market band. The merchant sees its own exact rate as a marker, and only ever its own. Every shared figure belongs to a card range, never to another merchant. That privacy rule is also what sets the product apart.
+
+4
+00:00:51,715 --> 00:01:06,859
+Lookup is the core. Enter a BIN, and you get the card facts, the co-badged networks, and 3DS readiness: which protocol versions the bank supports, and whether it runs the Method step. A missing value is left out, never guessed.
+
+5
+00:01:09,161 --> 00:01:23,081
+Rules turn a finding into action, without code. Here, a rule blocks prepaid cards at subscription sign-up. Before it goes live, it is backtested on thirty days of the merchant's own payments, and it starts in Monitor mode.
+
+6
+00:01:25,376 --> 00:01:34,352
+Customization lets a merchant correct the catalogue for its own account, with the evidence for each fix, or report the error back to the platform.
+
+7
+00:01:36,661 --> 00:01:51,229
+Alerts close the loop. Merchants watch card ranges, and hear first when one changes, or when a change touches a live rule. The goal of this prototype was simple: let stakeholders click the product before engineering spent a single sprint.

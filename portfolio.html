@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Huzaifa Islam · Product Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+:root{--ink:#0B1020;--ink2:#4B5568;--ink3:#5F6878;--line:#E5E8EF;--bg2:#F7F8FB;--brand:#4338CA;--brand2:#6366F1;--brandsoft:#EEF0FF;--teal:#0A7A67;--tealsoft:#E3F7F2;--amber:#965C08;--ambersoft:#FFF4E2;--grad:linear-gradient(135deg,#4338CA,#6366F1 45%,#0E9F86)}
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:var(--ink);font:400 10.2pt/1.55 Inter,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:"Plus Jakarta Sans",Inter,sans-serif;margin:0;letter-spacing:-.02em}
+.page{width:210mm;height:297mm;padding:17mm 17mm 16mm;page-break-after:always;position:relative;overflow:hidden}
+.page:last-child{page-break-after:auto}
+.foot{position:absolute;bottom:9mm;left:17mm;right:17mm;display:flex;justify-content:space-between;font-size:7.8pt;color:var(--ink3);border-top:1px solid var(--line);padding-top:3mm}
+.label{font:700 7.8pt "Plus Jakarta Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+h2{font-size:21pt;font-weight:800;line-height:1.12;margin:2mm 0 2.5mm;letter-spacing:-.03em}
+.lede{font-size:11pt;color:var(--ink2);margin:0 0 6mm}
+p{margin:0 0 2.5mm}
+.chips{display:flex;gap:2mm;margin-bottom:3mm}.chip{font:600 7.8pt Inter;padding:1mm 3mm;border-radius:20px;background:var(--brandsoft);color:var(--brand)}.chip.g{background:var(--tealsoft);color:var(--teal)}.chip.a{background:var(--ambersoft);color:var(--amber)}
+.cover{background:#0B1020;color:#fff;padding:24mm 20mm;display:flex;flex-direction:column}
+.cover:before{content:"";position:absolute;inset:0;background:radial-gradient(130mm 90mm at 95% 5%,rgba(99,102,241,.55),transparent 65%),radial-gradient(110mm 80mm at 0% 100%,rgba(14,159,134,.4),transparent 65%)}
+.cover>*{position:relative}
+.cover .mono{width:14mm;height:14mm;border-radius:4mm;background:var(--grad);display:grid;place-items:center;font:800 13pt "Plus Jakarta Sans";margin-bottom:auto}
+.cover h1{font-size:44pt;font-weight:800;line-height:1;letter-spacing:-.04em;color:#fff}
+.cover .role{font:600 14pt "Plus Jakarta Sans";margin:5mm 0 6mm;color:#A5B4FC}
+.cover .intro{font-size:12.5pt;line-height:1.55;color:rgba(255,255,255,.8);max-width:150mm;margin:0 0 12mm}
+.cover .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-bottom:12mm}
+.cover .stats div{border:1px solid rgba(255,255,255,.18);border-radius:4mm;padding:4.5mm;background:rgba(255,255,255,.05)}
+.cover .stats b{display:block;font:800 17pt "Plus Jakarta Sans";letter-spacing:-.03em}
+.cover .stats span{font-size:8.6pt;color:rgba(255,255,255,.7)}
+.cover .meta{font-size:9pt;color:rgba(255,255,255,.65);line-height:1.8;border-top:1px solid rgba(255,255,255,.15);padding-top:5mm}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm;margin-bottom:6mm}
+.tile{border:1px solid var(--line);border-radius:4mm;padding:4.5mm;background:#fff}
+.tile b{display:block;font:800 18pt "Plus Jakarta Sans";letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5mm}
+.tile.dark{background:var(--ink);border-color:var(--ink);color:#fff}.tile.dark b{color:#8FE3D0}.tile.dark span{color:rgba(255,255,255,.75)}
+.tile span{font-size:8.8pt;color:var(--ink2)}
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:1mm 0 5mm}
+th{text-align:left;padding:2mm 2.5mm;background:var(--bg2);font:700 8pt "Plus Jakarta Sans";color:var(--ink);border-bottom:1px solid var(--line)}
+td{padding:2.2mm 2.5mm;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2)}td b{color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm}
+.steps div{border:1px solid var(--line);border-radius:3mm;padding:3mm;font-size:8.2pt;color:var(--ink2)}
+.steps b{display:flex;align-items:center;gap:2mm;font:700 9pt "Plus Jakarta Sans";color:var(--ink);margin-bottom:1mm}
+.steps i{width:5mm;height:5mm;border-radius:1.5mm;background:var(--brandsoft);color:var(--brand);display:grid;place-items:center;font:800 7.5pt "Plus Jakarta Sans";font-style:normal}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm;margin:0 0 5mm}
+.trio div{border:1px solid var(--line);border-radius:4mm;padding:4mm;background:var(--bg2)}
+.trio h4{font-size:9.6pt;margin-bottom:1.5mm;display:flex;align-items:center;gap:2mm}
+.trio h4:before{content:"";width:2.4mm;height:2.4mm;border-radius:50%}
+.trio .p h4:before{background:#E25C5C}.trio .d h4:before{background:var(--brand)}.trio .r h4:before{background:var(--teal)}
+.trio p{font-size:8.9pt;color:var(--ink2);margin:0}
+.frame{border:1px solid var(--line);border-radius:3.5mm;overflow:hidden;box-shadow:0 6mm 14mm -8mm rgba(30,27,75,.3);background:#fff}
+.frame .bar{height:6mm;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:1.4mm;padding:0 3mm}
+.frame .bar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#FF5F57}.frame .bar i:nth-child(2){background:#FEBC2E}.frame .bar i:nth-child(3){background:#28C840}
+.frame .bar span{margin:0 auto;font-size:7pt;color:var(--ink3)}
+.frame img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left}
+figcaption{font-size:8pt;color:var(--ink3);margin-top:2mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.box{border:1px solid var(--line);border-radius:4mm;padding:4mm 4.5mm}
+.box h4{font-size:10pt;margin-bottom:2mm}
+ul{margin:0;padding-left:4.5mm}li{margin-bottom:1.3mm;color:var(--ink2)}li b{color:var(--ink)}
+.note{background:var(--ambersoft);border-radius:3.5mm;padding:3.5mm 4.5mm;font-size:9pt;color:#5B3B06;margin-top:4mm}
+.note b{color:#3D2702}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;margin:2mm 0 5mm}
+.flow div{border-radius:3mm;padding:3mm;background:var(--ink);color:#fff;font-size:8pt;line-height:1.35}
+.flow div b{display:block;font:700 8.6pt "Plus Jakarta Sans";margin-bottom:1mm}
+.flow div em{font-style:normal;display:inline-block;margin-top:1.5mm;font-size:7pt;padding:.6mm 2mm;border-radius:10px;background:rgba(94,234,212,.2);color:#5EEAD4}
+.flow div em.h{background:rgba(242,182,90,.25);color:#F2B65A}
+.result{display:flex;justify-content:space-between;align-items:center;border-radius:3.5mm;padding:4mm 5mm;background:var(--grad);color:#fff;margin-bottom:5mm}
+.result b{font:800 15pt "Plus Jakarta Sans"}
+.ints{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-bottom:5mm}
+.ints div{border:1px solid var(--line);border-radius:3.5mm;padding:3.5mm 4mm}
+.ints h4{font-size:9.6pt}.ints small{display:block;color:var(--brand);font-weight:600;font-size:8pt;margin:.5mm 0 1.2mm}.ints p{font-size:8.7pt;color:var(--ink2);margin:0}
+@media screen{body{background:#EEF1F7}.page{margin:8mm auto;box-shadow:0 2px 16px rgba(0,0,0,.12)}}
+@media screen and (max-width:820px){.page{width:auto;height:auto;padding:22px 16px 48px;margin:0 0 10px}.bento,.trio,.g2,.ints,.cover .stats{grid-template-columns:1fr}.steps,.flow{grid-template-columns:1fr 1fr}.foot{position:static;margin-top:16px}}
+</style></head><body>
+
+<section class="page cover">
+  <div class="mono">HI</div>
+  <div>
+    <div class="label" style="color:#A5B4FC">Product portfolio · 2025 to 2026</div>
+    <h1 style="margin-top:4mm">Huzaifa Islam</h1>
+    <div class="role">Product Manager, Payments &amp; Fintech</div>
+    <p class="intro">I help businesses get paid. I work out what to build, show it as a working prototype before anyone writes code, and then see it through to launch with the engineering team. This portfolio tells five of those stories in plain words.</p>
+    <div class="stats">
+      <div><b>2 weeks → 1 hour</b><span>to plan a new payment provider</span></div>
+      <div><b>30+</b><span>integration plans written for engineers</span></div>
+      <div><b>10</b><span>prototypes, each with a narrated video</span></div>
+    </div>
+    <div class="meta">Product Manager at Yuno, a global payments platform, since December 2025<br>Hyderabad, India · huzafaisam16@gmail.com · +91 9304538340 · linkedin.com/in/whozz<br><span style="opacity:.75">The prototypes use a made up brand (Acme Pay) and sample data. No customer data or company figures are shown.</span></div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="label">In short</div>
+  <h2>What changed because of my work</h2>
+  <p class="lede">I work on the parts of online payments that decide whether money moves: what we know about a card, the security check a bank runs, and the connections to payment companies around the world.</p>
+  <div class="bento">
+    <div class="tile dark"><b>2 weeks → 1 hour</b><span>Planning a new payment provider used to take two weeks. My AI assisted tool does it in under an hour.</span></div>
+    <div class="tile"><b>30+</b><span>Clear integration plans for engineers, across five regions of the world.</span></div>
+    <div class="tile"><b>1.1M+</b><span>Card ranges answered by the working prototype I built, not just slides.</span></div>
+    <div class="tile"><b>23</b><span>Security and approval ideas turned into one roadmap you can click through.</span></div>
+    <div class="tile"><b>3</b><span>Test tools that proved what payment providers really do, and unblocked their launch.</span></div>
+    <div class="tile"><b>10</b><span>Prototypes and testers, each with a narrated, captioned video.</span></div>
+  </div>
+  <h4 style="font-size:11pt;margin-bottom:2mm">The five stories</h4>
+  <table>
+    <tr><th style="width:8mm">#</th><th>Story</th><th>What it shows about me</th></tr>
+    <tr><td>1</td><td><b>BIN Intelligence:</b> know a card before you charge it</td><td>Building a new product from nothing: research, pricing, prototype, requirements</td></tr>
+    <tr><td>2</td><td><b>A planning assistant</b> that turns weeks into an hour</td><td>Designing an AI assisted internal tool that removes a bottleneck</td></tr>
+    <tr><td>3</td><td><b>Connecting new ways to pay,</b> from plan to launch</td><td>Delivery, scope discipline and proof that things work</td></tr>
+    <tr><td>4</td><td><b>A security roadmap</b> you can play like a video</td><td>Making a complicated plan simple enough for everyone to agree on</td></tr>
+    <tr><td>5</td><td><b>Finding where money and time leak</b></td><td>Using data and small tools to make problems visible</td></tr>
+  </table>
+  <h4 style="font-size:11pt;margin-bottom:2.5mm">How I work</h4>
+  <div class="steps">
+    <div><b><i>1</i>Understand</b>Talk to people, read the data first.</div>
+    <div><b><i>2</i>One page</b>The problem, the bet, the decisions.</div>
+    <div><b><i>3</i>Show it</b>A clickable prototype, early.</div>
+    <div><b><i>4</i>Detail it</b>Requirements and the test plan.</div>
+    <div><b><i>5</i>Check it</b>A review and a named sign off.</div>
+    <div><b><i>6</i>Launch it</b>Test evidence, then go live.</div>
+  </div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>2</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 1</span><span class="chip">New product</span><span class="chip g">Prototype + API</span></div>
+  <h2>BIN Intelligence: know a card before you charge it</h2>
+  <p class="lede">The first digits of every card number are called the BIN. They reveal what kind of card it is (credit, debit, prepaid, business) and which bank issued it. I designed a product that turns those digits into useful answers for online shops and the companies that process their payments.</p>
+  <div class="trio">
+    <div class="p"><h4>The problem</h4><p>Shops only learn what a card is after they charge it. The card data they buy is often out of date. And nobody tells them how a bank is likely to behave, for example whether it will ask the shopper for an extra security check.</p></div>
+    <div class="d"><h4>What I did</h4><p>I researched the market, wrote a one page plan and the full requirements, designed the pricing, and built a clickable console plus a working API. People could try the product before any budget was committed.</p></div>
+    <div class="r"><h4>The result</h4><p>A clear plan in three stages and a simple privacy rule: every shared number describes a group of cards, never another shop. That rule protects shops and also makes the product different from what others sell.</p></div>
+  </div>
+  <figure style="margin:0"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Card lookup</span></div><img src="shots/bin-intelligence-console-3.png" alt=""></div><figcaption>Card lookup: type the first digits and see the card type, the bank, the card networks and which security checks the bank supports. Sample data.</figcaption></figure>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>3</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 1, continued</span></div>
+  <h2>From a one page plan to a working product</h2>
+  <div class="g2" style="margin-bottom:5mm">
+    <figure style="margin:0"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Rules</span></div><img src="shots/bin-intelligence-console-4.png" alt=""></div><figcaption>Rules: block or flag certain cards, tested on the last 30 days of payments before going live.</figcaption></figure>
+    <figure style="margin:0"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Card insights</span></div><img src="shots/bin-intelligence-console-2.png" alt=""></div><figcaption>Card insights: how each group of cards performs compared with the wider market.</figcaption></figure>
+    <figure style="margin:0"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>How the API works</span></div><img src="shots/bin-keys-limits-logs-1.png" alt=""></div><figcaption>One API request followed from start to finish: the key, the limit, the answer and the record.</figcaption></figure>
+    <figure style="margin:0"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Alerts</span></div><img src="shots/bin-intelligence-console-6.png" alt=""></div><figcaption>Alerts: hear first when card data changes or affects one of your rules.</figcaption></figure>
+  </div>
+  <table>
+    <tr><th>What I produced</th><th>Why it mattered</th></tr>
+    <tr><td><b>One page plan</b></td><td>The problem, why now, the three big ideas, and the decisions leaders needed to make, each with my recommendation</td></tr>
+    <tr><td><b>Full requirements</b></td><td>What to build, user stories, the test plan and which teams are involved</td></tr>
+    <tr><td><b>Prototype and API</b></td><td>A console and a real API on over a million card ranges, with keys, limits and request records</td></tr>
+    <tr><td><b>Pricing and business case</b></td><td>Three plans, from free to premium, built from research with possible buyers</td></tr>
+  </table>
+  <div class="note"><b>What I learned:</b> the strongest part of the plan was not a feature, it was a boundary. Deciding early what the product would never show made it safer and easier to sell.</div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>4</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 2</span><span class="chip">Internal tool</span><span class="chip a">AI</span></div>
+  <h2>A planning assistant that turns weeks into an hour</h2>
+  <p class="lede">Before a business can accept payments through a new payment company, someone has to read that company's documents, compare it with what already exists, find who is affected, and write a plan for engineers. That reading was slowing the whole roadmap down.</p>
+  <div class="trio">
+    <div class="p"><h4>The problem</h4><p>Each plan took one to two weeks. The quality depended on who wrote it, and engineers sometimes got plans with missing pieces.</p></div>
+    <div class="d"><h4>What I did</h4><p>I designed a six step AI assisted process that runs from a single command and ends with a plan and engineering tasks, always checked by a person.</p></div>
+    <div class="r"><h4>The result</h4><p>A plan now takes under an hour, and more than 30 have been produced this way, each reviewed by a technical lead.</p></div>
+  </div>
+  <div class="flow">
+    <div><b>1 · Check access</b>Can we log in to the test system?<br><em>Automatic</em></div>
+    <div><b>2 · Read</b>Pull out what the provider offers<br><em>Automatic</em></div>
+    <div><b>3 · Compare</b>Match it with what we support<br><em>Automatic</em></div>
+    <div><b>4 · Who is affected</b>Teams and systems touched<br><em>Automatic</em></div>
+    <div><b>5 · Write the plan</b>On the standard template<br><em class="h">Human review</em></div>
+    <div><b>6 · Create tasks</b>Engineering tickets in Jira<br><em>Automatic</em></div>
+  </div>
+  <div class="result"><span>Time to plan one provider</span><b>2 weeks → under 1 hour</b></div>
+  <div class="g2">
+    <div class="box"><h4>Decisions that made it work</h4><ul><li><b>A model answer.</b> One perfect plan sets the standard, and every new plan is checked against it.</li><li><b>Steps in order.</b> Who is affected depends on the comparison, so the steps never run out of order.</li><li><b>A person decides.</b> Any step can be re run with feedback, and a named reviewer signs off.</li></ul></div>
+    <div class="box"><h4>Payment companies planned (a selection)</h4><p style="color:var(--ink2);font-size:9pt">Stripe, Adyen, PayPal, Nuvei, Airwallex, dLocal, Worldpay, Moyasar, Paymob, Tap, Tazapay, PayU, Unlimint, Emerchantpay, PagBank, Pagar.me, Redeban, Netcetera, Belvo, TrustPayments and Xendit.</p></div>
+  </div>
+  <div class="note"><b>What I learned:</b> letting the tool handle the reading freed my time for the parts that need judgement, such as what to leave out and how to handle the tricky cases.</div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>5</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 3</span><span class="chip">Delivery</span><span class="chip g">Launches</span></div>
+  <h2>Connecting new ways to pay, from plan to launch</h2>
+  <p class="lede">Every country has its own favourite ways to pay: cards, digital wallets, instant bank transfers. I plan each connection, test it, and get it ready to launch together with engineering and quality assurance. Some examples:</p>
+  <div class="ints">
+    <div><h4>Clearer reasons when a payment fails</h4><small>Airwallex · worldwide</small><p>Mapped 147 bank refusal codes by card brand and tested 22 scenarios, so shops can see why a payment was refused.</p></div>
+    <div><h4>Bring your own security check</h4><small>Moyasar, Paymob, Tap, Worldpay, Antom</small><p>Proved in test systems that each one accepts a bank security check carried out elsewhere, and wrote down exactly what data to send.</p></div>
+    <div><h4>Automatic Pix payments</h4><small>Adyen · Brazil</small><p>Turned the central bank's rules for repeat payments into a simple charging plan and requirements.</p></div>
+    <div><h4>Safer stored cards</h4><small>Stripe · worldwide</small><p>Mapped every switch needed on both sides to turn on card tokens, so shops could roll them out.</p></div>
+    <div><h4>Live in production</h4><small>Redeban · Colombia, NomuPay · Europe</small><p>Took connections from requirements through certification to live payments.</p></div>
+    <div><h4>Local favourites</h4><small>Nuvei · Poland, Brazil, Netherlands</small><p>Tested BLIK, Pix, iDEAL and Klarna, and mapped how refunds are reported.</p></div>
+    <div><h4>India</h4><small>PayU, BillDesk, Razorpay</small><p>Worked through local rules on invoices and keeping data in India, then tested the payment flows.</p></div>
+    <div><h4>Fraud reports</h4><small>Unlimint, Airwallex, Nuvei</small><p>Checked how each one reports fraud to shops, and defined what to build.</p></div>
+  </div>
+  <div class="g2">
+    <div class="box"><h4>How I keep scope tight</h4><p style="color:var(--ink2);margin:0">Build what people need now. Extra options wait until there is a real business reason. Every extra switch is another thing that can go wrong.</p></div>
+    <div class="box"><h4>How I prove it works</h4><p style="color:var(--ink2);margin:0">Nothing is called done without test evidence and a quality sign off. When a test showed the plan was wrong, I corrected the plan.</p></div>
+  </div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>6</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 4</span><span class="chip">Roadmap</span><span class="chip g">Simulator</span></div>
+  <h2>Making card security easy to see, then proving it</h2>
+  <p class="lede">3-D Secure is the extra check your bank sometimes asks for when you pay online, such as a code sent to your phone. It stops fraud, but too many checks make people give up. There were 23 ideas to improve it, and no shared picture of how they fit together.</p>
+  <figure style="margin:0 0 5mm"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Paymob tester</span></div><img src="shots/paymob-3ds-simulator-2.png" alt=""></div><figcaption>One of the three provider testers. It runs the same test payment two ways and shows, side by side, what works today and what does not.</figcaption></figure>
+  <div class="trio">
+    <div class="d"><h4>What I did</h4><p>Linked all 23 ideas to owners and tasks, and built a simulator that plays each one with its result, cost and who pays if fraud happens.</p></div>
+    <div class="d"><h4>Testers for providers</h4><p>Built three small testers for Paymob, Moyasar and Worldpay. Each sends a test payment two ways and shows where the answers differ.</p></div>
+    <div class="r"><h4>The result</h4><p>Long debates got shorter because everyone could see the difference. The testers turned guesses into proof and unblocked launches.</p></div>
+  </div>
+  <div class="note"><b>What I learned:</b> a plan people can click beats a plan people have to read.</div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>7</span></div>
+</section>
+
+<section class="page">
+  <div class="chips"><span class="chip">Story 5</span><span class="chip">Data</span><span class="chip a">Internal tools</span></div>
+  <h2>Finding where money and time quietly leak</h2>
+  <p class="lede">Payment companies lose money in places nobody owns, and lose time asking "what is the status?". I use data and small tools to make both visible, sized and owned.</p>
+  <figure style="margin:0 0 5mm"><div class="frame"><div class="bar"><i></i><i></i><i></i><span>Worldpay tester</span></div><img src="shots/worldpay-simulator-3.png" alt="" style="aspect-ratio:16/8"></div><figcaption>Proof over opinion: a tester shows exactly what a provider sends back, so nobody has to guess.</figcaption></figure>
+  <ul>
+    <li><b>A revenue leak finder (hackathon idea).</b> I designed an assistant that spots money lost in the payment process, works out how much, explains why, and sends it to the right team.</li>
+    <li><b>A ranked list of leaks.</b> I compared approval rates across card types, retries and card tokens with SQL, then ranked each gap and gave it an owner.</li>
+    <li><b>Workload health.</b> I measured how much work came in against how much went out, and where time really went, and used it to make the case for automation.</li>
+    <li><b>Live team dashboards.</b> I built a company wide work desk and a team desk fed straight from Jira, so people look status up instead of chasing it.</li>
+    <li><b>Why a shop's payments dropped.</b> I wrote SQL checks that pinpointed the cause, ready for account managers to take to the shop.</li>
+  </ul>
+  <h4 style="font-size:11pt;margin:5mm 0 2mm">Skills across the portfolio</h4>
+  <table>
+    <tr><th>Product</th><th>Payments</th><th>Tools</th></tr>
+    <tr><td>Research, strategy, one page plans, requirements, pricing, business cases, roadmaps, getting people to agree</td><td>Card security (3-D Secure), card data, card tokens, Pix, UPI, BLIK, digital wallets, refusal codes, fraud reports, PCI DSS</td><td>APIs, SQL, test systems, prototypes in HTML and Node, AI assistants, Jira and Confluence</td></tr>
+  </table>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>8</span></div>
+</section>
+
+<section class="page">
+  <div class="label">Watch and try</div>
+  <h2>Prototypes and videos</h2>
+  <p class="lede">Every prototype opens in a normal web browser, with no login. The three testers are small apps with their code included. Each has a narrated, captioned video of under two minutes.</p>
+  <table>
+    <tr><th>Prototype</th><th>What you will see</th><th>Video</th></tr>
+    <tr><td><b>BIN Intelligence console</b></td><td>Card lookup, card insights, rules tested on past payments, corrections and alerts</td><td>1:56</td></tr>
+    <tr><td><b>How the card API works</b></td><td>One request followed from the key, to the limit, to the answer and its record</td><td>1:14</td></tr>
+    <tr><td><b>Security roadmap simulator</b></td><td>23 ideas for online card security, each played step by step</td><td>1:36</td></tr>
+    <tr><td><b>Paymob tester</b></td><td>The same test payment sent two ways, with the differences side by side</td><td>1:29</td></tr>
+    <tr><td><b>Moyasar tester</b></td><td>A first payment, then a repeat charge on the saved card</td><td>1:18</td></tr>
+    <tr><td><b>Worldpay tester</b></td><td>Two ways to connect to Worldpay, tested side by side</td><td>1:37</td></tr>
+  </table>
+  <p>Four more pieces are internal analysis, so I show them in interviews rather than online: the card data discovery explorer, the system design, the online security deep dive, and the revenue leak finder.</p>
+  <div class="box" style="margin-top:5mm;background:var(--bg2)"><h4>See everything online</h4><p style="margin:0;color:var(--ink2)">Website: <b style="color:var(--brand)">add your Render link here</b><br>Email: huzafaisam16@gmail.com · LinkedIn: linkedin.com/in/whozz</p></div>
+  <div class="note">This is the public edition. The prototypes use a made up brand (Acme Pay) and sample data. Customer and colleague names, internal systems and company figures have all been removed.</div>
+  <div class="foot"><span>Huzaifa Islam · Product Portfolio</span><span>9</span></div>
+</section>
+</body></html>

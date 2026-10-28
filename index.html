@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Huzaifa Islam · Product Manager, Payments</title>
+<meta name="description" content="Huzaifa Islam is a product manager who builds payment products. See case studies, clickable prototypes and narrated video walkthroughs.">
+<meta property="og:title" content="Huzaifa Islam · Product Manager, Payments">
+<meta property="og:description" content="Payment products you can click before engineering writes a line.">
+<meta property="og:image" content="shots/bin-intelligence-console-3.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234338CA'/%3E%3Ctext x='32' y='41' font-family='Arial' font-weight='700' font-size='24' fill='white' text-anchor='middle'%3EHI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--bg-2:#F7F8FB;--bg-3:#EEF1F7;--card:#FFFFFF;--ink:#0B1020;--ink-2:#4B5568;--ink-3:#5F6878;--line:#E5E8EF;
+  --brand:#4338CA;--brand-2:#6366F1;--brand-soft:#EEF0FF;--teal:#0A7A67;--teal-soft:#E3F7F2;--amber:#965C08;--amber-soft:#FFF4E2;
+  --grad:linear-gradient(135deg,#4338CA 0%,#6366F1 45%,#0E9F86 100%);--deep:#0B1020;--deep-line:#0B1020;
+  --sh-1:0 1px 2px rgba(11,16,32,.05);--sh-2:0 1px 2px rgba(11,16,32,.04),0 16px 40px -16px rgba(11,16,32,.16);--sh-3:0 40px 80px -24px rgba(30,27,75,.35);
+  --head:"Plus Jakarta Sans",Inter,system-ui,sans-serif;--body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--wrap:1180px
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--ink)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:8px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font:600 13px var(--body)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+.label{font:700 12px var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:12px;font:600 15px var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-main{background:var(--ink);color:var(--bg);box-shadow:var(--sh-1)}
+.btn-soft{background:var(--card);color:var(--ink);border-color:var(--line);box-shadow:var(--sh-1)}
+.btn svg{width:16px;height:16px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.on{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;height:68px;gap:24px}
+.logo{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font:700 16px var(--head)}
+.logo b{width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;display:grid;place-items:center;font:800 13px var(--head);letter-spacing:.02em}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--ink-2);font-size:14.5px;font-weight:500}
+.nav ul a:hover{background:var(--bg-3);color:var(--ink)}
+.nav .btn{padding:9px 16px;font-size:14px;border-radius:10px}
+.tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
+
+/* hero */
+.hero{position:relative;padding:84px 0 0;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-200px 0 auto;height:760px;background:radial-gradient(600px 320px at 20% 30%,color-mix(in srgb,var(--brand-2) 22%,transparent),transparent 70%),radial-gradient(520px 300px at 85% 20%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 70%);pointer-events:none}
+.hero:after{content:"";position:absolute;inset:0 0 auto;height:640px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 30%,transparent 80%);opacity:.55;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;text-align:center}
+.hero h1{font-size:clamp(40px,6vw,72px);line-height:1.04;font-weight:800;margin:22px auto 22px;max-width:960px;letter-spacing:-.035em}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:720px;margin:0 auto 32px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.facts{display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;margin:28px 0 0;padding:0;list-style:none;color:var(--ink-3);font-size:14px}
+.facts li{display:flex;align-items:center;gap:8px}.facts svg{width:16px;height:16px;color:var(--teal)}
+.showcase{position:relative;margin:64px auto 0;max-width:1080px}
+.browser{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-3)}
+.browser .top{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.browser .top i{width:11px;height:11px;border-radius:50%;background:#FF5F57}.browser .top i:nth-child(2){background:#FEBC2E}.browser .top i:nth-child(3){background:#28C840}
+.browser .top span{margin:0 auto;font:500 12px var(--body);color:var(--ink-3);background:var(--card);border:1px solid var(--line);padding:4px 14px;border-radius:7px;transform:translateX(-24px)}
+.browser .shot{aspect-ratio:16/10;width:100%;object-fit:cover;object-position:top left;background:#fff}
+.float{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--sh-2);text-align:left;font-size:13.5px;color:var(--ink-2);line-height:1.4;max-width:230px}
+.float b{display:block;font:800 24px/1.1 var(--head);color:var(--ink);letter-spacing:-.02em;margin-bottom:4px}
+.float.f1{left:-64px;top:30%}.float.f2{right:-64px;top:60%}
+.float .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:6px}
+
+/* trusted */
+.logos{padding:56px 0 8px;text-align:center}
+.logos small{display:block;color:var(--ink-3);font-size:13px;margin-bottom:18px}
+.logos ul{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;margin:0;padding:0}
+.logos li{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font:600 14px var(--head);color:var(--ink-2);background:var(--card)}
+
+section.sec{padding:112px 0}
+.sh{max-width:760px;margin-bottom:52px}
+.sh.c{margin-left:auto;margin-right:auto;text-align:center}
+.sh h2{font-size:clamp(30px,3.8vw,46px);line-height:1.1;font-weight:800;margin:14px 0 14px;letter-spacing:-.03em}
+.sh p{color:var(--ink-2);font-size:18px;margin:0}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--sh-1);position:relative;overflow:hidden}
+.tile b{display:block;font:800 clamp(34px,4vw,52px)/1 var(--head);letter-spacing:-.04em;margin-bottom:12px}
+.tile h4{font-size:17px;margin-bottom:6px}
+.tile p{margin:0;color:var(--ink-2);font-size:15px}
+.t1{grid-column:span 3;grid-row:span 2;background:var(--deep);border-color:var(--deep-line);display:flex;flex-direction:column;justify-content:flex-end;min-height:320px}
+.t1 b{background:linear-gradient(90deg,#A5B4FC,#5EEAD4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.t1 h4,.t1 p{color:#E6E9F2}.t1 p{opacity:.75}
+.t2,.t3{grid-column:span 3}.t4,.t5,.t6{grid-column:span 2}
+.t1 b{font-size:clamp(40px,5vw,64px)}
+.tile .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;background:var(--brand-soft);color:var(--brand)}
+.tile .ic svg{width:20px;height:20px}
+.tile.t5 .ic{background:var(--teal-soft);color:var(--teal)}.tile.t6 .ic{background:var(--amber-soft);color:var(--amber)}
+
+/* work */
+.work{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--sh-2);display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center;margin-bottom:28px}
+.case.flip .cm{order:-1}
+.case .tagrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.case .no{font:800 13px var(--head);color:var(--ink-3)}
+.chip{font:600 12.5px var(--body);padding:4px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand)}
+.chip.g{background:var(--teal-soft);color:var(--teal)}.chip.a{background:var(--amber-soft);color:var(--amber)}
+.case h3{font-size:clamp(24px,2.6vw,32px);line-height:1.18;font-weight:800;letter-spacing:-.025em;margin-bottom:12px}
+.case .one{color:var(--ink-2);font-size:17px;margin:0 0 24px}
+.trio{display:grid;gap:12px}
+.trio>div{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:14px 16px;border-radius:14px;background:var(--bg-2);border:1px solid var(--line)}
+.trio svg{width:20px;height:20px;margin-top:2px}
+.trio .p svg{color:#E25C5C}.trio .d svg{color:var(--brand)}.trio .r svg{color:var(--teal)}
+.trio h4{font-size:14px;margin-bottom:2px}
+.trio p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.cm{position:relative}
+.cm .browser{box-shadow:var(--sh-2)}
+.play{position:absolute;left:50%;top:calc(50% + 19px);transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;padding:10px 20px 10px 10px;border-radius:999px;border:0;background:rgba(11,16,32,.88);color:#fff;font:600 15px var(--body);cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 12px 32px rgba(0,0,0,.3);transition:transform .2s,background .2s}
+.play:hover{transform:translate(-50%,-50%) scale(1.04);background:rgba(67,56,202,.95)}
+.play i{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.play i:after{content:"";border-left:12px solid #0B1020;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.flow{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:22px}
+.flow ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:s}
+.flow li{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;counter-increment:s}
+.flow li:before{content:counter(s);width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;display:grid;place-items:center;font:800 14px var(--head)}
+.flow b{font:700 15px var(--head)}.flow small{display:block;color:var(--ink-2);font-size:13px}
+.flow em{font:600 11.5px var(--body);font-style:normal;padding:4px 9px;border-radius:999px;background:var(--teal-soft);color:var(--teal)}
+.flow em.h{background:var(--amber-soft);color:var(--amber)}
+.flow .res{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--deep);color:#fff}
+.flow .res b{font:800 19px var(--head);color:#5EEAD4}
+.ints{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.int{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.int h4{font-size:15px}.int small{display:block;color:var(--brand);font:600 12.5px var(--body);margin:3px 0 6px}
+.int p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.5}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.g{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.g:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.g .th{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;background:var(--bg-3)}
+.g .th img{aspect-ratio:16/10;width:100%;object-fit:cover;object-position:top left}
+.g .th:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,16,32,.55));opacity:.9;transition:opacity .2s}
+.g .th .pb{position:absolute;left:14px;bottom:14px;z-index:1;display:flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;background:rgba(11,16,32,.88);backdrop-filter:blur(6px);box-shadow:0 8px 24px rgba(0,0,0,.25);color:#fff;font:600 14px var(--body)}
+.g .th .pb i{width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.g .th .pb i:after{content:"";border-left:11px solid #0B1020;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.g .bd{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.g h3{font-size:19px;font-weight:700}
+.g p{margin:0;color:var(--ink-2);font-size:14.5px;flex:1}
+.g .lk{display:flex;gap:18px;margin-top:10px;font:600 14px var(--body)}
+.g .lk a{color:var(--brand);text-decoration:none}.g .lk a:hover{text-decoration:underline}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hw{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-1)}
+.hw .n{font:800 14px var(--head);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);margin-bottom:16px}
+.hw h4{font-size:18px;margin-bottom:6px}.hw p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* experience */
+.xp{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:start}
+.side{position:sticky;top:100px}
+.sk{display:grid;gap:18px;margin-top:28px}
+.sk h4{font:700 13px var(--head);color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.sk div div{display:flex;flex-wrap:wrap;gap:8px}
+.sk span{font:500 13.5px var(--body);padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2)}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl li{position:relative;padding:0 0 30px 40px}
+.tl li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.tl li.now:before{border-color:var(--brand);background:var(--brand-soft)}
+.tl time{font:600 13px var(--body);color:var(--ink-3)}
+.tl h3{font-size:20px;font-weight:700;margin:4px 0 2px}
+.tl .co{color:var(--brand);font-weight:600;font-size:15px;margin-bottom:8px}
+.tl p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* contact */
+.cta{padding:0 0 112px}
+.ctab{border-radius:28px;padding:64px;background:var(--deep);border:1px solid var(--deep-line);color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.ctab:before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 100% 0%,rgba(99,102,241,.45),transparent 70%),radial-gradient(400px 260px at 0% 100%,rgba(14,159,134,.35),transparent 70%)}
+.ctab>*{position:relative}
+.ctab h2{color:#fff;font-size:clamp(30px,3.6vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.03em}
+.ctab p{color:rgba(255,255,255,.72);margin:14px 0 0;font-size:17px}
+.cl{display:grid;gap:10px}
+.cl a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);text-decoration:none;color:#fff;font-weight:600;transition:background .15s}
+.cl a:hover{background:rgba(255,255,255,.14)}
+.cl a span{color:rgba(255,255,255,.6);font-weight:400;font-size:14px}
+footer{border-top:1px solid var(--line);color:var(--ink-3);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;padding-bottom:32px}
+
+dialog{border:0;padding:0;background:transparent;width:min(1180px,94vw);max-width:none}
+dialog::backdrop{background:rgba(6,8,16,.85);backdrop-filter:blur(6px)}
+dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:#fff}
+.dh b{font:700 19px var(--head)}
+.dh button{width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none}*{transition:none!important}}
+@media (max-width:1100px){.float.f1{left:12px;top:auto;bottom:-30px}.float.f2{right:12px;top:-30px}}
+@media (max-width:960px){
+  .nav ul{display:none}.nav .btn{margin-left:auto}
+  .case,.xp,.ctab{grid-template-columns:1fr}.case.flip .cm{order:0}.case{padding:28px}
+  .gal,.how{grid-template-columns:1fr 1fr}
+  .t1,.t2,.t3{grid-column:span 6;grid-row:auto}.t1{min-height:0}.t4,.t5,.t6{grid-column:span 3}.t6{grid-column:span 6}
+  .side{position:static}.ctab{padding:40px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}section.sec{padding:76px 0}.hero{padding-top:56px}
+  .gal,.how,.ints{grid-template-columns:1fr}.t4,.t5{grid-column:span 6}
+  .case{padding:20px;border-radius:18px}.ctab{padding:28px;border-radius:20px}
+  .browser .top span{display:none}
+  .nav .lg{display:none}.nav .sm{display:inline}.nav .wrap{gap:12px}
+}
+
+.mbtn{display:none}.nav .sm{display:none}
+.mnav{display:none}
+@media (max-width:960px){
+  .mbtn{display:grid}
+  .mnav:not([hidden]){display:grid;gap:2px;padding:8px 16px 16px;border-top:1px solid var(--line);background:var(--bg)}
+  .mnav a{padding:12px 10px;border-radius:10px;text-decoration:none;font-weight:600;color:var(--ink)}
+  .mnav a:active,.mnav a:hover{background:var(--bg-3)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .nav .wrap{height:60px}
+  .logo{font-size:15px}.logo b{width:32px;height:32px}
+  .hero h1{font-size:clamp(34px,10vw,44px);margin:18px auto 16px}
+  .hero p{font-size:16.5px;margin-bottom:24px}
+  .ctas{flex-direction:column;align-items:stretch;padding:0 8px}
+  .ctas .btn{width:100%}
+  .facts{flex-direction:column;align-items:center;gap:8px;margin-top:22px}
+  .showcase{margin-top:40px;display:flex;flex-direction:column;gap:12px}
+  .browser{border-radius:12px}.browser .top{height:28px}.browser .top i{width:9px;height:9px}
+  .float{display:block;position:static;max-width:none;box-shadow:var(--sh-1)}
+  .float b{font-size:20px}
+  .showcase .float.f2 b{margin-top:2px!important}
+  .logos{padding-top:40px}.logos li{padding:6px 12px;font-size:13px}
+  .sh{margin-bottom:32px}.sh h2{font-size:clamp(28px,8vw,34px)}.sh p{font-size:16px}
+  .tile{padding:22px;border-radius:16px}.t1{min-height:0}.t1 b{font-size:40px}
+  .case{gap:24px;margin-bottom:18px}
+  .case h3{font-size:24px}.case .one{font-size:16px;margin-bottom:18px}
+  .trio>div{padding:12px 14px}
+  .play{padding:8px 16px 8px 8px;font-size:14px}.play i{width:32px;height:32px}
+  .flow{padding:14px}.flow li{grid-template-columns:32px 1fr;padding:10px 12px}
+  .flow li:before{width:32px;height:32px}
+  .flow em{grid-column:2;justify-self:start;margin-top:2px}
+  .flow .res{flex-direction:column;align-items:flex-start}
+  .g .bd{padding:16px 18px 18px}
+  .hw{padding:20px}
+  .xp{gap:36px}.tl li{padding-left:32px}
+  .cta{padding-bottom:64px}#contact{padding-top:72px!important}
+  .ctab h2{font-size:30px}
+  .cl a{flex-wrap:wrap;padding:14px 16px}.cl a span{word-break:break-all}
+  footer .wrap{flex-direction:column;gap:6px}
+  dialog{width:100vw}dialog .dh{padding:0 12px}dialog video{border-radius:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top"><b>HI</b>Huzaifa Islam</a>
+  <ul><li><a href="#results">Results</a></li><li><a href="#work">Work</a></li><li><a href="#videos">Videos</a></li><li><a href="#how">How I work</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li></ul>
+  <a class="btn btn-main" href="Huzaifa_Islam_Product_Manager_Resume.pdf" download><span class="lg">Download résumé</span><span class="sm">Résumé</span></a>
+  <button class="tbtn mbtn" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="tbtn" id="tb" aria-label="Switch light or dark theme"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</div>
+<div class="mnav" id="mnav" hidden><a href="#results">Results</a><a href="#work">Work</a><a href="#videos">Videos</a><a href="#how">How I work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <span class="pill"><i></i>Product Manager in payments</span>
+  <h1>I turn messy payment problems into <span>products people can click.</span></h1>
+  <p>I'm Huzaifa. I help businesses get paid. I work out what to build, show it as a working prototype before anyone writes code, and then see it through to launch with the engineering team.</p>
+  <div class="ctas">
+    <a class="btn btn-main" href="#work">See my work</a>
+    <a class="btn btn-soft" href="#videos"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Watch the videos</a>
+    <a class="btn btn-soft" href="Huzaifa-Islam-PM-Portfolio.pdf" download>Portfolio PDF</a>
+  </div>
+  <ul class="facts">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Product Manager at Yuno</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>30+ payment integrations planned</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Based in Hyderabad, India</li>
+  </ul>
+  <div class="showcase rv">
+    <div class="browser"><div class="top"><i></i><i></i><i></i><span>Card lookup · BIN Intelligence</span></div><img class="shot" src="shots/bin-intelligence-console-3.png" alt="A card lookup screen showing what kind of card it is, its bank, its networks and its security check support" width="1440" height="900"></div>
+    <div class="float f1"><b>Weeks to 1 hour</b>Time to plan a new payment provider, using a tool I designed</div>
+    <div class="float f2"><span class="dot"></span>Runs on sample data<b style="margin-top:6px">10 videos</b>Every prototype explained in a narrated walkthrough</div>
+  </div>
+</div></header>
+
+<div class="logos wrap"><small>I have planned and delivered work with payment companies including</small>
+  <ul><li>Stripe</li><li>Adyen</li><li>PayPal</li><li>Worldpay</li><li>Nuvei</li><li>Airwallex</li><li>dLocal</li><li>Moyasar</li><li>Paymob</li><li>PayU</li></ul>
+</div>
+
+<section class="sec" id="results"><div class="wrap">
+  <div class="sh rv"><span class="label">Results</span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p></div>
+  <div class="bento rv">
+    <div class="tile t1"><b>2 weeks → 1 hour</b><h4>Faster planning for every new provider</h4><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a two week job now takes under an hour.</p></div>
+    <div class="tile t2"><b>30+</b><h4>Integration plans written</h4><p>Clear plans for engineers, covering cards, digital wallets and local payment methods in Latin America, the Middle East, India, Europe and Asia.</p></div>
+    <div class="tile t3"><b>1.1M+</b><h4>Card ranges in my prototype</h4><p>A working prototype, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
+    <div class="tile t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h4>23 ideas, one roadmap</h4><p>Turned a long list of security and approval ideas into one plan you can click through.</p></div>
+    <div class="tile t5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h4>3 test tools</h4><p>Built testers that proved what three payment providers actually do, which unblocked their launch.</p></div>
+    <div class="tile t6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h4>Data before opinions</h4><p>Used SQL and live dashboards to show where money and time were being lost.</p></div>
+  </div>
+</div></section>
+
+<section class="sec work" id="work"><div class="wrap">
+  <div class="sh rv"><span class="label">Selected work</span><h2>Five stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p></div>
+
+  <article class="case rv">
+    <div>
+      <div class="tagrow"><span class="no">01</span><span class="chip">New product</span><span class="chip g">Prototype + API</span></div>
+      <h3>BIN Intelligence: know a card before you charge it</h3>
+      <p class="one">The first digits of every card number (the BIN) reveal what kind of card it is and which bank issued it. I designed a product that turns those digits into useful answers for online shops.</p>
+      <div class="trio">
+        <div class="p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div><h4>The problem</h4><p>Shops only learn what a card is after they charge it. The data they buy is often out of date, and nobody tells them how a bank is likely to behave.</p></div></div>
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>What I did</h4><p>I wrote the strategy, the pricing and the requirements, and built a clickable console plus a working API, so people could try the product for themselves.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>A clear plan in three stages, and one simple privacy rule that also sets the product apart: a shop only ever sees its own numbers.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>Rules · BIN Intelligence</span></div><img class="shot" src="shots/bin-intelligence-console-4.png" alt="A rule builder that tests a rule against the last 30 days of payments" loading="lazy" width="1440" height="900"></div><button class="play" data-v="bin-intelligence-console" data-t="BIN Intelligence · Merchant console"><i></i>Watch the walkthrough</button></div>
+  </article>
+
+  <article class="case flip rv">
+    <div>
+      <div class="tagrow"><span class="no">02</span><span class="chip">Internal tool</span><span class="chip a">AI</span></div>
+      <h3>A planning assistant that turns weeks into an hour</h3>
+      <p class="one">Every new payment provider needs someone to read its documents, compare it with what we already have, and write a plan for engineers. That reading was slowing everything down.</p>
+      <div class="trio">
+        <div class="p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div><h4>The problem</h4><p>Each plan took one to two weeks, and quality depended on who wrote it.</p></div></div>
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>What I did</h4><p>I designed a six step AI assisted process, with a model plan that sets the standard and a person who reviews every result.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>Plans now take under an hour, and more than 30 have been written this way.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="flow">
+      <ol>
+        <li><div><b>Check access</b><small>Make sure we can log in to the provider's test system</small></div><em>Automatic</em></li>
+        <li><div><b>Read the documents</b><small>Pull out what the provider offers and how it works</small></div><em>Automatic</em></li>
+        <li><div><b>Compare</b><small>Match it with the payment flows we already support</small></div><em>Automatic</em></li>
+        <li><div><b>Find who is affected</b><small>List the teams and systems the work will touch</small></div><em>Automatic</em></li>
+        <li><div><b>Write the plan</b><small>Produce the requirements on the standard template</small></div><em class="h">Human review</em></li>
+        <li><div><b>Create the tasks</b><small>Open the engineering tickets in Jira</small></div><em>Automatic</em></li>
+      </ol>
+      <div class="res"><span>Time per provider</span><b>2 weeks → under 1 hour</b></div>
+    </div></div>
+  </article>
+
+  <article class="case rv">
+    <div>
+      <div class="tagrow"><span class="no">03</span><span class="chip">Delivery</span><span class="chip g">Launches</span></div>
+      <h3>Connecting new ways to pay, from plan to launch</h3>
+      <p class="one">Every country has its own favourite ways to pay. I plan each connection, test it, and get it ready for launch with engineering and quality assurance.</p>
+      <div class="trio">
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>How I keep scope tight</h4><p>Build the version people need now. Extra switches and options wait until there is a real business reason for them.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>How I prove it works</h4><p>Nothing is called done without test evidence. When a test showed the plan was wrong, I fixed the plan.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="ints">
+      <div class="int"><h4>Clearer decline reasons</h4><small>Airwallex · worldwide</small><p>147 bank refusal codes mapped, so shops can see why a payment failed.</p></div>
+      <div class="int"><h4>Bring your own security check</h4><small>Moyasar · Paymob · Tap · Worldpay</small><p>Proved each one accepts a security check done elsewhere.</p></div>
+      <div class="int"><h4>Automatic Pix payments</h4><small>Adyen · Brazil</small><p>Turned the central bank's rules for repeat payments into a clear plan.</p></div>
+      <div class="int"><h4>Safer stored cards</h4><small>Stripe · worldwide</small><p>Mapped every switch needed to turn on card tokens for each shop.</p></div>
+      <div class="int"><h4>UPI and payments from abroad</h4><small>PayU · BillDesk · Razorpay · India</small><p>Worked through the local rules on invoices and keeping data in India.</p></div>
+      <div class="int"><h4>Local favourites</h4><small>Nuvei · Poland, Brazil, Netherlands</small><p>BLIK, Pix, iDEAL and Klarna tested, with refunds mapped.</p></div>
+    </div></div>
+  </article>
+
+  <article class="case flip rv">
+    <div>
+      <div class="tagrow"><span class="no">04</span><span class="chip">Roadmap</span><span class="chip g">Simulator</span></div>
+      <h3>Making card security easy to see, then proving it</h3>
+      <p class="one">3-D Secure is the extra check your bank sometimes asks for when you pay online. It stops fraud, but too many checks make people give up. There were 23 ideas to improve it, and no shared picture.</p>
+      <div class="trio">
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>What I did</h4><p>I built a simulator that plays each idea step by step, then small testers that send real test payments to providers to check each assumption.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>Long debates got shorter because everyone could see the difference. Three provider testers turned guesses into proof.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>Paymob tester</span></div><img class="shot" src="shots/paymob-3ds-simulator-2.png" alt="A payment tester comparing two ways of running the card security check" loading="lazy" width="1440" height="900"></div><button class="play" data-v="paymob-3ds-simulator" data-t="Paymob tester"><i></i>Watch the walkthrough</button></div>
+  </article>
+
+  <article class="case rv">
+    <div>
+      <div class="tagrow"><span class="no">05</span><span class="chip">Data</span><span class="chip a">Internal tools</span></div>
+      <h3>Finding where money and time quietly leak</h3>
+      <p class="one">Payment companies lose money in places nobody owns, and lose time asking "what is the status?". I make both visible.</p>
+      <div class="trio">
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>Money</h4><p>A hackathon idea for an assistant that spots lost revenue, sizes it and sends it to the right team, plus a ranked list built with SQL.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>Time</h4><p>Live team dashboards, fed straight from Jira, so people look status up instead of chasing it.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>Worldpay tester</span></div><img class="shot" src="shots/worldpay-simulator-3.png" alt="A payment tester showing a test payment and the provider's reply" loading="lazy" width="1440" height="900"></div><button class="play" data-v="worldpay-simulator" data-t="Worldpay tester"><i></i>Watch the walkthrough</button></div>
+  </article>
+</div></section>
+
+<section class="sec" id="videos"><div class="wrap">
+  <div class="sh c rv"><span class="label">Videos</span><h2>See it working, in under two minutes each</h2><p>Every walkthrough is narrated and captioned, so you can watch with or without sound.</p></div>
+  <div class="gal" id="gal"></div>
+</div></section>
+
+<section class="sec" id="how" style="padding-top:0"><div class="wrap">
+  <div class="sh c rv"><span class="label">How I work</span><h2>Short first, clickable second, detailed last</h2><p>People decide faster when they can see and touch the idea.</p></div>
+  <div class="how rv">
+    <div class="hw"><div class="n">1</div><h4>Understand</h4><p>Talk to the people closest to the problem, and read the data before forming an opinion.</p></div>
+    <div class="hw"><div class="n">2</div><h4>Write one page</h4><p>The problem, the bet, and the decisions I need from leaders, on a single page.</p></div>
+    <div class="hw"><div class="n">3</div><h4>Show it</h4><p>A clickable prototype on realistic data, before anyone spends weeks building.</p></div>
+    <div class="hw"><div class="n">4</div><h4>Detail it</h4><p>Full requirements, the test plan, and who needs to be involved.</p></div>
+    <div class="hw"><div class="n">5</div><h4>Check it</h4><p>A structured review, with a named person signing it off.</p></div>
+    <div class="hw"><div class="n">6</div><h4>Launch it</h4><p>Test evidence, quality sign off, and a calm go live.</p></div>
+  </div>
+</div></section>
+
+<section class="sec work" id="experience"><div class="wrap xp">
+  <div class="side rv">
+    <span class="label">Experience</span>
+    <div class="sh" style="margin:0"><h2>Where I've worked</h2><p>Product management, built on a background in growth and business development.</p></div>
+    <div class="sk">
+      <div><h4>Product</h4><div><span>Strategy</span><span>Roadmaps</span><span>Requirements</span><span>Pricing</span><span>Go to market</span><span>A/B tests</span></div></div>
+      <div><h4>Payments</h4><div><span>Card security (3DS)</span><span>Card data</span><span>Tokens</span><span>Local payment methods</span><span>PCI DSS</span></div></div>
+      <div><h4>Tools</h4><div><span>APIs</span><span>SQL</span><span>Postman</span><span>Jira</span><span>Figma</span><span>AI assistants</span></div></div>
+    </div>
+  </div>
+  <ol class="tl rv">
+    <li class="now"><time>Dec 2025 to Present</time><h3>Product Manager</h3><div class="co">Yuno, a global payments platform</div><p>I lead the plan for a new card data product and take payment connections from idea to launch. I also designed the AI assisted planning tool that cut weeks of work to an hour.</p></li>
+    <li><time>Jan 2025 to Dec 2025</time><h3>Product Manager</h3><div class="co">Mitt Arv Technologies</div><p>Launched a new product and owned its roadmap. Wrote requirements and user flows, built internal tools including an HR system, and tested the product's APIs.</p></li>
+    <li><time>Apr 2023 to Aug 2023</time><h3>Business Development Manager</h3><div class="co">Flam</div><p>Ran experiments and A/B tests, set success measures, and helped shape how the product went to market.</p></li>
+    <li><time>Apr 2022 to Mar 2023</time><h3>Senior Business Development Associate</h3><div class="co">Scaler</div><p>Brought in over $50,000 of new business each quarter, and studied competitors and customer needs.</p></li>
+    <li><time>May 2021 to Apr 2022</time><h3>Senior Business Development Executive</h3><div class="co">PlanetSpark</div><p>Wrote tailored proposals, built partnerships, and researched the market.</p></li>
+    <li><time>Sep 2020 to Mar 2021</time><h3>Subject Matter Expert</h3><div class="co">Chegg</div><p>Helped students with civil engineering, created training material, and improved content using feedback.</p></li>
+  </ol>
+</div></section>
+
+<section class="sec cta" id="contact" style="padding-top:112px"><div class="wrap"><div class="ctab rv">
+  <div><h2>Working on something in payments? Let's talk.</h2><p>I'm happy to walk you through any of this work in more detail.</p></div>
+  <div class="cl">
+    <a href="mailto:huzafaisam16@gmail.com">Email<span>huzafaisam16@gmail.com</span></a>
+    <a href="https://www.linkedin.com/in/whozz" target="_blank" rel="noopener">LinkedIn<span>linkedin.com/in/whozz</span></a>
+    <a href="Huzaifa_Islam_Product_Manager_Resume.pdf" download>Résumé<span>PDF</span></a>
+    <a href="Huzaifa-Islam-PM-Portfolio.pdf" download>Portfolio<span>PDF, 9 pages</span></a>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap"><span>© 2026 Huzaifa Islam</span><span>Prototypes use a made up brand (Acme Pay) and sample data. No customer data, passwords or company figures are shown.</span></div></footer>
+
+<dialog id="dlg" aria-label="Walkthrough video"><div class="dh"><b id="dt"></b><button id="dx" aria-label="Close video">×</button></div><video id="dv" controls playsinline preload="none"></video></dialog>
+
+<script>
+const V=[
+ ['bin-intelligence-console','BIN Intelligence console','Look up any card, see how cards perform, and set rules that are tested on past payments first.',3,'prototypes/bin-intelligence-console/index.html'],
+ ['bin-keys-limits-logs','How the card API works','Follow one request from start to finish: the key, the limit, the answer, and the record it leaves.',1,'prototypes/bin-keys-limits-logs/index.html'],
+ ['paymob-3ds-simulator','Paymob tester','Sends the same test payment two ways and shows exactly where the answers differ.',3,''],
+ ['moyasar-3ds-simulator','Moyasar tester','A first payment, then a repeat charge on the saved card, in the provider\'s test system.',2,''],
+ ['worldpay-simulator','Worldpay tester','Two different ways to connect to Worldpay, tested side by side.',3,''],
+];
+const fmt=s=>Math.floor(s/60)+':'+String(Math.round(s%60)).padStart(2,'0');
+document.getElementById('gal').innerHTML=V.map(([s,t,d,p,u])=>`<article class="g rv"><button class="th" data-v="${s}" data-t="${t}" aria-label="Play ${t} video"><img src="shots/${s}-${p}.png" alt="" loading="lazy" width="1440" height="900"><span class="pb"><i></i><span data-d="${s}">Watch</span></span></button><div class="bd"><h3>${t}</h3><p>${d}</p><div class="lk">${u?`<a href="${u}" target="_blank" rel="noopener">Try it yourself ↗</a>`:`<a href="downloads/provider-3ds-simulators-source.zip" download>Get the code ↓</a>`}</div></div></article>`).join('');
+document.querySelectorAll('[data-d]').forEach(el=>{const v=document.createElement('video');v.preload='metadata';v.src='videos/'+el.dataset.d+'.mp4';v.onloadedmetadata=()=>el.textContent='Watch · '+fmt(v.duration);});
+const dlg=document.getElementById('dlg'),dv=document.getElementById('dv');
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;document.getElementById('dt').textContent=b.dataset.t;dv.src='videos/'+b.dataset.v+'.mp4';dlg.showModal();dv.play().catch(()=>{});});
+const shut=()=>{dv.pause();dv.removeAttribute('src');dv.load();dlg.close();};
+document.getElementById('dx').onclick=shut;dlg.addEventListener('click',e=>{if(e.target===dlg)shut();});dlg.addEventListener('cancel',e=>{e.preventDefault();shut();});
+const mb=document.getElementById('mb'),mn=document.getElementById('mnav');
+mb.onclick=()=>{const o=mn.hasAttribute('hidden');o?mn.removeAttribute('hidden'):mn.setAttribute('hidden','');mb.setAttribute('aria-expanded',o)};
+mn.addEventListener('click',e=>{if(e.target.closest('a')){mn.setAttribute('hidden','');mb.setAttribute('aria-expanded','false')}});
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const R=document.documentElement;try{const t=localStorage.getItem('theme');if(t)R.dataset.theme=t;}catch(e){}
+document.getElementById('tb').onclick=()=>{const d=R.dataset.theme?R.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;R.dataset.theme=d?'light':'dark';try{localStorage.setItem('theme',R.dataset.theme)}catch(e){}};
+</script>
+</body>
+</html>

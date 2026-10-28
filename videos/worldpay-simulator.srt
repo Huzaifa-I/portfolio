@@ -1,0 +1,27 @@
+1
+00:00:01,246 --> 00:00:16,582
+Worldpay had two integration tracks that partly conflicted: a JSON API with external 3DS, and an XML API where Worldpay runs 3DS itself. This simulator puts both in one place, running on mock data.
+
+2
+00:00:19,279 --> 00:00:25,639
+The overview explains each track, which piece of work it belongs to, and what can run live today.
+
+3
+00:00:31,768 --> 00:00:40,624
+On the JSON track, a first customer-initiated payment carries the external 3DS result, and returns a scheme reference to store.
+
+4
+00:00:46,129 --> 00:00:54,409
+The follow-up merchant-initiated payment reuses that reference. That is how card networks link recurring charges back to the original.
+
+5
+00:01:00,320 --> 00:01:08,120
+On the XML track, Worldpay runs 3DS itself. A frictionless case approves with no shopper interaction.
+
+6
+00:01:13,485 --> 00:01:18,621
+A challenge case shows the step-up, where the bank asks the shopper to verify.
+
+7
+00:01:24,002 --> 00:01:32,738
+And a refused case shows how a failure comes back. Seeing both tracks side by side helped the team decide which path each merchant should take.
