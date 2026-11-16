@@ -561,9 +561,9 @@ body{line-height:1.7}
 .sic .sq{opacity:0;animation:sicPop 3s cubic-bezier(.22,.61,.36,1) infinite}
 .sic .sq2{animation-delay:.4s}.sic .sq3{animation-delay:.8s}
 @keyframes sicPop{0%,8%{opacity:0;transform:scale(.4)}20%,75%{opacity:1;transform:scale(1)}92%,100%{opacity:0;transform:scale(.4)}}
-.sic .lnk{stroke-dasharray:10;stroke-dashoffset:10;animation:sicDraw2 3s ease-in-out infinite}
+.sic .lnk{stroke-dasharray:14;stroke-dashoffset:14;animation:sicDraw2 3s ease-in-out infinite}
 .sic .lnk2{animation-delay:.4s}
-@keyframes sicDraw2{0%,15%{stroke-dashoffset:10}40%,75%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:-10}}
+@keyframes sicDraw2{0%,15%{stroke-dashoffset:14}40%,75%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:-14}}
 .sic .st-dot{opacity:.25;animation:sicDot 2.8s ease-in-out infinite}
 .sic .st2{animation-delay:.5s}.sic .st3{animation-delay:1s}
 @keyframes sicDot{0%,100%{opacity:.25}30%,70%{opacity:1}}
@@ -590,7 +590,7 @@ body{line-height:1.7}
 @keyframes sicFly{0%{transform:translate(0,1px);opacity:1}52%{transform:translate(15px,-3px);opacity:1}68%,100%{transform:translate(15px,-3px);opacity:0}}
 .sic .deliv{opacity:0;transform-box:fill-box;transform-origin:center;animation:sicDeliv 3.2s ease-in-out infinite}
 @keyframes sicDeliv{0%,52%{opacity:0;transform:scale(.4)}66%,90%{opacity:1;transform:scale(1)}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.sic .tlbar{transform:scaleX(.5)}.sic .digit{opacity:1}.sic .stg{opacity:1}.sic .fly{opacity:0}.sic .deliv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sic .tlbar{transform:scaleX(.5)}.sic .digit{opacity:1}.sic .stg{opacity:1}.sic .fly{opacity:1}.sic .deliv{opacity:1;transform:none}}
 
 /* premium header */
 .nav{background:color-mix(in srgb,var(--bg) 68%,transparent);backdrop-filter:saturate(1.8) blur(18px);-webkit-backdrop-filter:saturate(1.8) blur(18px);border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);box-shadow:0 1px 0 color-mix(in srgb,var(--brand) 10%,transparent),0 8px 30px -22px color-mix(in srgb,var(--ink) 25%,transparent)}
@@ -666,7 +666,7 @@ body{line-height:1.7}
 </div>
 
 <section class="sec" id="results"><div class="wrap">
-  <div class="sh rv"><span class="label">Results</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect class="tlbar" x="4" y="7" width="40" height="4.5" rx="2.2"/><path d="M30 3.5h8M38 3.5l-3 -2.5M38 3.5l-3 2.5" opacity=".7"/><circle class="st-dot st1" cx="9" cy="21" r="2.6" fill="currentColor" stroke="none"/><circle class="st-dot st2" cx="24" cy="21" r="2.6" fill="currentColor" stroke="none"/><circle class="st-dot st3" cx="39" cy="21" r="2.6" fill="currentColor" stroke="none"/></svg></span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-results"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh rv"><span class="label">Results</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 25.5h40" opacity=".45"/><path class="bar" stroke-width="5" d="M11 24v-6"/><path class="bar b2" stroke-width="5" d="M20 24v-11"/><path class="bar b3" stroke-width="5" d="M29 24v-16"/><path class="lnk lnk1" d="M32.5 12.5L41 4"/><path class="lnk lnk2" d="M35 4h6v6" fill="none"/></svg></span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-results"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body open" id="body-results"><div class="sec-body-in">
   <div class="bento rv">
     <div class="tile t1"><b>1&#8209;2 weeks → 1&#8209;2 hours</b><h3>Faster planning for every new provider</h3><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a one-to-two-week job now takes one to two hours.</p></div>
