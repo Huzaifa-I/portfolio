@@ -69,7 +69,10 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .g:hover .th img{transform:scale(1.04)}
 .cl a{transition:background .15s,transform .15s}
 .cl a:hover{transform:translateY(-1px)}
-.logos li{transition:transform .15s ease}
+.logos li{transition:transform .15s ease;animation:pillglow 4.4s ease-in-out infinite}
+.logos li:nth-of-type(2){animation-delay:.4s}.logos li:nth-of-type(3){animation-delay:.8s}.logos li:nth-of-type(4){animation-delay:1.2s}.logos li:nth-of-type(5){animation-delay:1.6s}.logos li:nth-of-type(6){animation-delay:2s}.logos li:nth-of-type(7){animation-delay:2.4s}.logos li:nth-of-type(8){animation-delay:2.8s}.logos li:nth-of-type(9){animation-delay:3.2s}.logos li:nth-of-type(10){animation-delay:3.6s}
+@keyframes pillglow{0%,100%{border-color:var(--line);box-shadow:0 0 0 0 transparent}10%{border-color:color-mix(in srgb,var(--brand) 70%,var(--line));box-shadow:0 0 12px 1px color-mix(in srgb,var(--brand) 30%,transparent)}26%{border-color:var(--line);box-shadow:0 0 0 0 transparent}}
+@media(prefers-reduced-motion:reduce){.logos li{animation:none}}
 .logos li:hover{transform:translateY(-1px)}
 
 /* hero */
@@ -83,14 +86,20 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .facts{display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;margin:28px 0 0;padding:0;list-style:none;color:var(--ink-3);font-size:14px}
 .facts li{display:flex;align-items:center;gap:8px}.facts svg{width:16px;height:16px;color:var(--teal)}
-.showcase{position:relative;margin:64px auto 0;max-width:1080px}
+.showcase-head{text-align:center;margin:60px auto 0;max-width:660px;position:relative;z-index:1}
+.showcase-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;letter-spacing:-.03em;margin:10px 0 8px;background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--teal),var(--brand));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 6s linear infinite}
+.showcase-head p{color:var(--ink-2);margin:0;font-size:15.5px}
+@keyframes shim{to{background-position:220% 0}}
+@media(prefers-reduced-motion:reduce){.showcase-head h2{animation:none}}
+.showcase{position:relative;margin:44px auto 0;max-width:1080px}
 .browser{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-3)}
 .browser .top{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:var(--bg-2);border-bottom:1px solid var(--line)}
 .browser .top i{width:11px;height:11px;border-radius:50%;background:#FF5F57}.browser .top i:nth-child(2){background:#FEBC2E}.browser .top i:nth-child(3){background:#28C840}
 .browser .top span{margin:0 auto;font:500 12px var(--body);color:var(--ink-3);background:var(--card);border:1px solid var(--line);padding:4px 14px;border-radius:7px;transform:translateX(-24px)}
 .browser .shot{aspect-ratio:16/10;width:100%;object-fit:cover;object-position:top left;background:#fff}
-.float{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--sh-2);text-align:left;font-size:13.5px;color:var(--ink-2);line-height:1.4;max-width:230px}
-.float b{display:block;font:800 24px/1.1 var(--head);color:var(--ink);letter-spacing:-.02em;margin-bottom:4px}
+.float{position:absolute;background:var(--card);border:1px solid color-mix(in srgb,var(--brand) 28%,var(--line));border-radius:14px;padding:16px 18px 14px;box-shadow:var(--sh-2),0 0 26px color-mix(in srgb,var(--brand) 12%,transparent);text-align:left;font-size:13.5px;color:var(--ink-2);line-height:1.4;max-width:230px}
+.float:before{content:"";position:absolute;top:0;left:16px;right:16px;height:3px;border-radius:0 0 3px 3px;background:var(--grad)}
+.float b{display:block;font:800 24px/1.1 var(--head);letter-spacing:-.02em;margin-bottom:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .float.f1{left:-64px;top:30%}.float.f2{right:-64px;top:60%}
 .float .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:6px}
 
@@ -101,18 +110,30 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .logos li{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font:600 14px var(--head);color:var(--ink-2);background:var(--card)}
 
 section.sec{padding:112px 0}
-.sh{max-width:760px;margin-bottom:52px}
+.sh{max-width:760px;margin:0 auto 26px;text-align:center}
 .sh.c{margin-left:auto;margin-right:auto;text-align:center}
-.sh h2{font-size:clamp(30px,3.8vw,46px);line-height:1.1;font-weight:800;margin:14px 0 14px;letter-spacing:-.03em}
+.sh h2{font-size:clamp(30px,3.8vw,46px);line-height:1.1;font-weight:800;margin:14px 0 14px;letter-spacing:-.03em;background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--teal),var(--brand));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 6s linear infinite}
+.sec-toggle{margin:20px auto 0;display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:999px;border:1px solid color-mix(in srgb,var(--brand) 35%,var(--line));background:var(--card);color:var(--ink);font:600 13px/1 var(--body);letter-spacing:.02em;cursor:pointer;transition:border-color .25s,box-shadow .25s,color .25s}
+.sec-toggle:hover{border-color:color-mix(in srgb,var(--brand) 60%,var(--line));box-shadow:0 0 20px color-mix(in srgb,var(--brand) 16%,transparent)}
+.sec-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.sec-toggle[aria-expanded="true"]{color:var(--brand);border-color:color-mix(in srgb,var(--brand) 55%,var(--line));box-shadow:0 0 22px color-mix(in srgb,var(--brand) 18%,transparent)}
+.sec-toggle svg{width:13px;height:13px;transition:transform .35s}
+.sec-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.sec-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1)}
+.sec-body.open{grid-template-rows:1fr}
+.sec-body-in{overflow:hidden;min-height:0;opacity:0;transition:opacity .45s ease .08s}
+.sec-body.open .sec-body-in{opacity:1}
+@media (prefers-reduced-motion:reduce){.sec-body,.sec-body-in,.sec-toggle svg{transition:none}}
+section.sec:has(>.wrap>.sec-body:not(.open)){padding:72px 0}
 .sh p{color:var(--ink-2);font-size:18px;margin:0}
 
 /* bento */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--sh-1);position:relative;overflow:hidden}
-.tile b{display:block;font:800 clamp(34px,4vw,52px)/1 var(--head);letter-spacing:-.04em;margin-bottom:12px}
+.tile b{display:block;font:800 clamp(34px,4vw,52px)/1 var(--head);letter-spacing:-.04em;margin-bottom:12px;text-wrap:balance}
 .tile h3{font-size:17px;margin-bottom:6px}
 .tile p{margin:0;color:var(--ink-2);font-size:15px}
-.t1{grid-column:span 3;grid-row:span 2;background:var(--deep);border-color:var(--deep-line);display:flex;flex-direction:column;justify-content:flex-end;min-height:320px}
+.t1{grid-column:span 3;grid-row:span 2;background:var(--deep);border-color:var(--deep-line);display:flex;flex-direction:column;justify-content:center;min-height:320px}
 .t1 b{background:linear-gradient(90deg,#A5B4FC,#5EEAD4);-webkit-background-clip:text;background-clip:text;color:transparent}
 .t1 h3,.t1 p{color:#E6E9F2}.t1 p{opacity:.75}
 .t2,.t3{grid-column:span 3}.t4,.t5,.t6{grid-column:span 2}
@@ -217,9 +238,47 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 .dh b{font:700 19px var(--head)}
 .dh button{width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer}
 
+/* how i work timeline */
+.htl{list-style:none;margin:0 auto;padding:0;position:relative;max-width:920px}
+.hstep{position:relative;width:50%;padding:0 48px 48px 0}
+.hstep:nth-of-type(even){left:50%;padding:0 0 48px 48px}
+.hstep:last-of-type{padding-bottom:0}
+.hstep:not(:last-of-type):before{content:"";position:absolute;top:19px;bottom:-67px;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--brand),var(--brand-2));transform:scaleY(0);transform-origin:top;transition:transform .55s cubic-bezier(.22,.61,.36,1);z-index:0}
+.hstep:nth-of-type(n+4):not(:last-of-type):before{background:linear-gradient(180deg,var(--brand-2),var(--teal))}
+.hstep:nth-of-type(odd):before{right:-1px}
+.hstep:nth-of-type(even):before{left:-1px}
+.hstep.in:before{transform:scaleY(1)}
+.hstep:nth-of-type(1):before{transition-delay:.3s}.hstep:nth-of-type(2):before{transition-delay:.45s}.hstep:nth-of-type(3):before{transition-delay:.6s}.hstep:nth-of-type(4):before{transition-delay:.75s}.hstep:nth-of-type(5):before{transition-delay:.9s}
+.hstep:not(:last-of-type):after{content:"";position:absolute;bottom:18px;width:11px;height:11px;border-right:2.5px solid var(--brand);border-bottom:2.5px solid var(--brand);transform:rotate(45deg);opacity:.3;animation:hflow 3.2s ease-in-out infinite;z-index:1}
+.hstep:nth-of-type(n+4):after{border-color:var(--teal)}
+.hstep:nth-of-type(odd):after{right:-6px}
+.hstep:nth-of-type(even):after{left:-6px}
+.hstep:nth-of-type(2):after{animation-delay:.45s}.hstep:nth-of-type(3):after{animation-delay:.9s}.hstep:nth-of-type(4):after{animation-delay:1.35s}.hstep:nth-of-type(5):after{animation-delay:1.8s}
+@keyframes hflow{0%,100%{opacity:.22}12%{opacity:1}32%{opacity:.22}}
+.hnode{position:absolute;top:-2px;width:42px;height:42px;border-radius:50%;background:var(--card);border:2px solid var(--brand);display:grid;place-items:center;font:800 15px var(--head);color:var(--brand);z-index:2;box-shadow:0 0 0 6px var(--bg),0 0 20px color-mix(in srgb,var(--brand) 28%,transparent);transform:scale(.5);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.hstep:nth-of-type(n+4) .hnode{border-color:var(--teal);color:var(--teal);box-shadow:0 0 0 6px var(--bg),0 0 20px color-mix(in srgb,var(--teal) 28%,transparent)}
+.hstep:nth-of-type(odd) .hnode{right:-21px}
+.hstep:nth-of-type(even) .hnode{left:-21px}
+.hstep.in .hnode{transform:scale(1)}
+.hcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--sh-1);text-align:left;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.hcard:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:color-mix(in srgb,var(--brand) 45%,var(--line))}
+.hcard h3{font-size:17px;margin:0 0 5px}
+.hcard p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.5}
+@media (max-width:900px){
+  .hstep,.hstep:nth-of-type(even){width:100%;left:0;padding:0 0 44px 60px}
+  .hstep:nth-of-type(odd) .hnode{right:auto;left:0}
+  .hstep:nth-of-type(even) .hnode{left:0}
+  .hstep:nth-of-type(odd):before{right:auto;left:20px}
+  .hstep:nth-of-type(even):before{left:20px}
+  .hstep:not(:last-of-type):before{bottom:-63px}
+  .hstep:nth-of-type(odd):after{right:auto;left:15px;bottom:16px}
+  .hstep:nth-of-type(even):after{left:15px;bottom:16px}
+}
+@media(prefers-reduced-motion:reduce){.hstep:before{transform:scaleY(1)}.hstep:after{animation:none;opacity:.55}.hnode{transform:scale(1)}}
+
 .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}.rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none}*{transition:none!important;animation:none!important}}
-@media (max-width:1100px){.showcase{display:grid;gap:14px}.float{position:static;max-width:none;order:2}.float.f1{order:1}}
+@media (max-width:1100px){.showcase{display:grid;gap:14px;margin-bottom:18px}.float{position:static;max-width:none;order:2}.float.f1{order:1}}
 .float{animation:floaty 4.8s ease-in-out infinite alternate}.float.f2{animation-delay:1.6s;animation-duration:5.4s}
 @media (max-width:960px){
   .nav ul{display:none}.nav .btn{margin-left:auto}
@@ -375,12 +434,12 @@ body.nolines .neural,body.nolines .narr{display:none}
 
 <nav class="nav" id="nav"><div class="wrap">
   <a class="logo" href="#top"><b>HI</b>Huzaifa Islam</a>
-  <ul><li><a href="#results">Results</a></li><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#videos">Videos</a></li><li><a href="#contact">Contact</a></li></ul>
+  <ul><li><a href="#results">Results</a></li><li><a href="#work">Work</a></li><li><a href="#how">How I work</a></li><li><a href="#experience">Experience</a></li><li><a href="#videos">Videos</a></li><li><a href="#contact">Contact</a></li></ul>
   <a class="btn btn-main" href="Huzaifa_Islam_Product_Manager_Resume.pdf" download aria-label="Download résumé (PDF)"><span class="lg">Download résumé</span><span class="sm">Résumé</span></a>
   <button class="tbtn mbtn" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <button class="tbtn" id="tb" aria-label="Switch light or dark theme"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 </div>
-<div class="mnav" id="mnav" hidden><a href="#results">Results</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#videos">Videos</a><a href="#contact">Contact</a></div></nav>
+<div class="mnav" id="mnav" hidden><a href="#results">Results</a><a href="#work">Work</a><a href="#how">How I work</a><a href="#experience">Experience</a><a href="#videos">Videos</a><a href="#contact">Contact</a></div></nav>
 
 <main id="main-content"><header class="hero" id="top"><div class="wrap">
   <div class="split"><div class="split-text">
@@ -418,9 +477,10 @@ body.nolines .neural,body.nolines .narr{display:none}
     <picture><source srcset="huzaifa-photo.webp" type="image/webp"><img class="avatar" src="huzaifa-photo.png" alt="Portrait of Huzaifa Islam" width="600" height="519" fetchpriority="high"></picture>
     
   </div></div>
+  <div class="showcase-head rv"><span class="label">A product I designed</span><h2>BIN Intelligence</h2><p>Card lookup, rules and card insights - shown on sample data.</p></div>
   <div class="showcase rv">
-    <div class="browser"><div class="top"><i></i><i></i><i></i><span>Card lookup · BIN Intelligence</span></div><img class="shot" src="shots/bin-intelligence-console-3.png" alt="A card lookup screen showing what kind of card it is, its bank, its networks and its security check support" width="1440" height="900"></div>
-    <div class="float f1"><b>1-2 weeks to 1-2 hours</b>Time to plan a new payment provider, using a tool I designed</div>
+    <div class="browser"><div class="top"><i></i><i></i><i></i><span>Card lookup · BIN Intelligence</span></div><img class="shot" src="shots/bin-intelligence-console-3.png" srcset="shots/bin-intelligence-console-3.png 1x, shots/bin-intelligence-console-3@2x.png 2x" alt="A card lookup screen showing what kind of card it is, its bank, its networks and its security check support" width="1440" height="900" decoding="async"></div>
+    <div class="float f1"><b>1&#8209;2 weeks to 1&#8209;2 hours</b>Time to plan a new payment provider, using a tool I designed</div>
     <div class="float f2"><span class="dot"></span>Runs on sample data<b style="margin-top:6px">10 videos</b>Every prototype explained in a narrated walkthrough</div>
   </div>
 </div></header>
@@ -430,19 +490,22 @@ body.nolines .neural,body.nolines .narr{display:none}
 </div>
 
 <section class="sec" id="results"><div class="wrap">
-  <div class="sh rv"><span class="label">Results</span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p></div>
+  <div class="sh rv"><span class="label">Results</span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-results"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body open" id="body-results"><div class="sec-body-in">
   <div class="bento rv">
-    <div class="tile t1"><b>1-2 weeks → 1-2 hours</b><h3>Faster planning for every new provider</h3><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a one-to-two-week job now takes one to two hours.</p></div>
+    <div class="tile t1"><b>1&#8209;2 weeks → 1&#8209;2 hours</b><h3>Faster planning for every new provider</h3><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a one-to-two-week job now takes one to two hours.</p></div>
     <div class="tile t2"><b>60+</b><h3>Integrations live in 2 quarters</h3><p>Payment integrations delivered, covering cards, digital wallets and local payment methods in Latin America, the Middle East, India, Europe and Asia.</p></div>
     <div class="tile t3"><b>1.1M+</b><h3>Card ranges in my prototype</h3><p>A working prototype, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
     <div class="tile t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h3>23 ideas, one roadmap</h3><p>Turned a long list of security and approval ideas into one plan you can click through.</p></div>
     <div class="tile t5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h3>3 test tools</h3><p>Built testers that proved what three payment providers actually do, which unblocked their launch.</p></div>
     <div class="tile t6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Data before opinions</h3><p>Used SQL and live dashboards to show where money and time were being lost.</p></div>
   </div>
+  </div></div>
 </div></section>
 
 <section class="sec work" id="work"><div class="wrap">
-  <div class="sh rv"><span class="label">Selected work</span><h2>Six stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p></div>
+  <div class="sh rv"><span class="label">Selected work</span><h2>Six stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-work"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body open" id="body-work"><div class="sec-body-in">
 
   <article class="case rv">
     <div>
@@ -478,7 +541,7 @@ body.nolines .neural,body.nolines .narr{display:none}
         <li><div><b>Write the plan</b><small>Produce the requirements on the standard template</small></div><em class="h">Human review</em></li>
         <li><div><b>Create the tasks</b><small>Open the engineering tickets in Jira</small></div><em>Automatic</em></li>
       </ol>
-      <div class="res"><span>Time per provider</span><b>1-2 weeks → 1-2 hours</b></div>
+      <div class="res"><span>Time per provider</span><b>1&#8209;2 weeks → 1&#8209;2 hours</b></div>
     </div></div>
   </article>
 
@@ -541,12 +604,27 @@ body.nolines .neural,body.nolines .narr{display:none}
     </div>
     <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>NextOutreach · live app</span></div><img class="shot" src="shots/nextoutreach-signin.png" alt="Sign-in screen of NextOutreach, the job-search product" loading="lazy" width="1430" height="1040"></div><a class="play" href="https://recruiter-outreach-tracker-v2.onrender.com" target="_blank" rel="noopener" style="text-decoration:none">Visit the live app ↗</a></div>
   </article>
+  </div></div>
 </div></section>
 
-<section class="sec work" id="experience"><div class="wrap xp">
+<section class="sec" id="how" style="padding-top:0"><div class="wrap">
+  <div class="sh c rv"><span class="label">How I work</span><h2>Short first, clickable second, detailed last</h2><p>People decide faster when they can see and touch the idea.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-how"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body" id="body-how"><div class="sec-body-in">
+  <ol class="htl">
+    <li class="hstep rv"><div class="hnode">1</div><div class="hcard"><h3>Understand</h3><p>Talk to the people closest to the problem, and read the data before forming an opinion.</p></div></li>
+    <li class="hstep rv"><div class="hnode">2</div><div class="hcard"><h3>Write one page</h3><p>The problem, the bet, and the decisions I need from leaders, on a single page.</p></div></li>
+    <li class="hstep rv"><div class="hnode">3</div><div class="hcard"><h3>Show it</h3><p>A clickable prototype on realistic data, before anyone spends weeks building.</p></div></li>
+    <li class="hstep rv"><div class="hnode">4</div><div class="hcard"><h3>Detail it</h3><p>Full requirements, the test plan, and who needs to be involved.</p></div></li>
+    <li class="hstep rv"><div class="hnode">5</div><div class="hcard"><h3>Check it</h3><p>A structured review, with a named person signing it off.</p></div></li>
+    <li class="hstep rv"><div class="hnode">6</div><div class="hcard"><h3>Launch it</h3><p>Test evidence, quality sign off, and a calm go live.</p></div></li>
+  </ol>
+  </div></div>
+</div></section>
+
+<section class="sec work" id="experience"><div class="wrap">
+  <div class="sh rv"><span class="label">Experience</span><h2>Where I've worked</h2><p>2 years in product management and 4+ years overall, with a background in growth and business development.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-experience"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body" id="body-experience"><div class="sec-body-in"><div class="xp">
   <div class="side rv">
-    <span class="label">Experience</span>
-    <div class="sh" style="margin:0"><h2>Where I've worked</h2><p>2 years in product management and 4+ years overall, with a background in growth and business development.</p></div>
     <div class="sk">
       <div><h3>Product</h3><div><span>Strategy</span><span>Roadmaps</span><span>Requirements</span><span>Pricing</span><span>Go to market</span><span>A/B tests</span></div></div>
       <div><h3>Payments</h3><div><span>Card security (3DS)</span><span>Card data</span><span>Tokens</span><span>Local payment methods</span><span>PCI DSS</span></div></div>
@@ -561,14 +639,19 @@ body.nolines .neural,body.nolines .narr{display:none}
     <li><time>May 2021 to Apr 2022</time><h3>Senior Business Development Executive</h3><div class="co">PlanetSpark</div><p>Wrote tailored proposals, built partnerships, and researched the market.</p></li>
     <li><time>Sep 2020 to Mar 2021</time><h3>Subject Matter Expert</h3><div class="co">Chegg</div><p>Helped students with civil engineering, created training material, and improved content using feedback.</p></li>
   </ol>
+  </div></div></div>
 </div></section>
 
 <section class="sec" id="videos"><div class="wrap">
-  <div class="sh c rv"><span class="label">Videos</span><h2>See it working, in under two minutes each</h2><p>Every walkthrough is narrated and captioned, so you can watch with or without sound.</p></div>
+  <div class="sh c rv"><span class="label">Videos</span><h2>See it working, in under two minutes each</h2><p>Every walkthrough is narrated and captioned, so you can watch with or without sound.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-videos"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body" id="body-videos"><div class="sec-body-in">
   <div class="gal" id="gal"></div>
+  </div></div>
 </div></section>
 
-<section class="sec cta" id="contact" style="padding-top:112px"><div class="wrap"><div class="ctab rv">
+<section class="sec cta" id="contact" style="padding-top:112px"><div class="wrap">
+  <div class="sh c rv"><span class="label">Contact</span><h2>Let's talk</h2><p>Email or LinkedIn works. The résumé and portfolio PDFs are one click away.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-contact"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sec-body" id="body-contact"><div class="sec-body-in"><div class="ctab rv">
   <div><h2>Working on something in payments? Let's talk.</h2><p>I'm happy to walk you through any of this work in more detail.</p></div>
   <div class="cl">
     <a href="mailto:huzaifaislam16@gmail.com">Email<span>huzaifaislam16@gmail.com</span></a>
@@ -576,7 +659,7 @@ body.nolines .neural,body.nolines .narr{display:none}
     <a href="Huzaifa_Islam_Product_Manager_Resume.pdf" download>Résumé<span>PDF</span></a>
     <a href="Huzaifa-Islam-PM-Portfolio.pdf" download>Portfolio<span>PDF, 9 pages</span></a>
   </div>
-</div></div></section>
+</div></div></div></section>
 
 </main><footer><div class="wrap"><span>© 2026 Huzaifa Islam</span><span>Prototypes use a made up brand (Acme Pay) and sample data. No customer data, passwords or company figures are shown.</span></div></footer>
 
@@ -600,6 +683,20 @@ document.getElementById('dx').onclick=shut;dlg.addEventListener('click',e=>{if(e
 const mb=document.getElementById('mb'),mn=document.getElementById('mnav');
 mb.onclick=()=>{const o=mn.hasAttribute('hidden');o?mn.removeAttribute('hidden'):mn.setAttribute('hidden','');mb.setAttribute('aria-expanded',o)};
 mn.addEventListener('click',e=>{if(e.target.closest('a')){mn.setAttribute('hidden','');mb.setAttribute('aria-expanded','false')}});
+document.querySelectorAll('.sec-toggle').forEach(btn=>{
+  const body=document.getElementById(btn.getAttribute('aria-controls'));if(!body)return;
+  const inner=body.querySelector('.sec-body-in'),label=btn.querySelector('.st-label');
+  inner.inert=btn.getAttribute('aria-expanded')!=='true';
+  btn.addEventListener('click',()=>{
+    const open=body.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    label.textContent=open?'Hide section':'Show section';
+    inner.inert=!open;
+  });
+});
+const openSec=id=>{const sec=document.getElementById(id);if(!sec)return;const btn=sec.querySelector('.sec-toggle');if(btn&&btn.getAttribute('aria-expanded')==='false')btn.click();};
+document.querySelectorAll('a[href^="#"]').forEach(a=>{const id=a.getAttribute('href').slice(1);a.addEventListener('click',()=>openSec(id));});
+if(location.hash)openSec(location.hash.slice(1));
 const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>8),{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
