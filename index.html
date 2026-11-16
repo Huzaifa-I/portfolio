@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Huzaifa Islam · Product Manager, Payments</title>
 <meta name="description" content="Huzaifa Islam is a product manager who builds payment products. See case studies, clickable prototypes and narrated video walkthroughs.">
 <meta property="og:title" content="Huzaifa Islam · Product Manager, Payments">
@@ -20,12 +21,22 @@
 :root{
   --bg:#FFFFFF;--bg-2:#F7F8FB;--bg-3:#EEF1F7;--card:#FFFFFF;--ink:#0B1020;--ink-2:#4B5568;--ink-3:#5F6878;--line:#E5E8EF;
   --brand:#4338CA;--brand-2:#6366F1;--brand-soft:#EEF0FF;--teal:#0A7A67;--teal-soft:#E3F7F2;--amber:#965C08;--amber-soft:#FFF4E2;
-  --grad:linear-gradient(135deg,#4338CA 0%,#6366F1 45%,#0E9F86 100%);--deep:#0B1020;--deep-line:#0B1020;
+  --grad:linear-gradient(135deg,#4338CA 0%,#6366F1 45%,#0E9F86 100%);--grad-text:linear-gradient(135deg,#4338CA 0%,#6366F1 45%,#0E9F86 100%);--deep:#0B1020;--deep-line:#0B1020;
   --sh-1:0 1px 2px rgba(11,16,32,.05);--sh-2:0 1px 2px rgba(11,16,32,.04),0 16px 40px -16px rgba(11,16,32,.16);--sh-3:0 40px 80px -24px rgba(30,27,75,.35);
   --head:"Plus Jakarta Sans",Inter,system-ui,sans-serif;--body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--wrap:1180px
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}}
-:root[data-theme="dark"]{--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--grad-text:linear-gradient(135deg,#A5ABFF 0%,#8B93FF 45%,#3DD6B5 100%);--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0A0D16;--bg-2:#0F1320;--bg-3:#161B2B;--card:#121726;--ink:#EEF1F8;--ink-2:#AEB6C8;--ink-3:#7D879C;--line:#232A3D;--brand:#8B93FF;--brand-2:#A5ABFF;--brand-soft:#1C2047;--teal:#3DD6B5;--teal-soft:#0F2E29;--amber:#F2B65A;--amber-soft:#33250F;--deep:#161C36;--deep-line:#2A3260;--grad-text:linear-gradient(135deg,#A5ABFF 0%,#8B93FF 45%,#3DD6B5 100%);--sh-2:0 16px 40px -16px rgba(0,0,0,.6);--sh-3:0 40px 80px -24px rgba(0,0,0,.7)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nav .btn-main{background:linear-gradient(135deg,#5F64E2,#4F46E5)}:root:not([data-theme="light"]) .logo b{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--brand) 55%,transparent)}}
+:root[data-theme="dark"] .nav .btn-main{background:linear-gradient(135deg,#5F64E2,#4F46E5)}
+:root[data-theme="dark"] .logo b{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--brand) 55%,transparent)}
+:root[data-theme="light"]{color-scheme:light}
+
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+.hero h1 span,.float b,.sh h2,.showcase-head h2{background:none;color:var(--brand)}
+.t1 b{background:none;color:#A5B4FC}
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 var(--body);-webkit-font-smoothing:antialiased}
@@ -81,7 +92,7 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .hero:after{content:"";position:absolute;inset:0 0 auto;height:640px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 30%,transparent 80%);opacity:.55;pointer-events:none}
 .hero .wrap{position:relative;z-index:1;text-align:center}
 .hero h1{font-size:clamp(40px,6vw,72px);line-height:1.04;font-weight:800;margin:22px auto 22px;max-width:960px;letter-spacing:-.035em}
-.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 span{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:720px;margin:0 auto 32px}
 .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .facts{display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;margin:28px 0 0;padding:0;list-style:none;color:var(--ink-3);font-size:14px}
@@ -98,8 +109,8 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .browser .top span{margin:0 auto;font:500 12px var(--body);color:var(--ink-3);background:var(--card);border:1px solid var(--line);padding:4px 14px;border-radius:7px;transform:translateX(-24px)}
 .browser .shot{aspect-ratio:16/10;width:100%;object-fit:cover;object-position:top left;background:#fff}
 .float{position:absolute;background:var(--card);border:1px solid color-mix(in srgb,var(--brand) 28%,var(--line));border-radius:14px;padding:16px 18px 14px;box-shadow:var(--sh-2),0 0 26px color-mix(in srgb,var(--brand) 12%,transparent);text-align:left;font-size:13.5px;color:var(--ink-2);line-height:1.4;max-width:230px}
-.float:before{content:"";position:absolute;top:0;left:16px;right:16px;height:3px;border-radius:0 0 3px 3px;background:var(--grad)}
-.float b{display:block;font:800 24px/1.1 var(--head);letter-spacing:-.02em;margin-bottom:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.float:before{content:"";position:absolute;top:0;left:16px;right:16px;height:3px;border-radius:0 0 3px 3px;background:var(--grad-text)}
+.float b{display:block;font:800 24px/1.1 var(--head);letter-spacing:-.02em;margin-bottom:4px;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 .float.f1{left:-64px;top:30%}.float.f2{right:-64px;top:60%}
 .float .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:6px}
 
