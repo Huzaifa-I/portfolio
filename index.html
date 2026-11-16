@@ -124,7 +124,34 @@ section.sec{padding:112px 0}
 .sec-body-in{overflow:hidden;min-height:0;opacity:0;transition:opacity .45s ease .08s}
 .sec-body.open .sec-body-in{opacity:1}
 @media (prefers-reduced-motion:reduce){.sec-body,.sec-body-in,.sec-toggle svg{transition:none}}
-section.sec:has(>.wrap>.sec-body:not(.open)){padding:72px 0}
+section.sec:has(>.wrap>.sec-body:not(.open)){padding:36px 0}
+section.sec:has(>.wrap>.sec-body:not(.open)) .sh{margin-bottom:0}
+section.sec:has(>.wrap>.sec-body:not(.open)) .sh h2{margin-bottom:8px}
+section.sec:has(>.wrap>.sec-body:not(.open)) .sec-toggle{margin-top:14px}
+.htools{margin-top:44px;text-align:center}
+.htools h3{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0}
+.htools ul{list-style:none;padding:0;margin:18px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:860px}
+.htools li{display:flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border:1px solid var(--line);border-radius:14px;background:var(--card);text-align:left;transition:border-color .25s,box-shadow .25s,transform .25s}
+.htools li:hover{border-color:color-mix(in srgb,var(--brand) 50%,var(--line));box-shadow:0 4px 18px color-mix(in srgb,var(--brand) 14%,transparent);transform:translateY(-2px)}
+.ht-ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);flex:none}
+.ht-ic svg{width:17px;height:17px}
+.ht-mono{font:800 10.5px var(--head);letter-spacing:.02em}
+.htools li b{display:block;font-size:13.5px;line-height:1.2}
+.htools li small{display:block;font-size:11px;color:var(--ink-2);line-height:1.25}
+@media (prefers-reduced-motion:reduce){.htools li{transition:none}}
+.case-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:26px}
+.case-nav .sec-toggle{margin:0}
+.case-count{font:600 13px var(--body);color:var(--ink-2);min-width:56px;text-align:center}
+.case-dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.case-dots button{width:26px;height:26px;border:0;background:none;cursor:pointer;position:relative;padding:0}
+.case-dots button:before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:50%;background:var(--line);transition:background .25s,transform .25s}
+.case-dots button:hover:before{background:color-mix(in srgb,var(--brand) 55%,var(--line))}
+.case-dots button[aria-current="true"]:before{background:var(--brand);transform:translate(-50%,-50%) scale(1.35)}
+.case-dots button:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:50%}
+.case[hidden]{display:none}
+.case.enter{animation:caseIn .45s cubic-bezier(.22,.61,.36,1)}
+@keyframes caseIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.case.enter{animation:none}}
 .sh p{color:var(--ink-2);font-size:18px;margin:0}
 
 /* bento */
@@ -404,15 +431,15 @@ body.nobrain .brain{display:none}
 .visor .edge:before{left:0}
 .visor .edge:after{right:0;animation-delay:4.5s}
 @keyframes edgefall{0%{top:-45%;opacity:0}10%{opacity:.9}42%{top:105%;opacity:.9}50%{top:105%;opacity:0}100%{top:-45%;opacity:0}}
-.visor .hudbtn{position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);margin:0;white-space:nowrap}
+.visor .hudbtn{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);margin:0;white-space:nowrap}
 .visor .hudbtn:active{transform:translateX(-50%) scale(.97)}
 .orbit.connected .visor{border-color:color-mix(in srgb,var(--teal) 60%,transparent);box-shadow:0 0 34px color-mix(in srgb,var(--teal) 30%,transparent),inset 0 1px 0 rgb(255 255 255/.16)}
 .orbit.connected .pchip{animation:chipflash .55s ease both;animation-delay:calc(var(--ci,0)*70ms)}
-@media(max-width:700px){.visor{left:-26px;right:-26px;top:1%;bottom:2%;border-radius:18px}.visor .hudbtn{bottom:5px;padding:6px 16px;font-size:9px;letter-spacing:.2em}}
+@media(max-width:700px){.visor{left:-26px;right:-26px;top:1%;bottom:2%;border-radius:18px}.visor .hudbtn{bottom:8px;padding:6px 16px;font-size:9px;letter-spacing:.2em}}
 @media(prefers-reduced-motion:reduce){.visor{animation:none}}
 @media(min-width:701px) and (max-width:1250px){.visor{left:-28px;right:-22px}.hudgrid{grid-template-columns:repeat(4,minmax(0,auto));gap:6px}.hudwrap{width:110%;bottom:-38%}.hud{padding:10px 10px 11px}.hudbtn{margin-top:9px;padding:8px 20px}}
 @media(min-width:701px) and (max-width:1250px){.pchip{font-size:10.5px;padding:5px 9px}.pchip.z3{display:none}.pchip.c1{left:-14px;top:2%}.pchip.c11{left:-18px;top:20%}.pchip.c13{left:-8px;top:36%}.pchip.c7{left:-24px;top:52%}.pchip.c16{left:-8px;top:68%}.pchip.c3{left:-20px;top:84%}.pchip.c4{right:-14px;top:2%}.pchip.c12{right:-16px;top:20%}.pchip.c14{right:-8px;top:36%}.pchip.c15{right:-16px;top:52%}.pchip.c6{right:-18px;top:68%}.pchip.c9{right:-12px;top:84%}}
-@media(max-width:700px){.hudwrap{position:relative;left:auto;bottom:auto;transform:none;width:100%;margin-top:-46px}.hud{padding:10px 10px 11px;border-radius:15px}.hudcap{font-size:8.5px;margin-bottom:8px}.hudgrid{gap:6px}.pchip.c11,.pchip.c12,.pchip.c2,.pchip.c3,.pchip.c5,.pchip.c6,.pchip.c9,.pchip.c16{display:none}.orbit{margin-bottom:16px}.pchip{font-size:10px;padding:4px 8px;gap:5px}.pchip svg{width:11px;height:11px}.pchip.c1{left:-14px;top:6%}.pchip.c13{left:-22px;top:26%}.pchip.c7{left:-12px;top:46%}.pchip.c10{left:-22px;top:66%}.pchip.c4{right:-12px;top:6%}.pchip.c14{right:-22px;top:26%}.pchip.c15{right:-10px;top:46%}.pchip.c8{right:-18px;top:66%}}
+@media(max-width:700px){.hudwrap{position:relative;left:auto;bottom:auto;transform:none;width:100%;margin-top:-46px}.hud{padding:10px 10px 11px;border-radius:15px}.hudcap{font-size:8.5px;margin-bottom:8px}.hudgrid{gap:6px}.pchip.c11,.pchip.c12,.pchip.c2,.pchip.c3,.pchip.c5,.pchip.c6,.pchip.c9,.pchip.c16{display:none}.orbit{margin-bottom:56px}.pchip{font-size:10px;padding:4px 8px;gap:5px}.pchip svg{width:11px;height:11px}.pchip.c1{left:-14px;top:6%}.pchip.c13{left:-22px;top:26%}.pchip.c7{left:-12px;top:46%}.pchip.c10{left:-22px;top:66%}.pchip.c4{right:-12px;top:6%}.pchip.c14{right:-22px;top:26%}.pchip.c15{right:-10px;top:46%}.pchip.c8{right:-18px;top:66%}}
 .brain{position:absolute;top:-84px;left:50%;transform:translateX(-50%);z-index:3;width:118px;pointer-events:none}
 .brain img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 18px color-mix(in srgb,var(--brand) 40%,transparent))}
 .brain:before{content:"";position:absolute;inset:-18px -26px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 26%,transparent),transparent 70%);filter:blur(10px);animation:bpulse 3.2s ease-in-out infinite;z-index:-1}
@@ -428,7 +455,155 @@ body.nobrain .brain{display:none}
 body.nolines .neural,body.nolines .narr{display:none}
 @media(max-width:700px){.brain{width:80px;top:-56px}}
 @media(max-width:900px){.split{grid-template-columns:minmax(0,1fr) 280px;gap:28px}.hero .split .avatar{width:280px}.hero .split h1{font-size:44px}}@media(max-width:700px){.split{display:flex;flex-direction:column-reverse;gap:0px;text-align:center}.split .orbit{margin-top:52px}.hero .split .avatar{width:270px;max-width:100%;margin:auto}.hero .split h1{font-size:38px;margin:20px auto}.hero .split p{font-size:17px}.split .ctas,.split .facts{justify-content:center}.split-text{width:100%}}
+
+/* ===== premium polish ===== */
+:root{--edge:rgba(255,255,255,.75)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--edge:rgba(255,255,255,.07)}}
+:root[data-theme="dark"]{--edge:rgba(255,255,255,.07)}
+body{line-height:1.7}
+.sh h2,.case h3,.ctab h2,.hero h1{text-wrap:balance}
+.sh p,.case .one,.tile p,.hw p,.hcard p,.trio p{text-wrap:pretty}
+.sh{margin-bottom:44px}
+::selection{background:color-mix(in srgb,var(--brand) 24%,transparent);color:var(--ink)}
+.case{box-shadow:var(--sh-2),inset 0 1px 0 var(--edge)}
+.tile,.hw,.g,.int,.htools li,.hcard{box-shadow:var(--sh-1),inset 0 1px 0 var(--edge)}
+.chip,.pill{box-shadow:inset 0 1px 0 var(--edge)}
+.sec-toggle{box-shadow:inset 0 1px 0 var(--edge)}
+.btn{transition:transform .18s cubic-bezier(.22,.61,.36,1),box-shadow .18s,background .18s,border-color .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.nav.on{box-shadow:0 10px 34px -20px color-mix(in srgb,var(--ink) 30%,transparent)}
+.tl li:before{transition:border-color .3s,background .3s,box-shadow .3s}
+.tl li:hover:before{border-color:color-mix(in srgb,var(--brand) 55%,var(--line));box-shadow:0 0 12px color-mix(in srgb,var(--brand) 25%,transparent)}
+.sk span{transition:border-color .2s,transform .2s}
+.sk span:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line));transform:translateY(-1px)}
+
+/* outcome-first: result card leads each story */
+.trio{display:flex;flex-direction:column}
+.trio .r{order:-1;border-color:color-mix(in srgb,var(--brand) 45%,var(--line));background:color-mix(in srgb,var(--brand) 6%,var(--card));box-shadow:0 4px 22px color-mix(in srgb,var(--brand) 12%,transparent)}
+
+/* hero scroll cue */
+.scroll-cue{display:inline-flex;flex-direction:column;align-items:center;gap:7px;margin:46px auto 0;color:var(--ink-3);font:600 11.5px var(--body);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:color .25s}
+.scroll-cue:hover{color:var(--brand)}
+.scroll-cue svg{width:16px;height:16px;animation:cueBob 2.2s ease-in-out infinite}
+@keyframes cueBob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.scroll-cue svg{animation:none}}
+
+/* hudbtn two-line label */
+.hudbtn .hb-t{display:flex;flex-direction:column;align-items:flex-start;line-height:1.3;text-align:left}
+.hudbtn .hb-t b{font:inherit;letter-spacing:inherit}
+.hudbtn .hb-t i{font:600 8px var(--body);letter-spacing:.06em;text-transform:none;font-style:normal;opacity:.85}
+.hudbtn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* integrate CTA: pulse + hint */
+.hudbtn{animation:ctaPulse 2.6s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 20px color-mix(in srgb,var(--brand) 45%,transparent),inset 0 1px 0 rgb(255 255 255/.3)}50%{box-shadow:0 0 38px color-mix(in srgb,var(--brand) 75%,transparent),inset 0 1px 0 rgb(255 255 255/.3)}}
+.hudbtn:hover{transform:translateX(-50%) translateY(-2px)}
+.hud-hint{position:absolute;left:50%;bottom:-46px;transform:translateX(-50%);white-space:nowrap;color:var(--brand);font:600 10.5px ui-monospace,"SF Mono",monospace;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border:1px solid color-mix(in srgb,var(--brand) 45%,transparent);border-radius:6px;background:color-mix(in srgb,var(--card) 82%,transparent);box-shadow:0 0 14px color-mix(in srgb,var(--brand) 18%,transparent);pointer-events:none;z-index:4;animation:hintBlink 1.8s steps(2) infinite}
+.hud-hint:before{content:"[ "}.hud-hint:after{content:"_ ]";animation:curBlink 1s steps(2) infinite}
+@keyframes curBlink{50%{opacity:0}}
+@keyframes hintBlink{0%,100%{box-shadow:0 0 14px color-mix(in srgb,var(--brand) 18%,transparent)}50%{box-shadow:0 0 22px color-mix(in srgb,var(--brand) 38%,transparent)}}
+.hud-hint.off{display:none}
+@media(prefers-reduced-motion:reduce){.hudbtn{animation:none}.hud-hint{position:absolute;left:50%;bottom:-46px;transform:translateX(-50%);white-space:nowrap;color:var(--brand);font:600 10.5px ui-monospace,"SF Mono",monospace;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border:1px solid color-mix(in srgb,var(--brand) 45%,transparent);border-radius:6px;background:color-mix(in srgb,var(--card) 82%,transparent);box-shadow:0 0 14px color-mix(in srgb,var(--brand) 18%,transparent);pointer-events:none;z-index:4;animation:hintBlink 1.8s steps(2) infinite}}
+@media(max-width:700px){.hud-hint{position:absolute;left:50%;bottom:-46px;transform:translateX(-50%);white-space:nowrap;color:var(--brand);font:600 10.5px ui-monospace,"SF Mono",monospace;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border:1px solid color-mix(in srgb,var(--brand) 45%,transparent);border-radius:6px;background:color-mix(in srgb,var(--card) 82%,transparent);box-shadow:0 0 14px color-mix(in srgb,var(--brand) 18%,transparent);pointer-events:none;z-index:4;animation:hintBlink 1.8s steps(2) infinite}}
+
+/* sync HUD pill */
+.sync-hud{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);z-index:90;background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 16px;font:600 12px ui-monospace,"SF Mono",monospace;letter-spacing:.08em;display:flex;gap:12px;align-items:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--sh-3)}
+.sync-hud.on{opacity:1;transform:translateX(-50%)}
+.sync-hud .bar{width:110px;height:4px;border-radius:2px;background:color-mix(in srgb,var(--bg) 25%,transparent);overflow:hidden}
+.sync-hud .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand-2),var(--teal));transition:width .22s}
+.sync-hud.done .st{color:var(--teal)}
+.sync-hud.done .bar i{background:var(--teal)}
+/* open-section identification dot */
+.sec-toggle[aria-expanded="true"]:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 9px var(--teal);flex:none}
+@media(prefers-reduced-motion:reduce){.sync-hud{transition:none}.sync-hud .bar i{transition:none}}
+
+/* connector: tag -> visor glass edge */
+.hud-link{position:absolute;left:50%;bottom:-22px;width:2px;height:22px;transform:translateX(-50%);background:linear-gradient(0deg,color-mix(in srgb,var(--brand) 75%,transparent),color-mix(in srgb,var(--brand) 12%,transparent));z-index:4;pointer-events:none;overflow:visible}
+.hud-link:after{content:"";position:absolute;left:50%;bottom:0;width:6px;height:6px;border-radius:50%;background:var(--brand-2);box-shadow:0 0 10px var(--brand-2),0 0 4px var(--brand-2);transform:translateX(-50%);animation:linkTravel 1.6s ease-in-out infinite}
+@keyframes linkTravel{0%{bottom:0;opacity:0}25%{opacity:1}85%{opacity:1}100%{bottom:calc(100% - 4px);opacity:0}}
+.hud-hint.off~.hud-link{display:none}
+@media(max-width:700px){.hud-link{bottom:-17px;height:17px}}
+@media(prefers-reduced-motion:reduce){.hud-link:after{animation:none;opacity:.7;bottom:calc(50% - 3px)}}
+
+/* trim gap under stepper */
+#work{padding-bottom:48px}
+
+/* section icons (decorative) */
+.sic{display:inline-grid;place-items:center;width:42px;height:28px;margin-left:8px;vertical-align:-4px;color:var(--brand)}
+.sic svg{width:30px;height:18px;overflow:visible}
+.sic .m1{animation:sicM1 3.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.sic .m2{animation:sicM2 3.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes sicM1{0%,42%{opacity:1;transform:scale(1) rotate(0)}52%,92%{opacity:0;transform:scale(.5) rotate(-12deg)}100%{opacity:1;transform:scale(1)}}
+@keyframes sicM2{0%,42%{opacity:0;transform:scale(.5)}52%,92%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
+.sic .l1,.sic .l2,.sic .l3{stroke-dasharray:16;stroke-dashoffset:16;animation:sicDraw 3s ease-in-out infinite}
+.sic .l2{animation-delay:.35s}.sic .l3{animation-delay:.7s}
+@keyframes sicDraw{0%{stroke-dashoffset:16}35%,70%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:-16}}
+.sic .rp{transform-origin:center;transform-box:fill-box;animation:sicRip 2.2s ease-out infinite}
+@keyframes sicRip{0%{transform:scale(.55);opacity:.9}70%{transform:scale(1.25);opacity:0}100%{transform:scale(1.25);opacity:0}}
+.sic .pl{transform-origin:center;transform-box:fill-box;animation:sicBob 2.6s ease-in-out infinite}
+@keyframes sicBob{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(1.5px,-1.5px) rotate(4deg)}}
+.sic-xp{color:var(--teal)}.sic-contact{color:var(--brand-2)}
+@media (prefers-reduced-motion:reduce){.sic *{animation:none!important}.sic .m2,.sic .rp{opacity:0}.sic .l1,.sic .l2,.sic .l3{stroke-dashoffset:0}}
+
+/* section icons: left of collapsed headers on wide screens */
+@media(min-width:1000px){
+.sh{position:relative}
+.sic{position:absolute;left:-196px;top:50%;transform:translateY(-50%);width:150px;height:102px;margin:0;vertical-align:initial}
+.sic svg{width:114px;height:66px}
+}
+
+/* section icons: glass tiles */
+.sic{background:color-mix(in srgb,var(--card) 72%,transparent);border:1px solid color-mix(in srgb,var(--brand) 22%,var(--line));border-radius:12px;box-shadow:0 4px 18px color-mix(in srgb,var(--brand) 14%,transparent),inset 0 1px 0 var(--edge);backdrop-filter:blur(6px)}
+@media(min-width:1000px){.sic{border-radius:18px}}
+.sic .bar{transform-origin:bottom;transform-box:fill-box;animation:sicBar 2.4s ease-in-out infinite}
+.sic .b2{animation-delay:.3s}.sic .b3{animation-delay:.6s}
+@keyframes sicBar{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.sic .sq{opacity:0;animation:sicPop 3s cubic-bezier(.22,.61,.36,1) infinite}
+.sic .sq2{animation-delay:.4s}.sic .sq3{animation-delay:.8s}
+@keyframes sicPop{0%,8%{opacity:0;transform:scale(.4)}20%,75%{opacity:1;transform:scale(1)}92%,100%{opacity:0;transform:scale(.4)}}
+.sic .lnk{stroke-dasharray:10;stroke-dashoffset:10;animation:sicDraw2 3s ease-in-out infinite}
+.sic .lnk2{animation-delay:.4s}
+@keyframes sicDraw2{0%,15%{stroke-dashoffset:10}40%,75%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:-10}}
+.sic .st-dot{opacity:.25;animation:sicDot 2.8s ease-in-out infinite}
+.sic .st2{animation-delay:.5s}.sic .st3{animation-delay:1s}
+@keyframes sicDot{0%,100%{opacity:.25}30%,70%{opacity:1}}
+.sic .rp2{transform-origin:center;transform-box:fill-box;animation:sicRip 2.2s ease-out infinite;animation-delay:1.1s}
+@media (prefers-reduced-motion:reduce){.sic .bar{transform:scaleY(.8)}.sic .sq{opacity:1}.sic .lnk{stroke-dashoffset:0}.sic .st-dot{opacity:1}.sic .rp2{opacity:0}}
+/* melt open */
+.sec-body-in{transition:opacity .5s ease .06s,transform .6s cubic-bezier(.22,.61,.36,1) .04s,filter .6s ease .04s;transform-origin:top center}
+.sec-body:not(.open) .sec-body-in{transform:translateY(-16px) scaleY(.96);filter:blur(5px)}
+.sec-body.open .sec-body-in{transform:none;filter:none}
+
+/* chip sequence glow */
+@keyframes chipGlow{0%,100%{border-color:color-mix(in srgb,var(--brand) 22%,var(--line));box-shadow:0 0 0 0 transparent}7%{border-color:color-mix(in srgb,var(--brand) 70%,var(--line));box-shadow:0 0 16px 2px color-mix(in srgb,var(--brand) 32%,transparent)}18%{border-color:color-mix(in srgb,var(--brand) 22%,var(--line));box-shadow:0 0 0 0 transparent}}
+.pchip{animation:floaty 5.2s ease-in-out infinite alternate,chipGlow 8.5s ease-in-out infinite;animation-delay:0s,calc(var(--ci,0)*.53s)}
+.orbit.connected .pchip{animation-duration:5.2s,1.5s;animation-delay:0s,calc(var(--ci,0)*.09s);border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 16px color-mix(in srgb,var(--teal) 26%,transparent)}
+
+/* mini-scene keyframes */
+.sic .tlbar{transform-origin:left center;transform-box:fill-box;animation:tlShrink 3.4s ease-in-out infinite}
+@keyframes tlShrink{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.14)}}
+.sic .digit{opacity:0;animation:sicType 3.2s steps(1,end) infinite}
+@keyframes sicType{0%{opacity:0}12%,82%{opacity:1}100%{opacity:0}}
+.sic .stg{opacity:.28;animation:sicDot 3s ease-in-out infinite}
+.sic .st4{animation-delay:1.5s}
+.sic .fly{transform-box:fill-box;transform-origin:center;animation:sicFly 3.2s ease-in-out infinite}
+@keyframes sicFly{0%{transform:translate(0,1px);opacity:1}52%{transform:translate(15px,-3px);opacity:1}68%,100%{transform:translate(15px,-3px);opacity:0}}
+.sic .deliv{opacity:0;transform-box:fill-box;transform-origin:center;animation:sicDeliv 3.2s ease-in-out infinite}
+@keyframes sicDeliv{0%,52%{opacity:0;transform:scale(.4)}66%,90%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.sic .tlbar{transform:scaleX(.5)}.sic .digit{opacity:1}.sic .stg{opacity:1}.sic .fly{opacity:0}.sic .deliv{opacity:1;transform:none}}
+
+/* premium header */
+.nav{background:color-mix(in srgb,var(--bg) 68%,transparent);backdrop-filter:saturate(1.8) blur(18px);-webkit-backdrop-filter:saturate(1.8) blur(18px);border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);box-shadow:0 1px 0 color-mix(in srgb,var(--brand) 10%,transparent),0 8px 30px -22px color-mix(in srgb,var(--ink) 25%,transparent)}
+.nav.on{border-bottom-color:color-mix(in srgb,var(--brand) 22%,var(--line));box-shadow:0 1px 0 color-mix(in srgb,var(--brand) 18%,transparent),0 10px 34px -20px color-mix(in srgb,var(--brand) 30%,transparent)}
+.logo b{width:36px;height:36px;border-radius:12px;box-shadow:0 4px 14px color-mix(in srgb,var(--brand) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.4)}
+.nav ul a{border-radius:10px;padding:8px 14px;transition:color .2s,background .2s}
+.nav ul a.act{color:var(--brand);background:var(--brand-soft);font-weight:600}
+.nav .btn-main{background:var(--grad);color:#fff;border-radius:999px;box-shadow:0 4px 16px color-mix(in srgb,var(--brand) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.nav .btn-main:hover{box-shadow:0 8px 24px color-mix(in srgb,var(--brand) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.tbtn{width:44px;height:44px;border-radius:12px;background:color-mix(in srgb,var(--card) 72%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:color-mix(in srgb,var(--line) 80%,transparent);box-shadow:inset 0 1px 0 var(--edge);transition:transform .2s,border-color .2s,box-shadow .2s}
+.tbtn:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--brand) 45%,var(--line));box-shadow:0 4px 14px color-mix(in srgb,var(--brand) 16%,transparent),inset 0 1px 0 var(--edge)}
 </style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}.sec-body{display:block}.sec-body-in{opacity:1}</style></noscript>
 </head>
 <body>
 
@@ -456,8 +631,9 @@ body.nolines .neural,body.nolines .narr{display:none}
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>60+ payment integrations live in 2 quarters</li>
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Based in Hyderabad, India</li>
   </ul>
+  <a class="scroll-cue" href="#results" aria-label="Scroll down to results"><span>Scroll</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
 </div>  <div class="orbit">
-    <div class="visor"><span class="glare"></span><span class="edge"></span><button class="hudbtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M12 8v8M8 10l8 4M16 10l-8 4"/></svg><span>Integrate</span></button></div>
+    <div class="visor"><span class="glare"></span><span class="edge"></span><button class="hudbtn" type="button" aria-expanded="false" aria-label="Open all sections below"><svg viewBox="0 0 24 24"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M12 8v8M8 10l8 4M16 10l-8 4"/></svg><span class="hb-t"><b>Integrate</b><i style="display:none">opens all sections</i></span></button><span class="hud-hint" aria-hidden="true">Tap to sync all sections</span><span class="hud-link" aria-hidden="true"></span></div>
         <span class="pchip z1 b2 c1"><svg viewBox="0 0 24 24"><path d="M4 9h13m0 0-3-3m3 3-3 3M20 15H7m0 0 3-3m-3 3 3 3"/></svg>Payments</span>
     <span class="pchip z3 t c10"><svg viewBox="0 0 24 24"><path d="M12 3 3 8h18zM5 8v10M9.5 8v10M14.5 8v10M19 8v10M3 21h18"/></svg>PSP</span>
     <span class="pchip z2 b2 c11"><svg viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Aggregators</span>
@@ -490,12 +666,12 @@ body.nolines .neural,body.nolines .narr{display:none}
 </div>
 
 <section class="sec" id="results"><div class="wrap">
-  <div class="sh rv"><span class="label">Results</span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-results"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh rv"><span class="label">Results</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect class="tlbar" x="4" y="7" width="40" height="4.5" rx="2.2"/><path d="M30 3.5h8M38 3.5l-3 -2.5M38 3.5l-3 2.5" opacity=".7"/><circle class="st-dot st1" cx="9" cy="21" r="2.6" fill="currentColor" stroke="none"/><circle class="st-dot st2" cx="24" cy="21" r="2.6" fill="currentColor" stroke="none"/><circle class="st-dot st3" cx="39" cy="21" r="2.6" fill="currentColor" stroke="none"/></svg></span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-results"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body open" id="body-results"><div class="sec-body-in">
   <div class="bento rv">
     <div class="tile t1"><b>1&#8209;2 weeks → 1&#8209;2 hours</b><h3>Faster planning for every new provider</h3><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a one-to-two-week job now takes one to two hours.</p></div>
     <div class="tile t2"><b>60+</b><h3>Integrations live in 2 quarters</h3><p>Payment integrations delivered, covering cards, digital wallets and local payment methods in Latin America, the Middle East, India, Europe and Asia.</p></div>
-    <div class="tile t3"><b>1.1M+</b><h3>Card ranges in my prototype</h3><p>A working prototype, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
+    <div class="tile t3"><b>1.1M+</b><h3>Card ranges in the product</h3><p>A working product, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
     <div class="tile t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h3>23 ideas, one roadmap</h3><p>Turned a long list of security and approval ideas into one plan you can click through.</p></div>
     <div class="tile t5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h3>3 test tools</h3><p>Built testers that proved what three payment providers actually do, which unblocked their launch.</p></div>
     <div class="tile t6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Data before opinions</h3><p>Used SQL and live dashboards to show where money and time were being lost.</p></div>
@@ -504,12 +680,12 @@ body.nolines .neural,body.nolines .narr{display:none}
 </div></section>
 
 <section class="sec work" id="work"><div class="wrap">
-  <div class="sh rv"><span class="label">Selected work</span><h2>Six stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-work"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh rv"><span class="label">Selected work</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="4" width="30" height="20" rx="3"/><rect class="digit" style="animation-delay:.15s" x="10" y="9" width="3.2" height="4.4" rx="1" fill="currentColor" stroke="none"/><rect class="digit" style="animation-delay:.35s" x="15" y="9" width="3.2" height="4.4" rx="1" fill="currentColor" stroke="none"/><rect class="digit" style="animation-delay:.55s" x="20" y="9" width="3.2" height="4.4" rx="1" fill="currentColor" stroke="none"/><rect class="digit" style="animation-delay:.75s" x="25" y="9" width="3.2" height="4.4" rx="1" fill="currentColor" stroke="none"/><rect class="digit" style="animation-delay:.95s" x="30" y="9" width="3.2" height="4.4" rx="1" fill="currentColor" stroke="none"/><path class="lnk lnk1" d="M10 18h12" stroke-linecap="round"/><g class="deliv"><circle cx="39" cy="20" r="5" fill="currentColor" stroke="none"/><path d="M36.8 20l1.7 1.7 3-3.4" stroke="#fff" stroke-width="1.6"/></g></svg></span><h2>Six stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p><button class="sec-toggle" aria-expanded="true" aria-controls="body-work"><span class="st-label">Hide section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body open" id="body-work"><div class="sec-body-in">
 
   <article class="case rv">
     <div>
-      <div class="tagrow"><span class="no">01</span><span class="chip">New product</span><span class="chip g">Prototype + API</span></div>
+      <div class="tagrow"><span class="no">01</span><span class="chip">New product</span><span class="chip g">Product + API</span></div>
       <h3>BIN Intelligence: know a card before you charge it</h3>
       <p class="one">The first digits of every card number (the BIN) reveal what kind of card it is and which bank issued it. I designed a product that turns those digits into useful answers for online shops.</p>
       <div class="trio">
@@ -604,11 +780,13 @@ body.nolines .neural,body.nolines .narr{display:none}
     </div>
     <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>NextOutreach · live app</span></div><img class="shot" src="shots/nextoutreach-signin.png" alt="Sign-in screen of NextOutreach, the job-search product" loading="lazy" width="1430" height="1040"></div><a class="play" href="https://recruiter-outreach-tracker-v2.onrender.com" target="_blank" rel="noopener" style="text-decoration:none">Visit the live app ↗</a></div>
   </article>
+  <div class="case-nav"><button class="sec-toggle case-prev" aria-label="Previous story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>Prev</span></button><span class="case-count" aria-live="polite">1 of 6</span><button class="sec-toggle case-next" aria-label="Next story"><span>Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  <div class="case-dots" role="group" aria-label="Choose a story"></div>
   </div></div>
 </div></section>
 
 <section class="sec" id="how" style="padding-top:0"><div class="wrap">
-  <div class="sh c rv"><span class="label">How I work</span><h2>Short first, clickable second, detailed last</h2><p>People decide faster when they can see and touch the idea.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-how"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh c rv"><span class="label">How I work</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle class="stg stg1" cx="8" cy="14" r="4"/><rect class="stg stg2" x="18" y="9" width="12" height="10" rx="2"/><g class="stg stg3"><rect x="36" y="7" width="9" height="14" rx="1.6"/><path d="M38.5 11h4M38.5 14h4M38.5 17h2.6"/></g><path class="lnk lnk1" d="M12.5 14h4"/><path class="lnk lnk2" d="M30.5 14h4"/></svg></span><h2>Short first, clickable second, detailed last</h2><p>People decide faster when they can see and touch the idea.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-how"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body" id="body-how"><div class="sec-body-in">
   <ol class="htl">
     <li class="hstep rv"><div class="hnode">1</div><div class="hcard"><h3>Understand</h3><p>Talk to the people closest to the problem, and read the data before forming an opinion.</p></div></li>
@@ -618,11 +796,15 @@ body.nolines .neural,body.nolines .narr{display:none}
     <li class="hstep rv"><div class="hnode">5</div><div class="hcard"><h3>Check it</h3><p>A structured review, with a named person signing it off.</p></div></li>
     <li class="hstep rv"><div class="hnode">6</div><div class="hcard"><h3>Launch it</h3><p>Test evidence, quality sign off, and a calm go live.</p></div></li>
   </ol>
+  <div class="htools rv">
+    <h3>Tools I work with</h3>
+    <ul><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span><div><b>Claude Code</b><small>Daily AI coding agent</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg></span><div><b>Figma</b><small>Design and clickable prototypes</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg></span><div><b>Jira</b><small>Backlogs, sprints, tickets</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg></span><div><b>Linear</b><small>Issue tracking, delivery planning</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.57 17.04l-1.997-1.316-1.665 2.782-1.937-.567-1.706 2.604.087.82 9.274-1.71-.538-5.794zm-8.649-2.498l1.488-.204c.241.108.409.15.697.223.45.117.97.23 1.741-.16.18-.088.553-.43.704-.625l6.096-1.106.622 7.527-10.444 1.882zm11.325-2.712l-.602.115L20.488 0 .789 2.285l2.427 19.693 2.306-.334c-.184-.263-.471-.581-.96-.989-.68-.564-.44-1.522-.039-2.127.53-1.022 3.26-2.322 3.106-3.956-.056-.594-.15-1.368-.702-1.898-.02.22.017.432.017.432s-.227-.289-.34-.683c-.112-.15-.2-.199-.319-.4-.085.233-.073.503-.073.503s-.186-.437-.216-.807c-.11.166-.137.48-.137.48s-.241-.69-.186-1.062c-.11-.323-.436-.965-.343-2.424.6.421 1.924.321 2.44-.439.171-.251.288-.939-.086-2.293-.24-.868-.835-2.16-1.066-2.651l-.028.02c.122.395.374 1.223.47 1.625.293 1.218.372 1.642.234 2.204-.116.488-.397.808-1.107 1.165-.71.358-1.653-.514-1.713-.562-.69-.55-1.224-1.447-1.284-1.883-.062-.477.275-.763.445-1.153-.243.07-.514.192-.514.192s.323-.334.722-.624c.165-.109.262-.178.436-.323a9.762 9.762 0 0 0-.456.003s.42-.227.855-.392c-.318-.014-.623-.003-.623-.003s.937-.419 1.678-.727c.509-.208 1.006-.147 1.286.257.367.53.752.817 1.569.996.501-.223.653-.337 1.284-.509.554-.61.99-.688.99-.688s-.216.198-.274.51c.314-.249.66-.455.66-.455s-.134.164-.259.426l.03.043c.366-.22.797-.394.797-.394s-.123.156-.268.358c.277-.002.838.012 1.056.037 1.285.028 1.552-1.374 2.045-1.55.618-.22.894-.353 1.947.68.903.888 1.609 2.477 1.259 2.833-.294.295-.874-.115-1.516-.916a3.466 3.466 0 0 1-.716-1.562 1.533 1.533 0 0 0-.497-.85s.23.51.23.96c0 .246.03 1.165.424 1.68-.039.076-.057.374-.1.43-.458-.554-1.443-.95-1.604-1.067.544.445 1.793 1.468 2.273 2.449.453.927.186 1.777.416 1.997.065.063.976 1.197 1.15 1.767.306.994.019 2.038-.381 2.685l-1.117.174c-.163-.045-.273-.068-.42-.153.08-.143.241-.5.243-.572l-.063-.111c-.348.492-.93.97-1.414 1.245-.633.359-1.363.304-1.838.156-1.348-.415-2.623-1.327-2.93-1.566 0 0-.01.191.048.234.34.383 1.119 1.077 1.872 1.56l-1.605.177.759 5.908c-.337.048-.39.071-.757.124-.325-1.147-.946-1.895-1.624-2.332-.599-.384-1.424-.47-2.214-.314l-.05.059a2.851 2.851 0 0 1 1.863.444c.654.413 1.181 1.481 1.375 2.124.248.822.42 1.7-.248 2.632-.476.662-1.864 1.028-2.986.237.3.481.705.876 1.25.95.809.11 1.577-.03 2.106-.574.452-.464.69-1.434.628-2.456l.714-.104.258 1.834 11.827-1.424zM15.05 6.848c-.034.075-.085.125-.007.37l.004.014.013.032.032.073c.14.287.295.558.552.696.067-.011.136-.019.207-.023.242-.01.395.028.492.08.009-.048.01-.119.005-.222-.018-.364.072-.982-.626-1.308-.264-.122-.634-.084-.757.068a.302.302 0 0 1 .058.013c.186.066.06.13.027.207m1.958 3.392c-.092-.05-.52-.03-.821.005-.574.068-1.193.267-1.328.372-.247.191-.135.523.047.66.511.382.96.638 1.432.575.29-.038.546-.497.728-.914.124-.288.124-.598-.058-.698m-5.077-2.942c.162-.154-.805-.355-1.556.156-.554.378-.571 1.187-.041 1.646.053.046.096.078.137.104a4.77 4.77 0 0 1 1.396-.412c.113-.125.243-.345.21-.745-.044-.542-.455-.456-.146-.749"/></svg></span><div><b>Datadog</b><small>Monitoring, dashboards, alerts</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><div><b>GitHub</b><small>Repos and CI/CD</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"/></svg></span><div><b>PostgreSQL</b><small>SQL analysis, production data</small></div></li><li><span class="ht-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 0-.593.25l-4.453 4.453-.307-.307-.643-.643c4.389-4.376 5.18-4.418 5.996-3.753zm-4.863 4.861l4.44-4.44a.62.62 0 1 1 .847.903l-4.699 4.125-.588-.588zm.33.694l-1.1.238a.06.06 0 0 1-.067-.032.06.06 0 0 1 .01-.073l.645-.645.512.512zm-2.803-.459l1.172-1.172.879.878-1.979.426a.074.074 0 0 1-.085-.039.072.072 0 0 1 .013-.093zm-3.646 6.058a.076.076 0 0 1-.069-.083.077.077 0 0 1 .022-.046h.002l.946-.946 1.222 1.222-2.123-.147zm2.425-1.256a.228.228 0 0 0-.117.256l.203.865a.125.125 0 0 1-.211.117h-.003l-.934-.934-.294-.295 3.762-3.758 1.82-.393.874.874c-1.255 1.102-2.971 2.201-5.1 3.268zm5.279-3.428h-.002l-.839-.839 4.699-4.125a.952.952 0 0 0 .119-.127c-.148 1.345-2.029 3.245-3.977 5.091zm3.657-6.46l-.003-.002a1.822 1.822 0 0 1 2.459-2.684l-1.61 1.613a.119.119 0 0 0 0 .169l1.247 1.247a1.817 1.817 0 0 1-2.093-.343zm2.578 0a1.714 1.714 0 0 1-.271.218h-.001l-1.207-1.207 1.533-1.533c.661.72.637 1.832-.054 2.522zM18.855 6.05a.143.143 0 0 0-.053.157.416.416 0 0 1-.053.45.14.14 0 0 0 .023.197.141.141 0 0 0 .084.03.14.14 0 0 0 .106-.05.691.691 0 0 0 .087-.751.138.138 0 0 0-.194-.033z"/></svg></span><div><b>Postman</b><small>API testing and debugging</small></div></li><li><span class="ht-ic ht-mono">xAI</span><div><b>Grok</b><small>AI assistant</small></div></li><li><span class="ht-ic ht-mono">G</span><div><b>Glean</b><small>AI workplace search</small></div></li></ul>
+  </div>
   </div></div>
 </div></section>
 
 <section class="sec work" id="experience"><div class="wrap">
-  <div class="sh rv"><span class="label">Experience</span><h2>Where I've worked</h2><p>2 years in product management and 4+ years overall, with a background in growth and business development.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-experience"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh rv"><span class="label">Experience</span><span class="sic sic-xp" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="lnk" d="M6 21L18 14L29 17L42 7"/><circle class="st-dot st1" cx="6" cy="21" r="2.4" fill="currentColor" stroke="none"/><circle class="st-dot st2" cx="18" cy="14" r="2.4" fill="currentColor" stroke="none"/><circle class="st-dot st3" cx="29" cy="17" r="2.4" fill="currentColor" stroke="none"/><circle class="st-dot st4" cx="42" cy="7" r="3.2" fill="currentColor" stroke="none"/></svg></span><h2>Where I've worked</h2><p>2 years in product management and 4+ years overall, with a background in growth and business development.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-experience"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body" id="body-experience"><div class="sec-body-in"><div class="xp">
   <div class="side rv">
     <div class="sk">
@@ -643,14 +825,14 @@ body.nolines .neural,body.nolines .narr{display:none}
 </div></section>
 
 <section class="sec" id="videos"><div class="wrap">
-  <div class="sh c rv"><span class="label">Videos</span><h2>See it working, in under two minutes each</h2><p>Every walkthrough is narrated and captioned, so you can watch with or without sound.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-videos"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh c rv"><span class="label">Videos</span><span class="sic" aria-hidden="true"><svg viewBox="0 0 48 28"><circle cx="13" cy="14" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 10l6 4-6 4z" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="bar" d="M27 17v-6"/><path class="bar b2" d="M31 19V9"/><path class="bar b3" d="M35 17v-6"/><path class="bar" style="animation-delay:.9s" d="M39 18.5v-9"/><path class="bar" style="animation-delay:1.2s" d="M43 16.5v-5"/></g></svg></span><h2>See it working, in under two minutes each</h2><p>Every walkthrough is narrated and captioned, so you can watch with or without sound.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-videos"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body" id="body-videos"><div class="sec-body-in">
   <div class="gal" id="gal"></div>
   </div></div>
 </div></section>
 
 <section class="sec cta" id="contact" style="padding-top:112px"><div class="wrap">
-  <div class="sh c rv"><span class="label">Contact</span><h2>Let's talk</h2><p>Email or LinkedIn works. The résumé and portfolio PDFs are one click away.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-contact"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  <div class="sh c rv"><span class="label">Contact</span><span class="sic sic-contact" aria-hidden="true"><svg viewBox="0 0 48 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path class="fly" d="M6 15l13-6-3.5 13-2.6-4.9z"/><g class="deliv"><circle cx="38" cy="13" r="6.5"/><path d="M34.8 13l2.3 2.3 4-4.6"/></g></svg></span><h2>Let's talk</h2><p>Email or LinkedIn works. The résumé and portfolio PDFs are one click away.</p><button class="sec-toggle" aria-expanded="false" aria-controls="body-contact"><span class="st-label">Show section</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div class="sec-body" id="body-contact"><div class="sec-body-in"><div class="ctab rv">
   <div><h2>Working on something in payments? Let's talk.</h2><p>I'm happy to walk you through any of this work in more detail.</p></div>
   <div class="cl">
@@ -694,19 +876,55 @@ document.querySelectorAll('.sec-toggle').forEach(btn=>{
     inner.inert=!open;
   });
 });
-const openSec=id=>{const sec=document.getElementById(id);if(!sec)return;const btn=sec.querySelector('.sec-toggle');if(btn&&btn.getAttribute('aria-expanded')==='false')btn.click();};
+const openSec=id=>{const sec=document.getElementById(id);if(!sec)return;const btn=sec.querySelector('.sec-toggle[aria-controls]');if(btn&&btn.getAttribute('aria-expanded')==='false')btn.click();};
 document.querySelectorAll('a[href^="#"]').forEach(a=>{const id=a.getAttribute('href').slice(1);a.addEventListener('click',()=>openSec(id));});
 if(location.hash)openSec(location.hash.slice(1));
+const cases=[...document.querySelectorAll('#body-work .case')];
+if(cases.length>1){
+  let ci=0;const countEl=document.querySelector('.case-count'),dotsEl=document.querySelector('.case-dots'),workBody=document.getElementById('body-work');
+  const dots=cases.map((_,j)=>{const d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Go to story '+(j+1));d.addEventListener('click',()=>show(j));dotsEl.appendChild(d);return d;});
+  const show=i=>{ci=(i+cases.length)%cases.length;cases.forEach((c,j)=>{c.hidden=j!==ci;c.classList.remove('enter');if(j===ci){void c.offsetWidth;c.classList.add('enter');}});countEl.textContent=(ci+1)+' of '+cases.length;dots.forEach((d,j)=>d.setAttribute('aria-current',j===ci?'true':'false'));};
+  cases.forEach((c,j)=>{c.hidden=j!==0;});
+  document.querySelector('.case-prev').addEventListener('click',()=>show(ci-1));
+  document.querySelector('.case-next').addEventListener('click',()=>show(ci+1));
+  let tx=0;workBody.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  workBody.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>48)show(ci+(dx<0?1:-1));},{passive:true});
+  workBody.tabIndex=0;
+  workBody.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){show(ci+1);e.preventDefault();}if(e.key==='ArrowLeft'){show(ci-1);e.preventDefault();}});
+  dots[0].setAttribute('aria-current','true');
+}
 const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>8),{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 const orbitEl=document.querySelector('.orbit');
-if(orbitEl){orbitEl.querySelectorAll('.pchip').forEach((c,i)=>c.style.setProperty('--ci',i));const hb=orbitEl.querySelector('.hudbtn'),hbT=hb.querySelector('span');let busy=0;hb.addEventListener('click',()=>{if(busy)return;busy=1;orbitEl.classList.add('connected');hbT.textContent='Syncing';setTimeout(()=>{hbT.textContent='Connected'},700);setTimeout(()=>{orbitEl.classList.remove('connected');hbT.textContent='Integrate';busy=0},2600);});}
+if(orbitEl){orbitEl.querySelectorAll('.pchip').forEach((c,i)=>c.style.setProperty('--ci',i));const hb=orbitEl.querySelector('.hudbtn'),hbB=hb.querySelector('.hb-t b'),hbI=hb.querySelector('.hb-t i');
+const allToggles=()=>[...document.querySelectorAll('.sec-toggle[aria-controls]')];
+const hint=orbitEl.querySelector('.hud-hint');const syncHud=()=>{const all=allToggles().every(t=>t.getAttribute('aria-expanded')==='true');hb.setAttribute('aria-expanded',all?'true':'false');hbB.textContent=all?'Connected':'Integrate';hbI.textContent=all?'click to close all':'';hbI.style.display=all?'':'none';hb.setAttribute('aria-label',all?'Close all sections':'Open all sections below');orbitEl.classList.toggle('connected',all)};
+const shud=document.createElement('div');shud.className='sync-hud';shud.setAttribute('role','status');shud.innerHTML='<span class="st">SYNCING</span><span class="bar"><i></i></span><span class="ct">0/6</span>';document.body.appendChild(shud);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let syncing=false;
+async function syncFlow(target){if(syncing)return;syncing=true;if(hint)hint.classList.add('off');
+const ts=allToggles(),closed=ts.filter(t=>t.getAttribute('aria-expanded')==='false');
+const bar=shud.querySelector('.bar i'),ct=shud.querySelector('.ct'),st=shud.querySelector('.st');
+let done=ts.length-closed.length;const total=ts.length;
+const render=()=>{bar.style.width=(done/total*100)+'%';ct.textContent=done+'/'+total};
+shud.classList.remove('done');st.textContent='SYNCING';shud.classList.add('on');hbB.textContent='Syncing';render();
+if(reduced){closed.forEach(t=>t.click());done=total;render()}
+else{for(const t of closed){t.click();done++;render();await new Promise(r=>setTimeout(r,150))}}
+st.textContent='CONNECTED';shud.classList.add('done');syncHud();
+setTimeout(()=>shud.classList.remove('on'),1900);syncing=false;
+const dest=target||'results';const el=document.getElementById(dest);if(el)setTimeout(()=>el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'}),reduced?0:250)}
+hb.addEventListener('click',()=>{if(hb.getAttribute('aria-expanded')!=='true'){syncFlow(null)}else{if(hint)hint.classList.add('off');allToggles().forEach(t=>{if(t.getAttribute('aria-expanded')==='true')t.click()});syncHud()}});
+document.querySelectorAll('.nav a[href^="#"],.mnav a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const sec=document.getElementById(id);if(!sec||!sec.querySelector('.sec-toggle[aria-controls]'))return;e.preventDefault();const mn=document.getElementById('mnav');if(mn){mn.hidden=true;document.getElementById('mb').setAttribute('aria-expanded','false')}syncFlow(id)}));
+allToggles().forEach(t=>t.addEventListener('click',()=>setTimeout(syncHud,0)));}
 const heroEl=document.querySelector('.hero');
 if(heroEl&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const plx=heroEl.querySelectorAll('.pchip,.visor');heroEl.addEventListener('pointermove',e=>{const r=heroEl.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;plx.forEach(c=>{const f=parseFloat(getComputedStyle(c).getPropertyValue('--pf'))||5;c.style.translate=(-x*f)+'px '+(-y*f)+'px';});});heroEl.addEventListener('pointerleave',()=>plx.forEach(c=>{c.style.translate='0 0'}));}
 const R=document.documentElement;try{const t=localStorage.getItem('theme');if(t)R.dataset.theme=t;}catch(e){}
 document.getElementById('tb').onclick=()=>{const d=R.dataset.theme?R.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;R.dataset.theme=d?'light':'dark';try{localStorage.setItem('theme',R.dataset.theme)}catch(e){}};
+
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.nav ul a').forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-38% 0px -55% 0px'});
+document.querySelectorAll('section.sec[id]').forEach(sec=>spy.observe(sec));
 </script>
 </body>
 </html>
