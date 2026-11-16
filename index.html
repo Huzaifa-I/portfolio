@@ -7,11 +7,15 @@
 <meta name="description" content="Huzaifa Islam is a product manager who builds payment products. See case studies, clickable prototypes and narrated video walkthroughs.">
 <meta property="og:title" content="Huzaifa Islam · Product Manager, Payments">
 <meta property="og:description" content="Payment products you can click before engineering writes a line.">
-<meta property="og:image" content="shots/bin-intelligence-console-3.png">
+<meta property="og:image" content="https://huzaifa-pm-portfolio.onrender.com/shots/bin-intelligence-console-3.png">
+<meta property="og:url" content="https://huzaifa-pm-portfolio.onrender.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Huzaifa Islam · Product Manager, Payments">
+<meta name="twitter:description" content="Payment products you can click before engineering writes a line.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234338CA'/%3E%3Ctext x='32' y='41' font-family='Arial' font-weight='700' font-size='24' fill='white' text-anchor='middle'%3EHI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=optional" rel="stylesheet">
 <style>
 :root{
   --bg:#FFFFFF;--bg-2:#F7F8FB;--bg-3:#EEF1F7;--card:#FFFFFF;--ink:#0B1020;--ink-2:#4B5568;--ink-3:#5F6878;--line:#E5E8EF;
@@ -30,6 +34,7 @@ a{color:inherit}
 h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--ink)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 :focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:8px}
+.avatar{width:240px;height:240px;border-radius:50%;object-fit:cover;margin:0 auto 18px;display:block;border:3px solid white;box-shadow:0 0 0 1px var(--line),0 12px 30px -12px #27336340}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font:600 13px var(--body)}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
 .label{font:700 12px var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
@@ -51,8 +56,24 @@ h1,h2,h3,h4{font-family:var(--head);margin:0;letter-spacing:-.02em;color:var(--i
 .nav .btn{padding:9px 16px;font-size:14px;border-radius:10px}
 .tbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
 
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero .avatar,.hero .pill,.hero h1,.hero p,.hero .ctas,.hero .facts{animation:rise .6s cubic-bezier(.22,.61,.36,1) both}
+.hero .pill{animation-delay:.05s}.hero h1{animation-delay:.1s}.hero p{animation-delay:.16s}.hero .ctas{animation-delay:.22s}.hero .facts{animation-delay:.28s}
+.case{transition:box-shadow .25s ease,transform .25s ease}
+.case:hover{box-shadow:var(--sh-2)}
+.tile,.hw{transition:transform .2s ease,box-shadow .2s ease}
+.tile:hover,.hw:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.g .th{overflow:hidden}
+.g .th img{transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+.g:hover .th img{transform:scale(1.04)}
+.cl a{transition:background .15s,transform .15s}
+.cl a:hover{transform:translateY(-1px)}
+.logos li{transition:transform .15s ease}
+.logos li:hover{transform:translateY(-1px)}
+
 /* hero */
-.hero{position:relative;padding:84px 0 0;overflow:hidden}
+.hero{position:relative;padding:42px 0 0;overflow:hidden}
 .hero:before{content:"";position:absolute;inset:-200px 0 auto;height:760px;background:radial-gradient(600px 320px at 20% 30%,color-mix(in srgb,var(--brand-2) 22%,transparent),transparent 70%),radial-gradient(520px 300px at 85% 20%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 70%);pointer-events:none}
 .hero:after{content:"";position:absolute;inset:0 0 auto;height:640px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 30%,transparent 80%);opacity:.55;pointer-events:none}
 .hero .wrap{position:relative;z-index:1;text-align:center}
@@ -89,11 +110,11 @@ section.sec{padding:112px 0}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--sh-1);position:relative;overflow:hidden}
 .tile b{display:block;font:800 clamp(34px,4vw,52px)/1 var(--head);letter-spacing:-.04em;margin-bottom:12px}
-.tile h4{font-size:17px;margin-bottom:6px}
+.tile h3{font-size:17px;margin-bottom:6px}
 .tile p{margin:0;color:var(--ink-2);font-size:15px}
 .t1{grid-column:span 3;grid-row:span 2;background:var(--deep);border-color:var(--deep-line);display:flex;flex-direction:column;justify-content:flex-end;min-height:320px}
 .t1 b{background:linear-gradient(90deg,#A5B4FC,#5EEAD4);-webkit-background-clip:text;background-clip:text;color:transparent}
-.t1 h4,.t1 p{color:#E6E9F2}.t1 p{opacity:.75}
+.t1 h3,.t1 p{color:#E6E9F2}.t1 p{opacity:.75}
 .t2,.t3{grid-column:span 3}.t4,.t5,.t6{grid-column:span 2}
 .t1 b{font-size:clamp(40px,5vw,64px)}
 .tile .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;background:var(--brand-soft);color:var(--brand)}
@@ -156,13 +177,13 @@ section.sec{padding:112px 0}
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .hw{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-1)}
 .hw .n{font:800 14px var(--head);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);margin-bottom:16px}
-.hw h4{font-size:18px;margin-bottom:6px}.hw p{margin:0;color:var(--ink-2);font-size:15px}
+.hw h3{font-size:18px;margin-bottom:6px}.hw p{margin:0;color:var(--ink-2);font-size:15px}
 
 /* experience */
 .xp{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:start}
 .side{position:sticky;top:100px}
 .sk{display:grid;gap:18px;margin-top:28px}
-.sk h4{font:700 13px var(--head);color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.sk h3{font:700 13px var(--head);color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
 .sk div div{display:flex;flex-wrap:wrap;gap:8px}
 .sk span{font:500 13.5px var(--body);padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2)}
 .tl{list-style:none;margin:0;padding:0;position:relative}
@@ -196,8 +217,8 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 .dh b{font:700 19px var(--head)}
 .dh button{width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer}
 
-.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none}*{transition:none!important}}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none}*{transition:none!important;animation:none!important}}
 @media (max-width:1100px){.float.f1{left:12px;top:auto;bottom:-30px}.float.f2{right:12px;top:-30px}}
 @media (max-width:960px){
   .nav ul{display:none}.nav .btn{margin-left:auto}
@@ -207,11 +228,11 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
   .side{position:static}.ctab{padding:40px}
 }
 @media (max-width:640px){
-  .wrap{padding:0 16px}section.sec{padding:76px 0}.hero{padding-top:56px}
+  .wrap{padding:0 16px}section.sec{padding:76px 0}.hero{padding-top:32px}
   .gal,.how,.ints{grid-template-columns:1fr}.t4,.t5{grid-column:span 6}
   .case{padding:20px;border-radius:18px}.ctab{padding:28px;border-radius:20px}
   .browser .top span{display:none}
-  .nav .lg{display:none}.nav .sm{display:inline}.nav .wrap{gap:12px}
+  .nav .btn-main .lg{display:none}.nav .btn-main .sm{display:inline}.nav .wrap{gap:12px}
 }
 
 .mbtn{display:none}.nav .sm{display:none}
@@ -226,7 +247,7 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
   body{font-size:16px}
   .nav .wrap{height:60px}
   .logo{font-size:15px}.logo b{width:32px;height:32px}
-  .hero h1{font-size:clamp(34px,10vw,44px);margin:18px auto 16px}
+  .hero h1{font-size:clamp(34px,10vw,44px);margin:18px auto 16px}.avatar{width:190px;height:190px;margin-bottom:14px}
   .hero p{font-size:16.5px;margin-bottom:24px}
   .ctas{flex-direction:column;align-items:stretch;padding:0 8px}
   .ctas .btn{width:100%}
@@ -256,6 +277,9 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
   footer .wrap{flex-direction:column;gap:6px}
   dialog{width:100vw}dialog .dh{padding:0 12px}dialog video{border-radius:0}
 }
+@media(max-width:360px){.nav .wrap{gap:6px;padding:0 12px}.nav .logo{font-size:13px}.nav .logo b{display:none}.nav .btn{padding:8px 10px;font-size:13px;min-height:44px}.nav .tbtn{width:44px;height:44px;flex-shrink:0}}
+section[id]{scroll-margin-top:88px}
+.cm a.play{white-space:nowrap}.split{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px;align-items:center;text-align:left}.hero .split h1{font-size:56px;margin:24px 0;max-width:700px}.hero .split p{font-size:18px;margin:0 0 28px}.split .ctas,.split .facts{justify-content:flex-start}.split picture{display:block}.hero .split .avatar{width:380px;height:auto;aspect-ratio:600/519;border-radius:0;border:0;box-shadow:none;margin:0;object-fit:contain;-webkit-mask-image:none;mask-image:none}.split .facts{font-size:12px;gap:12px}.split .btn{padding:12px 16px;font-size:14px}@media(max-width:900px){.split{grid-template-columns:minmax(0,1fr) 280px;gap:28px}.hero .split .avatar{width:280px}.hero .split h1{font-size:44px}}@media(max-width:700px){.split{display:flex;flex-direction:column-reverse;gap:0px;text-align:center}.hero .split .avatar{width:270px;max-width:100%;margin:auto}.hero .split h1{font-size:38px;margin:20px auto}.hero .split p{font-size:17px}.split .ctas,.split .facts{justify-content:center}.split-text{width:100%}}
 </style>
 </head>
 <body>
@@ -263,13 +287,14 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 <nav class="nav" id="nav"><div class="wrap">
   <a class="logo" href="#top"><b>HI</b>Huzaifa Islam</a>
   <ul><li><a href="#results">Results</a></li><li><a href="#work">Work</a></li><li><a href="#videos">Videos</a></li><li><a href="#how">How I work</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li></ul>
-  <a class="btn btn-main" href="Huzaifa_Islam_Product_Manager_Resume.pdf" download><span class="lg">Download résumé</span><span class="sm">Résumé</span></a>
+  <a class="btn btn-main" href="Huzaifa_Islam_Product_Manager_Resume.pdf" download aria-label="Download résumé (PDF)"><span class="lg">Download résumé</span><span class="sm">Résumé</span></a>
   <button class="tbtn mbtn" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <button class="tbtn" id="tb" aria-label="Switch light or dark theme"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 </div>
 <div class="mnav" id="mnav" hidden><a href="#results">Results</a><a href="#work">Work</a><a href="#videos">Videos</a><a href="#how">How I work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div></nav>
 
-<header class="hero" id="top"><div class="wrap">
+<main id="main-content"><header class="hero" id="top"><div class="wrap">
+  <div class="split"><div class="split-text">
   <span class="pill"><i></i>Product Manager in payments</span>
   <h1>I turn messy payment problems into <span>products people can click.</span></h1>
   <p>I'm Huzaifa. I help businesses get paid. I work out what to build, show it as a working prototype before anyone writes code, and then see it through to launch with the engineering team.</p>
@@ -280,12 +305,13 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
   </div>
   <ul class="facts">
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Product Manager at Yuno</li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>30+ payment integrations planned</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>60+ payment integrations live in 2 quarters</li>
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Based in Hyderabad, India</li>
   </ul>
+</div>  <picture><source srcset="huzaifa-photo.webp" type="image/webp"><img class="avatar" src="huzaifa-photo.png" alt="Portrait of Huzaifa Islam" width="600" height="519" fetchpriority="high"></picture></div>
   <div class="showcase rv">
     <div class="browser"><div class="top"><i></i><i></i><i></i><span>Card lookup · BIN Intelligence</span></div><img class="shot" src="shots/bin-intelligence-console-3.png" alt="A card lookup screen showing what kind of card it is, its bank, its networks and its security check support" width="1440" height="900"></div>
-    <div class="float f1"><b>Weeks to 1 hour</b>Time to plan a new payment provider, using a tool I designed</div>
+    <div class="float f1"><b>1-2 weeks to 1-2 hours</b>Time to plan a new payment provider, using a tool I designed</div>
     <div class="float f2"><span class="dot"></span>Runs on sample data<b style="margin-top:6px">10 videos</b>Every prototype explained in a narrated walkthrough</div>
   </div>
 </div></header>
@@ -297,17 +323,17 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 <section class="sec" id="results"><div class="wrap">
   <div class="sh rv"><span class="label">Results</span><h2>What changed because of my work</h2><p>A few numbers from my time as a product manager in payments, 2025 to 2026.</p></div>
   <div class="bento rv">
-    <div class="tile t1"><b>2 weeks → 1 hour</b><h4>Faster planning for every new provider</h4><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a two week job now takes under an hour.</p></div>
-    <div class="tile t2"><b>30+</b><h4>Integration plans written</h4><p>Clear plans for engineers, covering cards, digital wallets and local payment methods in Latin America, the Middle East, India, Europe and Asia.</p></div>
-    <div class="tile t3"><b>1.1M+</b><h4>Card ranges in my prototype</h4><p>A working prototype, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
-    <div class="tile t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h4>23 ideas, one roadmap</h4><p>Turned a long list of security and approval ideas into one plan you can click through.</p></div>
-    <div class="tile t5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h4>3 test tools</h4><p>Built testers that proved what three payment providers actually do, which unblocked their launch.</p></div>
-    <div class="tile t6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h4>Data before opinions</h4><p>Used SQL and live dashboards to show where money and time were being lost.</p></div>
+    <div class="tile t1"><b>1-2 weeks → 1-2 hours</b><h3>Faster planning for every new provider</h3><p>Before a company can accept payments through a new provider, someone has to study it and write the plan. I designed an AI assisted tool that does the heavy reading, so a one-to-two-week job now takes one to two hours.</p></div>
+    <div class="tile t2"><b>60+</b><h3>Integrations live in 2 quarters</h3><p>Payment integrations delivered, covering cards, digital wallets and local payment methods in Latin America, the Middle East, India, Europe and Asia.</p></div>
+    <div class="tile t3"><b>1.1M+</b><h3>Card ranges in my prototype</h3><p>A working prototype, not just slides. It answers real lookups through a real API, so people could test the idea before any budget was spent.</p></div>
+    <div class="tile t4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h3>23 ideas, one roadmap</h3><p>Turned a long list of security and approval ideas into one plan you can click through.</p></div>
+    <div class="tile t5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h3>3 test tools</h3><p>Built testers that proved what three payment providers actually do, which unblocked their launch.</p></div>
+    <div class="tile t6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div><h3>Data before opinions</h3><p>Used SQL and live dashboards to show where money and time were being lost.</p></div>
   </div>
 </div></section>
 
 <section class="sec work" id="work"><div class="wrap">
-  <div class="sh rv"><span class="label">Selected work</span><h2>Five stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p></div>
+  <div class="sh rv"><span class="label">Selected work</span><h2>Six stories, told simply</h2><p>Each one shows the problem, what I did, and what happened next. Click any screen to watch a short narrated walkthrough.</p></div>
 
   <article class="case rv">
     <div>
@@ -326,12 +352,12 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
   <article class="case flip rv">
     <div>
       <div class="tagrow"><span class="no">02</span><span class="chip">Internal tool</span><span class="chip a">AI</span></div>
-      <h3>A planning assistant that turns weeks into an hour</h3>
+      <h3>A planning assistant that turns weeks into hours</h3>
       <p class="one">Every new payment provider needs someone to read its documents, compare it with what we already have, and write a plan for engineers. That reading was slowing everything down.</p>
       <div class="trio">
         <div class="p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div><h4>The problem</h4><p>Each plan took one to two weeks, and quality depended on who wrote it.</p></div></div>
         <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>What I did</h4><p>I designed a six step AI assisted process, with a model plan that sets the standard and a person who reviews every result.</p></div></div>
-        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>Plans now take under an hour, and more than 30 have been written this way.</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>Plans now take one to two hours, with a person reviewing each result.</p></div></div>
       </div>
     </div>
     <div class="cm"><div class="flow">
@@ -343,7 +369,7 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
         <li><div><b>Write the plan</b><small>Produce the requirements on the standard template</small></div><em class="h">Human review</em></li>
         <li><div><b>Create the tasks</b><small>Open the engineering tickets in Jira</small></div><em>Automatic</em></li>
       </ol>
-      <div class="res"><span>Time per provider</span><b>2 weeks → under 1 hour</b></div>
+      <div class="res"><span>Time per provider</span><b>1-2 weeks → 1-2 hours</b></div>
     </div></div>
   </article>
 
@@ -392,6 +418,20 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
     </div>
     <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>Worldpay tester</span></div><img class="shot" src="shots/worldpay-simulator-3.png" alt="A payment tester showing a test payment and the provider's reply" loading="lazy" width="1440" height="900"></div><button class="play" data-v="worldpay-simulator" data-t="Worldpay tester"><i></i>Watch the walkthrough</button></div>
   </article>
+
+  <article class="case flip rv">
+    <div>
+      <div class="tagrow"><span class="no">06</span><span class="chip">Personal product</span><span class="chip a">Built with AI</span></div>
+      <h3>NextOutreach: my own job-search product, built end to end</h3>
+      <p class="one">Looking for a product job means watching thousands of company career pages. I designed and shipped a working product that watches them for me, matches roles to my profile and paces my outreach - built together with Instinct, my AI assistant.</p>
+      <div class="trio">
+        <div class="p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div><h4>The problem</h4><p>Open roles sit scattered across company career pages, and the good ones close fast. Checking them by hand does not scale.</p></div></div>
+        <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><div><h4>What I did</h4><p>I designed the product, the data model and the guardrails, and built it with Instinct: a directory of about 55,000 verified company career pages, with sign-in, a matched job feed and a recruiter pipeline (Nov 2026).</p></div></div>
+        <div class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg><div><h4>The result</h4><p>A live product built with Python and vanilla JS on free tiers (Render + Neon Postgres), a crawler on GitHub Actions, and 1,000+ automated tests.</p></div></div>
+      </div>
+    </div>
+    <div class="cm"><div class="browser"><div class="top"><i></i><i></i><i></i><span>NextOutreach · live app</span></div><img class="shot" src="shots/nextoutreach-signin.png" alt="Sign-in screen of NextOutreach, the job-search product" loading="lazy" width="1430" height="1040"></div><a class="play" href="https://recruiter-outreach-tracker-v2.onrender.com" target="_blank" rel="noopener" style="text-decoration:none">Visit the live app ↗</a></div>
+  </article>
 </div></section>
 
 <section class="sec" id="videos"><div class="wrap">
@@ -402,27 +442,27 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 <section class="sec" id="how" style="padding-top:0"><div class="wrap">
   <div class="sh c rv"><span class="label">How I work</span><h2>Short first, clickable second, detailed last</h2><p>People decide faster when they can see and touch the idea.</p></div>
   <div class="how rv">
-    <div class="hw"><div class="n">1</div><h4>Understand</h4><p>Talk to the people closest to the problem, and read the data before forming an opinion.</p></div>
-    <div class="hw"><div class="n">2</div><h4>Write one page</h4><p>The problem, the bet, and the decisions I need from leaders, on a single page.</p></div>
-    <div class="hw"><div class="n">3</div><h4>Show it</h4><p>A clickable prototype on realistic data, before anyone spends weeks building.</p></div>
-    <div class="hw"><div class="n">4</div><h4>Detail it</h4><p>Full requirements, the test plan, and who needs to be involved.</p></div>
-    <div class="hw"><div class="n">5</div><h4>Check it</h4><p>A structured review, with a named person signing it off.</p></div>
-    <div class="hw"><div class="n">6</div><h4>Launch it</h4><p>Test evidence, quality sign off, and a calm go live.</p></div>
+    <div class="hw"><div class="n">1</div><h3>Understand</h3><p>Talk to the people closest to the problem, and read the data before forming an opinion.</p></div>
+    <div class="hw"><div class="n">2</div><h3>Write one page</h3><p>The problem, the bet, and the decisions I need from leaders, on a single page.</p></div>
+    <div class="hw"><div class="n">3</div><h3>Show it</h3><p>A clickable prototype on realistic data, before anyone spends weeks building.</p></div>
+    <div class="hw"><div class="n">4</div><h3>Detail it</h3><p>Full requirements, the test plan, and who needs to be involved.</p></div>
+    <div class="hw"><div class="n">5</div><h3>Check it</h3><p>A structured review, with a named person signing it off.</p></div>
+    <div class="hw"><div class="n">6</div><h3>Launch it</h3><p>Test evidence, quality sign off, and a calm go live.</p></div>
   </div>
 </div></section>
 
 <section class="sec work" id="experience"><div class="wrap xp">
   <div class="side rv">
     <span class="label">Experience</span>
-    <div class="sh" style="margin:0"><h2>Where I've worked</h2><p>Product management, built on a background in growth and business development.</p></div>
+    <div class="sh" style="margin:0"><h2>Where I've worked</h2><p>2 years in product management and 4+ years overall, with a background in growth and business development.</p></div>
     <div class="sk">
-      <div><h4>Product</h4><div><span>Strategy</span><span>Roadmaps</span><span>Requirements</span><span>Pricing</span><span>Go to market</span><span>A/B tests</span></div></div>
-      <div><h4>Payments</h4><div><span>Card security (3DS)</span><span>Card data</span><span>Tokens</span><span>Local payment methods</span><span>PCI DSS</span></div></div>
-      <div><h4>Tools</h4><div><span>APIs</span><span>SQL</span><span>Postman</span><span>Jira</span><span>Figma</span><span>AI assistants</span></div></div>
+      <div><h3>Product</h3><div><span>Strategy</span><span>Roadmaps</span><span>Requirements</span><span>Pricing</span><span>Go to market</span><span>A/B tests</span></div></div>
+      <div><h3>Payments</h3><div><span>Card security (3DS)</span><span>Card data</span><span>Tokens</span><span>Local payment methods</span><span>PCI DSS</span></div></div>
+      <div><h3>Tools</h3><div><span>APIs</span><span>SQL</span><span>Postman</span><span>Jira</span><span>Figma</span><span>AI assistants</span></div></div>
     </div>
   </div>
   <ol class="tl rv">
-    <li class="now"><time>Dec 2025 to Present</time><h3>Product Manager</h3><div class="co">Yuno, a global payments platform</div><p>I lead the plan for a new card data product and take payment connections from idea to launch. I also designed the AI assisted planning tool that cut weeks of work to an hour.</p></li>
+    <li class="now"><time>Dec 2025 to Present</time><h3>Product Manager</h3><div class="co">Yuno, a global payments platform</div><p>I lead the plan for a new card data product and take payment connections from idea to launch. I also designed the AI assisted planning tool that cuts one to two weeks of work to one to two hours.</p></li>
     <li><time>Jan 2025 to Dec 2025</time><h3>Product Manager</h3><div class="co">Mitt Arv Technologies</div><p>Launched a new product and owned its roadmap. Wrote requirements and user flows, built internal tools including an HR system, and tested the product's APIs.</p></li>
     <li><time>Apr 2023 to Aug 2023</time><h3>Business Development Manager</h3><div class="co">Flam</div><p>Ran experiments and A/B tests, set success measures, and helped shape how the product went to market.</p></li>
     <li><time>Apr 2022 to Mar 2023</time><h3>Senior Business Development Associate</h3><div class="co">Scaler</div><p>Brought in over $50,000 of new business each quarter, and studied competitors and customer needs.</p></li>
@@ -434,14 +474,14 @@ dialog video{width:100%;aspect-ratio:16/10;border-radius:14px;display:block;back
 <section class="sec cta" id="contact" style="padding-top:112px"><div class="wrap"><div class="ctab rv">
   <div><h2>Working on something in payments? Let's talk.</h2><p>I'm happy to walk you through any of this work in more detail.</p></div>
   <div class="cl">
-    <a href="mailto:huzafaisam16@gmail.com">Email<span>huzafaisam16@gmail.com</span></a>
+    <a href="mailto:huzaifaislam16@gmail.com">Email<span>huzaifaislam16@gmail.com</span></a>
     <a href="https://www.linkedin.com/in/whozz" target="_blank" rel="noopener">LinkedIn<span>linkedin.com/in/whozz</span></a>
     <a href="Huzaifa_Islam_Product_Manager_Resume.pdf" download>Résumé<span>PDF</span></a>
     <a href="Huzaifa-Islam-PM-Portfolio.pdf" download>Portfolio<span>PDF, 9 pages</span></a>
   </div>
 </div></div></section>
 
-<footer><div class="wrap"><span>© 2026 Huzaifa Islam</span><span>Prototypes use a made up brand (Acme Pay) and sample data. No customer data, passwords or company figures are shown.</span></div></footer>
+</main><footer><div class="wrap"><span>© 2026 Huzaifa Islam</span><span>Prototypes use a made up brand (Acme Pay) and sample data. No customer data, passwords or company figures are shown.</span></div></footer>
 
 <dialog id="dlg" aria-label="Walkthrough video"><div class="dh"><b id="dt"></b><button id="dx" aria-label="Close video">×</button></div><video id="dv" controls playsinline preload="none"></video></dialog>
 
